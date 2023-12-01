@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GradeZilla</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
+    <link rel="icon" href="assets/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.dark.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="script/dashboard.js"></script>
+</head>
+
+<body onload="checkAuth()">
+    <div class="wrapper"><!-- wrapper -->
+        <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="sidebar" aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <img style="max-width: 150px;" src="assets/GradeZillaDarkRed.png" />
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="sidebar-content">
+                    <ul class="nav nav-pills d-flex flex-column gap-2 p-2">
+                        <li class="nav-item">
+                            <a class="nav-link rounded-0" href="dashboard.html"><i class="fa-solid fa-dashboard me-2"></i><span>Dashboard</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-0" href="db-students.html"><i class="fa-solid fa-users me-2"></i><span>My Students</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-0 active" href="db-advisory.html"><i class="fa-solid fa-screen-users me-2"></i><span>My Advisory</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a onclick="logout()" class="nav-link rounded-0" href="#logout"><i class="fa-solid fa-right-from-bracket me-2"></i><span>Logout</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Add Modal -->
+        <div class="modal fade" id="addGrades" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" style="max-width: 400px">
+                <form name="addGrades" method="post" class="modal-content needs-validation was-validated">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-list"></i> Quarter Grades </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="quarter" class="form-label">Quarter</label>
+                        <select name="quarter" id="quarter" class="form-control w-50" required>
+                            <option value="">Select quarter</option>
+                            <option value="1">First Quarter</option>
+                            <option value="2">Second Quarter</option>
+                            <option value="3">Third Quarter</option>
+                            <option value="4">Fourth Quarter</option>
+                        </select>
+                        <table class="table custom table-sm table-hover table-bordered my-2">
+                            <thead>
+                                <tr class="bg-dark bg-opacity-25">
+                                    <th>Subjects</th>
+                                    <th style="width: 100px;">Grade</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="ps-3">Filipino</td>
+                                    <td><input name="filipino" type="number" min="60" max="100" class="form-control form-control-sm border-0 py-1 fw-bolder" required></td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-3">English</td>
+                                    <td><input name="english" type="number" min="60" max="100" class="form-control form-control-sm border-0 py-1 fw-bolder" required></td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-3">Math</td>
+                                    <td><input name="math" type="number" min="60" max="100" class="form-control form-control-sm border-0 py-1 fw-bolder" required></td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-3">Arpan</td>
+                                    <td><input name="arpan" type="number" min="60" max="100" class="form-control form-control-sm border-0 py-1 fw-bolder" required></td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-3">TLE</td>
+                                    <td><input name="tle" type="number" min="60" max="100" class="form-control form-control-sm border-0 py-1 fw-bolder" required></td>
+                                </tr>
+                                <tr class="bg-secondary bg-opacity-10">
+                                    <td class="ps-3 py-1">MAPEH</td>
+                                    <td id="mapeh" class="ps-2 fw-bolder"></td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-4 text-muted">Music</td>
+                                    <td><input oninput="computeMapeh()" name="music" id="music" type="number" min="g0" max="100" class="form-control form-control-sm border-0 py-1 fw-bolder" required></td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-4 text-muted">Arts</td>
+                                    <td><input oninput="computeMapeh()" name="arts" id="arts" type="number" min="g0" max="100" class="form-control form-control-sm border-0 py-1 fw-bolder" required></td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-4 text-muted">PE</td>
+                                    <td><input oninput="computeMapeh()" name="pe" id="pe" type="number" min="g0" max="100" class="form-control form-control-sm border-0 py-1 fw-bolder" required></td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-4 text-muted">Health</td>
+                                    <td><input oninput="computeMapeh()" name="health" id="health" type="number" min="g0" max="100" class="form-control form-control-sm border-0 py-1 fw-bolder" required></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <script>
+                            function computeMapeh() {
+                                let music = document.getElementById('music').value
+                                let arts = document.getElementById('arts').value
+                                let pe = document.getElementById('pe').value
+                                let health = document.getElementById('health').value
+                                let mapeh = document.getElementById('mapeh')
+                                if (music != '' && arts != '' && pe != '' && health != '') {
+                                    let ave = (parseInt(music) + parseInt(arts) + parseInt(pe) + parseInt(health)) / 4
+                                    ave = Math.round(ave)
+                                    mapeh.innerHTML = ave
+                                } else {
+                                    mapeh.innerHTML = ''
+                                }
+                            }
+                        </script>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success bg-gradient"><i class="fa-solid fa-check"></i> Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Add Modal -->
+        <div class="main"><!-- main -->
+            <nav class="navbar navbar-expand navbar-dark bg-dark py-2 sticky-top">
+                <a data-bs-toggle="offcanvas" data-bs-target="#sidebar" class="sidebar-toggle d-flex me-2">
+                    <i class="hamburger align-self-center"></i>
+                </a>
+                <a href="dashboard.html" class="navbar-brand">
+                    <img style="width: 140px;" src="assets/GradeZillaWhiteRed.png" alt="">
+                </a>
+            </nav>
+            <main class="content"><!-- content -->
+                <div class="container-fluid p-0 px-sm-5"><!-- container -->
+                    <div class="header"><!-- header -->
+                        <h1 class="header-title" id="student_name">Advisory Name</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb text-white">
+                                <li class="breadcrumb-item" id="advisory_name">Advisory Name</li>
+                                <li class="breadcrumb-item" id="student_name_sub">Advisory Sub</li>
+                            </ol>
+                        </nav>
+                    </div><!-- header -->
+                    <div class="card"><!-- card -->
+                        <div class="d-flex justify-content-end p-2 py-3 gap-2">
+                            <button class="btn btn-secondary" onclick="history.back()"><i class="fas fa-arrow-left"></i> Back</button>
+                            <button id="add" class="btn btn-success"><i class="fa-solid fa-plus"></i> Add Grades</button>
+                            <button id="print" class="btn btn-success" onclick="printPage('card.html')"><i class="fa-solid fa-print"></i> Print Card</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-borderless">
+                                <thead>
+                                    <tr class="table-dark text-uppercase">
+                                        <th colspan="100%">
+                                            <h1 class="fs-4 m-0 text-white">Summary</h1>
+                                        </th>
+                                    </tr>
+                                    <tr class="bg-secondary bg-opacity-50 text-uppercase">
+                                        <th>Subjects</th>
+                                        <th id="q1" style="width: 50px;" class="text-center"></th>
+                                        <th id="q2" style="width: 50px;" class="text-center"></th>
+                                        <th id="q3" style="width: 50px;" class="text-center"></th>
+                                        <th id="q4" style="width: 50px;" class="text-center"></th>
+                                        <th id="final" style="width: 50px;" class="text-center"></th>
+                                        <th style="width: 150px;" class="text-center"></th>
+                                        <th style="width: 150px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="summary"></tbody>
+                            </table>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="row px-4" id="quarters"></div>
+                        </div>
+                    </div><!-- card -->
+                </div><!-- container -->
+            </main><!-- content -->
+        </div><!-- main -->
+    </div><!-- wrapper -->
+    <script type="module">
+
+        document.getElementById('add').addEventListener('click', (e) => {
+            addGrades(document.forms.namedItem('addGrades'))
+        })
+
+        let grades = getGrades(localStorage.getItem('gz_current_student'))
+        let student = getStudent(localStorage.getItem('gz_current_student'))
+        let advisory = getAdvisory(student.advisory)
+
+        //sort asc
+        grades.sort((a, b) => parseInt(a.quarter) - parseInt(b.quarter));
+
+        //ordinal format
+        function nth(n) { return ["st", "nd", "rd"][((n + 90) % 100 - 10) % 10 - 1] || "th" }
+
+        document.getElementById('student_name').innerHTML = formatName(student)
+        document.getElementById('student_name_sub').innerHTML = student.firstname
+        document.getElementById('advisory_name').innerHTML = formatAdvisoryName(advisory)
+
+        let general = {
+            'filipino': [],
+            'english': [],
+            'math': [],
+            'arpan': [],
+            'tle': [],
+            'mapeh': [],
+            'music': [],
+            'arts': [],
+            'pe': [],
+            'health': [],
+            'average': []
+        }
+        let final = document.getElementById('final')
+        final = (grades.length == 4) ? 'Final' : ''
+
+        if (grades.length > 0) {
+            let index = 1
+            grades.forEach((g) => {
+                createQuarter(g)
+                document.getElementById('q' + index).innerHTML = g.quarter + nth(g.quarter)
+                index++
+            })
+            Object.entries(general).forEach(([subject, grades]) => {
+                if (grades.length > 0) createSummary(subject, grades)
+            })
+        } else {
+            let summary = document.getElementById('summary')
+            let tr = createElement('tr')
+            let td = createElement('td', 'No records found.')
+            addClasses(td, 'p-3')
+            td.colSpan = 8
+            tr.appendChild(td)
+            summary.appendChild(tr)
+            let quarters = document.getElementById('quarters')
+            quarters.remove()
+        }
+
+        function createSummary(subject, grades) {
+            let summary = document.getElementById('summary')
+            let tr = createElement('tr')
+            addClasses(tr, 'text-truncate')
+            summary.appendChild(tr)
+            let a = createElement('td', subject.toUpperCase())
+            tr.appendChild(a)
+            if (subject == 'music' || subject == 'arts' || subject == 'pe' || subject == 'health') {
+                addClasses(a, 'ps-4 text-muted')
+            } else {
+                addClasses(a, 'ps-3')
+            }
+            if (subject == 'mapeh') {
+                addClasses(tr, 'bg-dark bg-opacity-10')
+            }
+            if (subject == 'average') {
+                addClasses(tr, 'bg-dark bg-opacity-10 fw-bolder')
+            }
+            let ave = 0
+            for (var i = 0; i <= 3; i++) {
+                let b = createElement('td', grades[i])
+                addClasses(b, 'text-center')
+                if (grades[i] < 75) addClasses(b, 'text-danger fw-bolder')
+                tr.appendChild(b)
+                ave += grades[i]
+            }
+
+            //average
+            ave = Math.round(ave / 4)
+            let c = createElement('td', (grades.length > 3) ? ave : '')
+            addClasses(c, 'text-center fw-bolder')
+            tr.appendChild(c)
+
+            //rating
+            let rating = ''
+            let rate = 0
+            rate = (ave > 74) ? 1 : rate
+            rate = (ave > 79) ? 2 : rate
+            rate = (ave > 85) ? 3 : rate
+            rate = (ave > 89) ? 4 : rate
+            rate = (ave > 95) ? 5 : rate
+            let d = createElement('td')
+            for (var i = 1; i <= 5; i++) {
+                rating += (i <= rate) ? '<i class="fa-solid fa-star text-warning"></i>' : '<i class="fa-solid fa-star text-muted opacity-50"></i>'
+            }
+            d.innerHTML = (grades.length > 3) ? rating : ''
+            addClasses(d, 'text-center fw-bolder')
+            tr.appendChild(d)
+
+            //comment
+            let comment = 'Unexpected'
+            comment = (rate == 1) ? 'Fairly Satisfactory' : comment
+            comment = (rate == 2) ? 'Satisfactory' : comment
+            comment = (rate == 3) ? 'Very Satisfactory' : comment
+            comment = (rate > 3) ? 'Outstanding' : comment
+            let e = createElement('td', (grades.length > 3) ? comment : '')
+            tr.appendChild(e)
+        }
+
+        function createQuarter(g) {
+
+            let quarters = document.getElementById('quarters')
+
+            let col = createElement('div')
+            quarters.appendChild(col)
+            addClasses(col, 'col-sm-12 col-md-3 col-lg-3 p-2')
+
+            let table = createElement('table')//create table
+            addClasses(table, 'table table-sm table-hover table-borderless border border-dark m-0')
+            let thead = createElement('thead')//create header
+            let tbody = createElement('tbody')//create body
+
+            table.appendChild(thead)
+            table.appendChild(tbody)
+
+            col.appendChild(table)//add table
+
+            //create table header
+            let tr = createElement('tr')
+            addClasses(tr, 'bg-secondary bg-opacity-50 text-uppercase text-center')
+            let qlabel = (g.quarter > 1) ? 'Second Quarter' : 'First Quarter'
+            qlabel = (g.quarter > 2) ? 'Third Quarter' : qlabel
+            qlabel = (g.quarter > 3) ? 'Fourth Quarter' : qlabel
+            let th = createElement('th', qlabel)
+            th.colSpan = 2
+            tr.appendChild(th)
+            thead.appendChild(tr)
+
+            //create table sub header
+            let tr1 = createElement('tr')
+            let td1 = createElement('th', 'Subjects')
+            let td2 = createElement('th')
+            td2.style.width = '50px'
+            tr1.appendChild(td1)
+            tr1.appendChild(td2)
+            thead.appendChild(tr1)
+
+            let mapeh_ave = 0
+            let ave = 0
+            let mapeh_cell = createElement('td')
+            addClasses(mapeh_cell, 'text-center')
+            Object.entries(g.subjects).forEach(([name, grade]) => {
+                let a = createElement('tr')
+                let aa = createElement('td', name.toUpperCase())
+                let ab = createElement('td', grade)
+                addClasses(ab, 'text-center')
+                a.appendChild(aa)
+                a.appendChild(ab)
+                tbody.appendChild(a)
+                if (name == 'music' || name == 'arts' || name == 'pe' || name == 'health') {
+                    mapeh_ave += grade
+                    if (grade < 75) {
+                        addClasses(a, 'bg-warning bg-opacity-10')
+                        addClasses(aa, 'ps-3 text-danger fw-bolder')
+                        addClasses(ab, 'text-danger')
+                    } else {
+                        addClasses(aa, 'ps-3 text-muted')
+                    }
+                } else {
+                    ave += grade
+                    if (grade < 75) {
+                        addClasses(a, 'bg-warning bg-opacity-10 fw-bolder')
+                        addClasses(aa, 'text-danger fw-bolder')
+                        addClasses(ab, 'text-danger')
+                    }
+                }
+                if (name == 'tle') {
+                    let tr = createElement('tr')
+                    let td = createElement('td', 'mapeh'.toUpperCase())
+                    tr.appendChild(td)
+                    tr.appendChild(mapeh_cell)
+                    tbody.appendChild(tr)
+                }
+                general[name].push(grade)
+            })
+            mapeh_ave = Math.round(mapeh_ave / 4)
+            ave = Math.round((ave + mapeh_ave) / 6)
+            mapeh_cell.innerHTML = mapeh_ave
+
+            general['mapeh'].push(mapeh_ave) //push mapeh
+            general['average'].push(ave)
+
+            //for average
+            let b = createElement('tr')
+            addClasses(b, 'fw-bolder text-uppercase')
+            let ba = createElement('td', 'Average')
+            let bb = createElement('td', ave)
+            addClasses(bb, 'text-center')
+            b.appendChild(ba)
+            b.appendChild(bb)
+            if (ave < 75) {
+                addClasses(b, 'bg-danger bg-opacity-10')
+                addClasses(ba, 'text-danger')
+                addClasses(bb, 'text-danger fw-bolder')
+            } else {
+                addClasses(b, 'bg-secondary bg-opacity-10')
+            }
+            tbody.appendChild(b)
+
+            //for edit
+            let c = createElement('tr')
+            tbody.appendChild(c)
+            let ca = createElement('td')
+            ca.colSpan = 2
+            let edit = createElement('button', '')
+            edit.innerHTML = '<i class="fa-solid fa-pen-to-square"></i> Edit'
+            addClasses(edit, 'btn btn-sm btn-primary bg-gradient me-1')
+            ca.appendChild(edit)
+            c.appendChild(ca)
+            edit.addEventListener('click', (e) => {
+                addGrades(document.forms.namedItem('addGrades'), g)
+            })
+
+            //for delete
+            let del = createElement('button', '')
+            del.innerHTML = '<i class="fa-solid fa-trash"></i> Delete'
+            addClasses(del, 'btn btn-sm btn-danger bg-gradient')
+            ca.appendChild(del)
+            c.appendChild(ca)
+            del.addEventListener('click', (e) => {
+                deleteGrade(g.id)
+            })
+        }
+        // Process()
+    </script>
+    <!-- javascript -->
+    <style>
+        .table.custom tbody tr,
+        .table.custom tbody tr td {
+            padding: 0px;
+        }
+
+        .table.custom input {
+            border-radius: 0px;
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        @media only screen and (max-width: 425px) {
+
+            .table tbody tr td:nth-child(7),
+            .table tbody tr td:nth-child(8) {
+                display: none
+            }
+
+            .table thead tr th:nth-child(7),
+            .table thead tr th:nth-child(8) {
+                display: none
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+
+</html>

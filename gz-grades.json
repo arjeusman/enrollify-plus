@@ -1,0 +1,66 @@
+[
+    {
+        "id": 1000001,
+        "quarter": 1,
+        "student_id": 1001,
+        "subjects": {
+            "filipino": 50,
+            "english": 60,
+            "math": 80,
+            "arpan": 80,
+            "tle": 80,
+            "music": 81,
+            "arts": 80,
+            "pe": 80,
+            "health": 100
+        }
+    },
+    {
+        "id": 1000001,
+        "quarter": 2,
+        "student_id": 1001,
+        "subjects": {
+            "filipino": 50,
+            "english": 60,
+            "math": 80,
+            "arpan": 80,
+            "tle": 80,
+            "music": 81,
+            "arts": 80,
+            "pe": 80,
+            "health": 100
+        }
+    },
+    {
+        "id": 1000001,
+        "quarter": 3,
+        "student_id": 1001,
+        "subjects": {
+            "filipino": 50,
+            "english": 60,
+            "math": 80,
+            "arpan": 80,
+            "tle": 80,
+            "music": 81,
+            "arts": 80,
+            "pe": 80,
+            "health": 100
+        }
+    },
+    {
+        "id": 1000001,
+        "quarter": 4,
+        "student_id": 1001,
+        "subjects": {
+            "filipino": 50,
+            "english": 60,
+            "math": 80,
+            "arpan": 80,
+            "tle": 80,
+            "music": 81,
+            "arts": 80,
+            "pe": 80,
+            "health": 100
+        }
+    }
+]

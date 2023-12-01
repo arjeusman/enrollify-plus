@@ -1,0 +1,79 @@
+[
+    {
+        "id": 1001,
+        "advisory": 1576996323451,
+        "lrn": "125867060011",
+        "firstname": "Luffy",
+        "middlename": "D.",
+        "lastname": "Monkey",
+        "gender": "male",
+        "age": 18,
+        "birthdate": "2000-08-23"
+    },
+    {
+        "id": 1002,
+        "advisory": 1576996323451,
+        "lrn": "125867060012",
+        "firstname": "Zoro",
+        "middlename": "",
+        "lastname": "Roronoa",
+        "gender": "male",
+        "age": 19,
+        "birthdate": "2000-08-23"
+    },
+    {
+        "id": 1003,
+        "advisory": 1576996323451,
+        "lrn": "125867060013",
+        "firstname": "Sanji",
+        "middlename": "",
+        "lastname": "Vinsmoke",
+        "gender": "male",
+        "age": 19,
+        "birthdate": "2000-08-23"
+    },
+    {
+        "id": 1004,
+        "advisory": 1576996323451,
+        "lrn": "125867060014",
+        "firstname": "Tony",
+        "middlename": "Tony",
+        "lastname": "Chopper",
+        "gender": "male",
+        "age": 12,
+        "birthdate": "2000-08-23"
+    },
+    {
+        "id": 1005,
+        "advisory": 1576996323451,
+        "lrn": "125867060015",
+        "firstname": "Robin",
+        "middlename": "",
+        "lastname": "Nico",
+        "gender": "female",
+        "age": 20,
+        "birthdate": "2000-08-23"
+    },
+    {
+        "id": 1006,
+        "advisory": 1576996323451,
+        "lrn": "125867060016",
+        "firstname": "Franky",
+        "middlename": "Cutty",
+        "lastname": "Flum",
+        "gender": "male",
+        "age": 21,
+        "birthdate": "2000-08-23"
+    },
+    {
+        "id": 1007,
+        "advisory": 1576996323451,
+        "lrn": "125867060016",
+        "firstname": "Cat",
+        "middlename": "Burglar",
+        "lastname": "Nami",
+        "gender": "female",
+        "age": 21,
+        "birthdate": "2000-08-23"
+    }
+]

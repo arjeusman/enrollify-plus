@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GradeZilla</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
+    <link rel="icon" href="assets/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.dark.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="script/dashboard.js"></script>
+</head>
+
+<body onload="checkAuth()">
+    <div class="wrapper"><!-- wrapper -->
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar">
+            <div class="offcanvas-header">
+                <img style="max-width: 150px;" src="assets/GradeZillaDarkRed.png" />
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="sidebar-content">
+                    <ul class="nav nav-pills d-flex flex-column gap-2 p-2">
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard.html"><i class="fa-solid fa-dashboard me-2"></i><span>Dashboard</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="db-students.html"><i class="fa-solid fa-users me-2"></i><span>My Students</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="db-advisory.html"><i class="fa-solid fa-screen-users me-2"></i><span>My Advisory</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a onclick="logout()" class="nav-link" href="#logout"><i class="fa-solid fa-right-from-bracket me-2"></i><span>Logout</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Add Modal -->
+        <div class="modal fade" id="add" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" style="width: 350px">
+                <form name="addAdvisory" method="post" class="modal-content needs-validation" novalidate>
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-screen-users"></i> Add Advisory</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body py-4">
+                        <label class="form-label" for="name">Advisory Name</label>
+                        <input id="name" type="text" name="name" class="form-control mb-2" autocomplete="off" required>
+                        <label class="form-label" for="level">Gender</label>
+                        <select name="level" id="level" class="form-control" required>
+                            <option value="">Select</option>
+                            <option value="7">Grade 7</option>
+                            <option value="8">Grade 8</option>
+                            <option value="9">Grade 9</option>
+                            <option value="10">Grade 10</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success bg-gradient"><i class="fa-solid fa-plus"></i> Add Advisory</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Add Modal -->
+        <!-- Edit Modal -->
+        <div class="modal fade" id="editAdvisory" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" style="width: 350px">
+                <form name="editAdvisory" method="post" class="modal-content needs-validation" novalidate>
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-pen-to-square"></i> Edit Advisory</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body py-4">
+                        <input type="hidden" name="advisory_id">
+                        <label class="form-label" for="name">Advisory Name</label>
+                        <input id="name" type="text" name="advisory_name" class="form-control mb-2" autocomplete="off" required>
+                        <label class="form-label" for="level">Gender</label>
+                        <select id="level" name="advisory_level" class="form-control" required>
+                            <option value="">Select</option>
+                            <option value="7">Grade 7</option>
+                            <option value="8">Grade 8</option>
+                            <option value="9">Grade 9</option>
+                            <option value="10">Grade 10</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success bg-gradient px-3"><i class="fa-solid fa-check"></i> Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Edit Modal -->
+        <div class="main"><!-- main -->
+            <nav class="navbar navbar-expand navbar-theme py-2">
+                <a data-bs-toggle="offcanvas" data-bs-target="#sidebar" class="sidebar-toggle d-flex me-2">
+                    <i class="hamburger align-self-center"></i>
+                </a>
+                <a href="dashboard.html" class="navbar-brand">
+                    <img style="width: 140px;" src="assets/GradeZillaWhiteRed.png" alt="">
+                </a>
+            </nav>
+            <main class="content"><!-- content -->
+                <div class="container-fluid p-0 px-sm-5"><!-- container -->
+                    <div class="header"><!-- header -->
+                        <h1 class="header-title">My Advisory</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb text-white">
+                                <li class="breadcrumb-item">GradeZilla</li>
+                                <li class="breadcrumb-item">My Advisory</li>
+                            </ol>
+                        </nav>
+                    </div><!-- header -->
+                    <div class="card"><!-- card -->
+                        <div class="d-flex flex-column flex-sm-row justify-content-end p-2 py-3 gap-2">
+                            <form action="post" class="order2-last">
+                                <input id="search" type="search" class="form-control" placeholder="Search advisory">
+                            </form>
+                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add"><i class="fas fa-plus"></i> Add Advisory</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover" style="font-size: 13px;">
+                                <thead>
+                                    <tr class="bg-secondary bg-opacity-10 text-uppercase text-truncate">
+                                        <th style="width: 150px;">Advisory ID</th>
+                                        <th>Advisory Name</th>
+                                        <th style="width: 50px;" class="text-center"><i class="fa-solid fa-mars"></i></th>
+                                        <th style="width: 50px;" class="text-center"><i class="fa-solid fa-venus"></i></th>
+                                        <th style="width: 50px;" class="text-center"><i class="fa-solid fa-screen-users"></i></th>
+                                        <th style="width: 250px;" class="text-end">Manage</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="list">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><!-- card -->
+                </div><!-- container -->
+            </main><!-- content -->
+        </div><!-- main -->
+    </div><!-- wrapper -->
+    <script type="text/javascript">
+
+        //the table body
+        let list = document.getElementById('list')
+
+        //display default
+        displayAdvisory('')
+
+        function displayAdvisory(filter) {
+            list.innerHTML = ''
+            let advisories = getAdvisoryList(parseInt(localStorage.getItem('gz_current_user')))
+            let filteredAdvisories = []
+            if (advisories.length == 0 && filter == '') {
+                let row = createRow(list)
+                let td1 = insertCell(row, "No records found.")
+                addClasses(td1, 'd-table-cell p-3')
+                td1.colSpan = "100"
+            }
+            if (filter != '') {
+                advisories.forEach((advisory) => {
+                    if (advisory.name.toLowerCase().includes(filter)) {
+                        filteredAdvisories.push(advisory)
+                    }
+                })
+                if (filteredAdvisories.length == 0) {
+                    let row = createRow(list)
+                    let td1 = insertCell(row, "")
+                    addClasses(td1, 'd-table-cell')
+                    td1.innerHTML = 'No search results found for <b class="fw-bolder">' + filter + '</b>.'
+                    td1.colSpan = "100"
+                }
+                filteredAdvisories.forEach((advisory) => {
+                    createAdvisory(list, advisory)
+                })
+            } else {
+                advisories.forEach((advisory) => {
+                    createAdvisory(list, advisory)
+                })
+            }
+        }
+
+        //create adisory
+        function createAdvisory(list, advisory) {
+            let row = createRow(list)
+            addClasses(row, 'text-uppercase text-truncate')
+            let a = insertCell(row, advisory.id.toString())
+            let b = insertCell(row, 'Grade ' + advisory.level + ' ' + advisory.name)
+            let c = insertCell(row, advisory.male)
+            addClasses(c, 'text-center')
+            let d = insertCell(row, advisory.female)
+            addClasses(d, 'text-center')
+            let e = insertCell(row, advisory.total)
+            addClasses(e, 'text-center')
+            let manage = insertCell(row, "")
+            manage.classList.add('text-end')
+            let view = createButton(manage, '', '<i class="fa-solid fa-screen-users"></i> ')
+            addClasses(view, 'btn btn-sm btn-success me-1')
+            b.addEventListener('click', (e) => {
+                Process()
+                localStorage.setItem('gz_current_advisory', advisory.id)
+                Redirect('db-advisory-view.html')
+            })
+            view.addEventListener('click', (e) => {
+                Process()
+                localStorage.setItem('gz_current_advisory', advisory.id)
+                Redirect('db-advisory-view.html')
+            })
+            let edit = createButton(manage, '', '<i class="fa-solid fa-pen-to-square"></i> ')
+            addClasses(edit, 'btn btn-sm btn-warning me-1')
+            edit.addEventListener('click', (e) => {
+                let form = document.forms.namedItem('editAdvisory')
+                editAdvisory(form, advisory)
+            })
+            let del = createButton(manage, '', '<i class="fa-solid fa-trash"></i> ')
+            addClasses(del, 'btn btn-sm btn-danger me-1')
+            del.addEventListener('click', (e) => {
+                deleteAdvisory(advisory)
+            })
+        }
+
+        //add advisory
+        let form = document.forms.namedItem('addAdvisory')
+        form.addEventListener('submit', (e) => {
+            e.preventDefault()
+            if (!form.checkValidity()) {
+                e.stopPropagation()
+            } else {
+                addAdvisory(form)
+            }
+            form.classList.add('was-validated')
+        }, false)
+
+        //search advisory
+        document.getElementById('search').addEventListener('input', (e) => {
+            displayAdvisory(e.target.value)
+        })
+    </script>
+    <style>
+        @media only screen and (max-width: 425px) {
+
+            .table tbody tr td:nth-child(1),
+            .table tbody tr td:nth-child(3),
+            .table tbody tr td:nth-child(4),
+            .table tbody tr td:nth-child(5) {
+                display: none
+            }
+
+            .table thead tr th:nth-child(1),
+            .table thead tr th:nth-child(3),
+            .table thead tr th:nth-child(4),
+            .table thead tr th:nth-child(5) {
+                display: none
+            }
+        }
+    </style>
+    <!-- javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>

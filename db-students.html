@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GradeZilla</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
+    <link rel="icon" href="assets/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.dark.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="script/dashboard.js"></script>
+</head>
+
+<body onload="checkAuth()">
+    <div class="wrapper"><!-- wrapper -->
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar">
+            <div class="offcanvas-header">
+                <img style="max-width: 150px;" src="assets/GradeZillaDarkRed.png" />
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="sidebar-content">
+                    <ul class="nav nav-pills d-flex flex-column gap-2 p-2">
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard.html"><i class="fa-solid fa-dashboard me-2"></i><span>Dashboard</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="db-students.html"><i class="fa-solid fa-users me-2"></i><span>My Students</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="db-advisory.html"><i class="fa-solid fa-screen-users me-2"></i><span>My Advisory</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a onclick="logout()" class="nav-link" href="#logout"><i class="fa-solid fa-right-from-bracket me-2"></i><span>Logout</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Edit Student Modal -->
+        <div class="modal fade" id="editStudent" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" style="width: 450px">
+                <form name="editStudent" method="post" class="modal-content needs-validation" novalidate>
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-pen-to-square"></i> Edit Student </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="student_id">
+                        <label class="form-label" for="lrn">Learner's Reference Number</label>
+                        <input id="lrn" type="text" name="student_lrn" class="form-control mb-2" autocomplete="off" required>
+                        <label class="form-label" for="firstname">First Name</label>
+                        <input id="firstname" type="text" name="student_firstname" class="form-control mb-2" autocomplete="off" required>
+                        <label class="form-label" for="middlename">Middle Name</label>
+                        <input id="middlename" type="text" name="student_middlename" class="form-control mb-2" autocomplete="off">
+                        <label class="form-label" for="lastname">Last Name</label>
+                        <input id="lastname" type="text" name="student_lastname" class="form-control mb-2" autocomplete="off" required>
+                        <div class="row">
+                            <div class="col">
+                                <label class="form-label" for="gender">Gender</label>
+                                <select name="student_gender" id="gender" class="form-control" required>
+                                    <option value="">Select</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label class="form-label" for="birthdate">Birth Date</label>
+                                <input id="birthdate" type="date" name="student_birthdate" class="form-control mb-2" autocomplete="off" required>
+                            </div>
+                            <div class="col">
+                                <label class="form-label" for="age">Age</label>
+                                <input id="age" type="number" name="student_age" class="form-control mb-2" autocomplete="off" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success bg-gradient px-3"><i class="fa-solid fa-save"></i> Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Edit Student Modal -->
+        <div class="main"><!-- main -->
+            <nav class="navbar navbar-expand navbar-theme py-2">
+                <a data-bs-toggle="offcanvas" data-bs-target="#sidebar" class="sidebar-toggle d-flex me-2">
+                    <i class="hamburger align-self-center"></i>
+                </a>
+                <a href="dashboard.html" class="navbar-brand">
+                    <img style="width: 140px;" src="assets/GradeZillaWhiteRed.png" alt="">
+                </a>
+            </nav>
+            <main class="content"><!-- content -->
+                <div class="container-fluid p-0 px-sm-5"><!-- container -->
+                    <div class="header"><!-- header -->
+                        <h1 class="header-title">My Students</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb text-white">
+                                <li class="breadcrumb-item">Dashboard</li>
+                                <li class="breadcrumb-item">My Students</li>
+                            </ol>
+                        </nav>
+                    </div><!-- header -->
+                    <div class="card"><!-- card -->
+                        <div class="d-flex flex-column flex-sm-row justify-content-end p-2 py-3 gap-2">
+                            <button class="btn btn-secondary" onclick="history.back()"><i class="fas fa-arrow-left"></i> Back</button>
+                            <form action="post" class="order-2 order-sm-5">
+                                <input id="search" type="search" class="form-control" placeholder="Search student">
+                            </form>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover" style="font-size: 13px;">
+                                <thead>
+                                    <tr class="bg-secondary bg-opacity-10 text-uppercase text-truncate">
+                                        <th style="width: 150px;">LRN</th>
+                                        <th>Name</th>
+                                        <th style="width: 80px;">Gender</th>
+                                        <th style="width: 50px;">Age</th>
+                                        <th>Birth Date</th>
+                                        <th>Advisory</th>
+                                        <th class="text-end">Manage</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="list">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><!-- card -->
+                </div><!-- container -->
+            </main><!-- content -->
+        </div><!-- main -->
+    </div><!-- wrapper -->
+    <script type="text/javascript">
+
+        //the table body
+        let list = document.getElementById('list')
+
+        //display default
+        displayStudents('')
+
+        function displayStudents(filter) {
+            list.innerHTML = ''
+            let students = getStudents()
+            let filteredStudents = []
+            if (students.length == 0 && filter == '') {
+                let row = createRow(list)
+                let td1 = insertCell(row, "No records found.")
+                addClasses(td1, 'd-table-cell p-3')
+                td1.colSpan = "100"
+            }
+            if (filter != '') {
+                students.forEach((student) => {
+                    if (
+                        student.firstname.toLowerCase().includes(filter) ||
+                        student.middlename.toLowerCase().includes(filter) ||
+                        student.lastname.toLowerCase().includes(filter)
+                    ) {
+                        filteredStudents.push(student)
+                    }
+                })
+                if (filteredStudents.length == 0) {
+                    let row = createRow(list)
+                    let td1 = insertCell(row, "")
+                    addClasses(td1, 'd-table-cell')
+                    td1.innerHTML = 'No search results found for <b class="fw-bolder">' + filter + '</b>.'
+                    td1.colSpan = "100"
+                }
+                filteredStudents.forEach((student) => {
+                    createStudent(list, student)
+                })
+            } else {
+                students.forEach((student) => {
+                    createStudent(list, student)
+                })
+            }
+        }
+
+        //create student
+        function createStudent(list, student) {
+            let row = createRow(list)
+            addClasses(row, 'text-uppercase')
+            let td1 = insertCell(row, student.lrn.toString())
+            let td2 = insertCell(row, student.firstname)
+            let td3 = insertCell(row, student.gender)
+            let td4 = insertCell(row, student.age.toString())
+            let td5 = insertCell(row, student.birthdate)
+            let advisory = getAdvisory(student.advisory)
+            let td6 = insertCell(row, 'Grade ' + advisory.level + ' ' + advisory.name)
+            td6.addEventListener('click', (e) => {
+                Process()
+                localStorage.setItem('gz_current_advisory', advisory.id)
+                Redirect('db-advisory-view.html')
+            })
+            let td7 = insertCell(row, "")
+            addClasses(td7, 'text-end text-truncate')
+            let view = createButton(td7, '', '<i class="fa-solid fa-user"></i> ')
+            addClasses(view, 'btn btn-sm btn-success me-1')
+            view.addEventListener('click', (e) => {
+                Process()
+                localStorage.setItem('gz_current_student', student.id)
+                Redirect('db-student-view.html')
+            })
+            let edit = createButton(td7, '', '<i class="fa-solid fa-pen-to-square"></i> ')
+            addClasses(edit, 'btn btn-sm btn-warning me-1')
+            edit.addEventListener('click', (e) => {
+                let form = document.forms.namedItem('editStudent')
+                editStudent(form, student)
+            })
+            let del = createButton(td7, '', '<i class="fa-solid fa-trash"></i> ')
+            addClasses(del, 'btn btn-sm btn-danger me-1')
+            del.addEventListener('click', (e) => {
+                deleteStudent(student)
+            })
+        }
+
+        //table functions
+        function createRow(tbody) {
+            let row = document.createElement('tr')
+            tbody.appendChild(row)
+            return row
+        }
+        function insertCell(tr, content) {
+            let cell = document.createElement('td')
+            let text = document.createTextNode(content)
+            cell.appendChild(text)
+            tr.appendChild(cell)
+            return cell
+        }
+        function createButton(cell, content, icon) {
+            let button = document.createElement('button')
+            if (icon) button.innerHTML = icon
+            let text = document.createTextNode(content)
+            button.appendChild(text)
+            cell.appendChild(button)
+            return button
+        }
+
+        //search student
+        document.getElementById('search').addEventListener('input', (e) => {
+            displayStudents(e.target.value)
+        })
+
+    </script>
+    <style>
+        @media only screen and (max-width: 425px) {
+
+            .table tbody tr td:nth-child(1),
+            .table tbody tr td:nth-child(3),
+            .table tbody tr td:nth-child(4),
+            .table tbody tr td:nth-child(5),
+            .table tbody tr td:nth-child(6) {
+                display: none
+            }
+
+            .table thead tr th:nth-child(1),
+            .table thead tr th:nth-child(3),
+            .table thead tr th:nth-child(4),
+            .table thead tr th:nth-child(5),
+            .table thead tr th:nth-child(6) {
+                display: none
+            }
+        }
+    </style>
+    <!-- javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+
+</html>

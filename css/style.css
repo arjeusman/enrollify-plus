@@ -1,0 +1,121 @@
+/* google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+.blur {
+    filter: blur(1px);
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #ddd;
+    animation-name: fadein;
+    animation-duration: 2s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    overflow: scroll;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+table {
+    font-size: 12px;
+}
+
+table tbody tr {
+    cursor: pointer;
+}
+
+/* modify */
+
+.btn:focus,
+.btn-close:focus,
+.form-control:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.offcanvas {
+    max-width: 250px;
+}
+
+@media only screen and (max-width: 425px) {
+    .offcanvas {
+        width: 70%;
+        max-width: 70%;
+    }
+}
+
+.navbar {
+    user-select: none;
+}
+
+.navbar .navbar-brand {
+    font-weight: 800;
+    font-family: 'Sometype Mono', monospace;
+}
+
+.navbar-nav .nav-item {
+    padding: 0px 10px;
+}
+
+.navbar-nav .nav-item .bi {
+    margin-right: 5px;
+}
+
+.navbar .navbar-toggler {
+    border: none;
+    border-radius: 0;
+}
+
+.navbar .navbar-toggler:hover,
+.navbar .navbar-toggler:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.item {
+    cursor: pointer;
+}
+
+.item h1 {
+    font-size: 18px;
+    margin: 0px;
+    line-height: normal;
+}
+
+.main {
+    height: 100vh;
+    max-height: 100vh;
+    overflow: scroll;
+}

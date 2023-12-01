@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GradeZilla</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <script type="text/javascript" src="script/dashboard.js"></script>
+</head>
+
+<body class="bg-white">
+    <div class="xcard d-flex">
+        <div class="col col-6 px-4">
+            <table class="table table-bordered border border-dark mt-5">
+                <thead>
+                    <tr class="table-light border-dark">
+                        <th colspan="100%" class="text-center text-uppercase fs-6">Report on Attendance</th>
+                    </tr>
+                    <tr>
+                        <th style="width: 1in"></th>
+                        <th>Jun</th>
+                        <th>Jul</th>
+                        <th>Aug</th>
+                        <th>Sept</th>
+                        <th>Oct</th>
+                        <th>Nov</th>
+                        <th>Dec</th>
+                        <th>Jan</th>
+                        <th>Febr</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="fw-bold">No. of School Days</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">No. of Days Absent</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">No. of School Days</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <h5 class="text-uppercase mt-4">Parent/Guardian's Signature</h5>
+            <div class="mt-4">
+                <div class="d-flex fw-bolder mt-4">
+                    <div class="me-2 fs-6">1<sup>st</sup> Quarter</div>
+                    <div class="col flex-fill border-bottom border-1 border-dark"></div>
+                </div>
+                <div class="d-flex fw-bolder mt-4">
+                    <div class="me-2 fs-6">2<sup>nd</sup> Quarter</div>
+                    <div class="col flex-fill border-bottom border-1 border-dark"></div>
+                </div>
+                <div class="d-flex fw-bolder mt-4">
+                    <div class="me-2 fs-6">3<sup>rd</sup> Quarter</div>
+                    <div class="col flex-fill border-bottom border-1 border-dark"></div>
+                </div>
+                <div class="d-flex fw-bolder mt-4">
+                    <div class="me-2 fs-6">4<sup>th</sup> Quarter</div>
+                    <div class="col flex-fill border-bottom border-1 border-dark"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col col-6 py-2 px-4 border-start border-1 border-secondary" style="font-weight: 500;">
+            <div class="d-flex justify-content-end">
+                <div class="lrn border-1 border-secondary m-0">
+                    <span>LRN</span>
+                    <span id="student_lrn"></span>
+                </div>
+            </div>
+            <div class="header d-flex align-items-center justify-content-between mt-4">
+                <img src="assets/logo.png">
+                <div class="text-center">
+                    <span class="d-block fw-bolder">Republic of the Philippines</span>
+                    <span class="d-block">Department of Education</span>
+                    <span class="d-block" id="school_region">Region IX, Zamboanga Peninsula</span>
+                    <span class="d-block text-uppercase text-decoration-underline" id="school_division">Division of Zamboanga Sibugay</span>
+                </div>
+                <img src="assets/deped-logo.png">
+            </div>
+            <div class="sub-header text-center mt-2">
+                <span class="text-uppercase border-bottom border-dark border-1 fw-bolder" style="line-height: .5;">IPIL</span>
+                <span class="d-block" style="font-weight: normal;">District</span>
+                <span class="border-bottom border-dark border-1 mt-2 text-uppercase fw-bolder" style="line-height: .5;">Medina College Ipil, Inc.</span>
+                <span class="d-block" style="font-weight: normal;">School</span>
+                <h1 class="fs-4 text-uppercase" style="font-family: 'Fredoka One';">Progress Report Card</h1>
+            </div>
+            <div style="position: relative;">
+                <div class="bglogo"></div><!-- start of bglogo -->
+                <div class="mt-1">
+                    <div class="d-flex fw-bolder">
+                        <div class="me-2">Name:</div>
+                        <div id="student_name" class="col flex-fill border-bottom border-1 border-dark fw-bolder px-2">Arje C. Usman</div>
+                    </div>
+                    <div class="row fw-bolder mt-2">
+                        <div class="col d-flex">
+                            <div class="me-2">Age:</div>
+                            <div id="student_age" class="flex-fill border-bottom border-1 border-dark fw-bolder px-2">AGE</div>
+                        </div>
+                        <div class="col d-flex">
+                            <div class="me-2">Age:</div>
+                            <div id="student_birthdate" class="flex-fill border-bottom border-1 border-dark fw-bolder px-2">BIRTHDATE</div>
+                        </div>
+                        <div class="col d-flex">
+                            <div class="me-2">Sex:</div>
+                            <div id="student_gender" class="flex-fill border-bottom border-1 border-dark fw-bolder px-2 text-capitalize">GENDER</div>
+                        </div>
+                    </div>
+                    <div class="row fw-bolder mt-2">
+                        <div class="col d-flex">
+                            <div class="me-2">Grade:</div>
+                            <div id="student_level" class="flex-fill border-bottom border-1 border-dark fw-bolder px-2">LEVEL</div>
+                        </div>
+                        <div class="col d-flex">
+                            <div class="me-2">Section:</div>
+                            <div id="student_advisory" class="flex-fill border-bottom border-1 border-dark fw-bolder px-2">ADVISORY</div>
+                        </div>
+                    </div>
+                    <div class="d-flex fw-bolder mt-2">
+                        <div class="col d-flex">
+                            <div class="me-2">School Year:</div>
+                            <div class="col flex-fill border-bottom border-1 border-dark fw-bolder px-2">2023 - 2024</div>
+                        </div>
+                        <div class="col d-flex">
+                            <div class="me-2">Curriculum:</div>
+                            <div class="col flex-fill border-bottom border-1 border-dark fw-bolder px-2">K-12</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-2 fw-bold">
+                    <p class="mb-2">Dear Parent:</p>
+                    <p style="font-size: 14px; text-align: justify; text-indent: 50px; margin: 5px 0;">This report card shows the ability and progress your child has made in the different learning areas as well as his/her core values.</p>
+                    <p style="font-size: 14px; text-align: justify; text-indent: 50px; margin: 5px 0;">The school welcomes you should you desire to know more about your child's progress.</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="text-center w-25 mt-2">
+                        <span class="d-block border-bottom border-dark border-1 fw-bolder">PRINCIPAL NAME</span>
+                        <span>Principal</span>
+                    </div>
+                    <div class="text-center mt-2">
+                        <span id="adviser_name" class="d-block border-bottom border-dark border-1 fw-bolder text-uppercase">Adviser Name</span>
+                        <span>Teacher</span>
+                    </div>
+                </div>
+                <div class="mt-1">
+                    <h1 class="fw-bolder text-center fs-6">Certificate of Transfer</h1>
+                    <div class="row fw-bolder mt-3">
+                        <div class="col d-flex">
+                            <div class="me-2">Admitted to Grade:</div>
+                            <div class="flex-fill border-bottom border-1 border-dark"></div>
+                        </div>
+                        <div class="col d-flex">
+                            <div class="me-2">Section:</div>
+                            <div class="flex-fill border-bottom border-1 border-dark"></div>
+                        </div>
+                    </div>
+                    <div class="d-flex fw-bolder mt-2">
+                        <div class="me-2">Eligibility for Admission to Grade:</div>
+                        <div class="col flex-fill border-bottom border-1 border-dark"></div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-4">
+                        <div class="text-center w-25">
+                            <span class="d-block border-bottom border-dark border-1 fw-bolder"></span>
+                            <span>Principal</span>
+                        </div>
+                        <div class="text-center w-25">
+                            <span class="d-block border-bottom border-dark border-1 fw-bolder text-uppercase"></span>
+                            <span>Teacher</span>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end of bglogo -->
+            <div class="mt-1">
+                <h1 class="fw-bolder text-center fs-6">Cancellation of Eligibility to Transfer</h1>
+                <div class="d-flex align-items-center gap-4">
+                    <div class="col mt-2">
+                        <div class="d-flex mb-2">
+                            <div class="me-2">Admitted in:</div>
+                            <div class="flex-fill border-bottom border-1 border-dark"></div>
+                        </div>
+                        <div class="d-flex mb-2">
+                            <div class="me-2">Date:</div>
+                            <div class="flex-fill border-bottom border-1 border-dark"></div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="text-center mt-4">
+                            <span class="d-block border-bottom border-dark border-1 fw-bolder"></span>
+                            <span>Principal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="xcard d-flex">
+        <div class="col col-6 p-2 px-4">
+            <h1 class="fs-6 text-center text-uppercase">Report on Learning Progress and Achievement</h1>
+            <table class="table table-bordered border-dark" style="font-size: 12px">
+                <thead class="text-center">
+                    <tr class="align-middle table-light border-dark">
+                        <th rowspan="2">Learning Areas</th>
+                        <th colspan="4">Quarter</th>
+                        <th rowspan="2" style="width: 50px; font-size: 10px;">Final Grade</th>
+                        <th rowspan="2">Remarks</th>
+                    </tr>
+                    <tr class="align-middle table-light border-dark">
+                        <th style="width: 50px">1</th>
+                        <th style="width: 50px">2</th>
+                        <th style="width: 50px">3</th>
+                        <th style="width: 50px">4</th>
+                    </tr>
+                </thead>
+                <tbody id="summary"></tbody>
+            </table>
+            <table class=" table border border-dark" style="font-size: 12px">
+                <thead>
+                    <tr class="table-light border-dark">
+                        <th colspan="100%" class="text-uppercase" style="font-size: 14px">Learner Progress and Achievement</th>
+                    </tr>
+                    <tr>
+                        <th class="col-6">Discripture</th>
+                        <th class="col-3 text-center">Grading Scale</th>
+                        <th class="col-3 text-end">Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Outstanding</td>
+                        <td class="text-center">90-100</td>
+                        <td class="text-end">Passed</td>
+                    </tr>
+                    <tr>
+                        <td>Very Satisfactory</td>
+                        <td class="text-center">85-89</td>
+                        <td class="text-end">Passed</td>
+                    </tr>
+                    <tr>
+                        <td>Satisfactory</td>
+                        <td class="text-center">80-85</td>
+                        <td class="text-end">Passed</td>
+                    </tr>
+                    <tr>
+                        <td>Fairly Satisfactory</td>
+                        <td class="text-center">75-79</td>
+                        <td class="text-end">Passed</td>
+                    </tr>
+                    <tr>
+                        <td>Did not Meet Expectation</td>
+                        <td class="text-center">Below 75</td>
+                        <td class="text-end">Failed</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col col-6 p-2 px-4 border-start border-1 border-secondary d-flex flex-column align-items-center" style="font-weight: 500; font-size: 16px;">
+            <h1 class="fs-6 text-center text-uppercase">Report on Learner's Obeserved Value</h1>
+            <table class="table table-bordered border border-dark" style="font-size: 12px">
+                <thead>
+                    <tr class="align-middle text-center table-light border-dark">
+                        <th rowspan="2" style="width: 100px">Core Values</th>
+                        <th rowspan="2">Behavior Statements</th>
+                        <th colspan="4">Quarter</th>
+                    </tr>
+                    <tr class="align-middle text-center table-light border-dark">
+                        <th style="width: 40px">1</th>
+                        <th style="width: 40px">2</th>
+                        <th style="width: 40px">3</th>
+                        <th style="width: 40px">4</th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    <tr>
+                        <td rowspan="2">1. Maka-Diyos</td>
+                        <td>Express one's spiritual beliefs while respecting the spiritual beliefs of others.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Shows adherence to ethical principles by upholding truth</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">2. Makatao</td>
+                        <td>Is sensitive to individual, social, and cultural differences</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Demonstrates contributions toward solidarity</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>3. Maka Kalikasan</td>
+                        <td>Cares for the environment and utilizes resources wisely, judiciously, and economically</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">4. Makabansa</td>
+                        <td>Demonstrate pride in being a Filipino; excercises the rights and responsibilities of Filipino citizen</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Demonstrates appropriate behavior in carrying out activities in the school, community and country </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table border border-dark" style="font-size: 12px">
+                <thead>
+                    <tr class="table-light border-dark">
+                        <th colspan="100%" class="text-uppercase" style="font-size: 14px">Observed Values</th>
+                    </tr>
+                    <tr class="table-light border-dark">
+                        <th class="text-center">Markings</th>
+                        <th>Non-numerical Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">AO</td>
+                        <td>Always Observed</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">SO</td>
+                        <td>Sometimes Observed</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">RO</td>
+                        <td>Rarely Observed</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">NO</td>
+                        <td>Not Observed</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script type="module">
+
+        let grades = getGrades(localStorage.getItem('gz_current_student'))
+        let student = getStudent(localStorage.getItem('gz_current_student'))
+        let advisory = getAdvisory(student.advisory)
+        let adviser = getUserInfo()
+        let test = 0
+        //sort asc
+        grades.sort((a, b) => parseInt(a.quarter) - parseInt(b.quarter));
+
+        //ordinal format
+        function nth(n) { return ["st", "nd", "rd"][((n + 90) % 100 - 10) % 10 - 1] || "th" }
+
+        //set card details
+        document.getElementById('student_lrn').innerHTML = student.lrn
+        document.getElementById('student_name').innerHTML = formatName(student)
+        document.getElementById('student_age').innerHTML = student.age
+        let date = new Date(student.birthdate)
+        document.getElementById('student_birthdate').innerHTML = date.toLocaleString('default', { month: 'long' }) + ' ' + date.getDate() + ', ' + date.getYear()
+        document.getElementById('student_gender').innerHTML = student.gender
+        document.getElementById('student_level').innerHTML = 'Grade ' + advisory.level
+        document.getElementById('student_advisory').innerHTML = advisory.name
+        document.getElementById('adviser_name').innerHTML = formatName(adviser)
+
+
+        let general = {
+            'filipino': [],
+            'english': [],
+            'math': [],
+            'arpan': [],
+            'tle': [],
+            'mapeh': [],
+            'music': [],
+            'arts': [],
+            'pe': [],
+            'health': [],
+            'average': []
+        }
+
+        if (grades.length > 0) {
+            let index = 1
+            grades.forEach((g) => {
+                createQuarter(g)
+            })
+            Object.entries(general).forEach(([subject, grades]) => {
+                createSummary(subject, grades)
+            })
+        } else {
+            let summary = document.getElementById('summary')
+            let tr = createElement('tr')
+            let td = createElement('td', 'No records found.')
+            addClasses(td, 'p-3')
+            td.colSpan = 8
+            tr.appendChild(td)
+            summary.appendChild(tr)
+            let quarters = document.getElementById('quarters')
+            quarters.remove()
+        }
+
+        function createSummary(subject, grades) {
+            let summary = document.getElementById('summary')
+            let tr = createElement('tr')
+            addClasses(tr, 'text-truncate')
+            summary.appendChild(tr)
+            let a = createElement('td', subject.toUpperCase())
+            tr.appendChild(a)
+            if (subject == 'music' || subject == 'arts' || subject == 'pe' || subject == 'health') {
+                addClasses(a, 'ps-4 text-muted')
+            } else {
+                addClasses(a, 'ps-3')
+            }
+            if (subject == 'mapeh') {
+                addClasses(tr, 'bg-dark bg-opacity-10')
+            }
+            if (subject == 'average') {
+                addClasses(tr, 'bg-dark bg-opacity-10 fw-bolder')
+            }
+            let ave = 0
+            let test_temp = 0
+            for (var i = 0; i <= 3; i++) {
+                let b = createElement('td', (grades[i] != undefined) ? grades[i] : '?')
+                addClasses(b, 'text-center')
+                tr.appendChild(b)
+                ave += grades[i]
+                if (grades[i] < 75) {
+                    test_temp++
+                }
+            }
+
+            if (test_temp > 0) {
+                test++
+            }
+
+            //average
+            ave = Math.round(ave / 4)
+            let c = createElement('td', (!isNaN(ave)) ? ave : '')
+            addClasses(c, 'text-center fw-bolder')
+            tr.appendChild(c)
+
+            if (subject == 'average') {
+                let d = createElement('td', (ave > 74 && test < 3) ? 'Promoted' : (!isNaN(ave) ? '?' : ''))
+                addClasses(d, 'text-center fw-bolder')
+                tr.appendChild(d)
+            } else {
+                let d = createElement('td', (ave > 74) ? 'Passed' : (!isNaN(ave) ? 'Failed' : ''))
+                addClasses(d, 'text-center fw-bolder')
+                tr.appendChild(d)
+            }
+
+        }
+
+        function createQuarter(g) {
+            let mapeh_ave = 0
+            let ave = 0
+            Object.entries(g.subjects).forEach(([name, grade]) => {
+                if (name == 'music' || name == 'arts' || name == 'pe' || name == 'health') {
+                    mapeh_ave += grade
+                } else {
+                    ave += grade
+                }
+                general[name].push(grade)
+            })
+            mapeh_ave = Math.round(mapeh_ave / 4)
+            ave = Math.round((ave + mapeh_ave) / 6)
+            general['mapeh'].push(mapeh_ave) //push mapeh
+            general['average'].push(ave)
+        }
+
+    </script>
+    <!-- javascript -->
+    <style type="text/css">
+        @media print {
+            @page {
+                size: letter;
+                size: landscape;
+                margin: 0in;
+                page-break-after: always;
+            }
+        }
+
+        .table thead tr th,
+        .table tbody tr td {
+            padding: 8px 5px;
+        }
+
+        .xcard {
+            font-size: 12px;
+            width: 11in;
+            height: 8.5in;
+            max-width: 11in;
+            max-height: 8.5in;
+            padding: 10px;
+            margin: 0;
+        }
+
+        .xcard .lrn {
+            font-weight: 800;
+            font-size: 12px;
+            display: inline-block;
+            width: auto;
+            border: 1px solid #000;
+            letter-spacing: 3px;
+        }
+
+        .xcard .lrn .text {
+            display: inline-block;
+            background-color: #eee;
+            padding-left: 20px;
+        }
+
+        .xcard .lrn span {
+            padding: 2px;
+            padding: 5px;
+            display: inline-block;
+        }
+
+        .xcard .header {
+            font-size: 16px;
+            padding-left: 0.2in;
+            padding-right: 0.2in;
+        }
+
+        .xcard .header img {
+            width: 80px;
+            height: 80px;
+        }
+
+        .bglogo {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-image: url(assets/logo.png);
+            background-size: 80%;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: -999;
+            filter: grayscale(100%);
+            opacity: 0.15;
+        }
+    </style>
+</body>
+
+</html>
