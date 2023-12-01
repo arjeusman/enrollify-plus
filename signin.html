@@ -14,21 +14,21 @@
 
 <body onload="isSigned()">
     <div style="height: 100vh;" class="d-flex flex-column align-items-center justify-content-center">
-        <form name="signin" style="max-width: 350px;" method="post" action="" class="card text-bg-white border-0 rounded-2 overflow-hidden needs-validation w-100" novalidate>
+        <form name="signin" style="max-width: 300px;" method="post" action="" class="card text-bg-white border-0 rounded-2 overflow-hidden needs-validation w-100" novalidate>
             <div style="height: 100px;" class="card-header bg-dark bg-gradient py-4 border-0 rounded-0 d-flex align-items-center justify-content-center">
                 <img style="width: 150px;" src="assets/enrollify.png">
             </div>
-            <div class="card-body py-4">
+            <div class="card-body">
                 <label for="email" class="form-label"><i class="fa-solid fa-user"></i> Email Address</label>
                 <input type="email" id="email" name="email" class="form-control form-control-lg mb-2" autocomplete="off" required>
                 <label for="password" class="form-label"><i class="fa-solid fa-lock"></i> Password</label>
-                <input type="password" id="password" name="password" class="form-control form-control-lg mb-3" autocomplete="off" required>
-                <div class="d-flex justify-content-end">
-                    <button type="submit" name="signin" class="btn btn-lg btn-info bg-gradient flex-fill">Sign in <i class="fa-solid fa-arrow-right"></i></button>
-                </div>
+                <input type="password" id="password" name="password" class="form-control form-control-lg" autocomplete="off" required>
             </div>
             <div class="card-footer bg-light bg-opacity-25 text-center">
-                <a style="font-size: 12px;" class="text-muted" href="#">Forgot password?</a>
+                <div class="d-flex flex-row align-items-center justify-content-between">
+                    <a style="font-size: 12px;" class="text-muted" href="signup.html">Don't have account?</a>
+                    <button type="submit" name="signin" class="btn btn-lg btn-info bg-gradient">Sign in <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
             </div>
         </form>
     </div>
