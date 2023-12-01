@@ -68,19 +68,19 @@ function logout() {
     })
 }
 
-function Process(message='Processing please wait.') {
+function Process(message = 'Processing please wait.') {
     let html;
-    html = '<div style="min-height: 200px" class="d-flex flex-column align-items-center justify-content-center gap-4">'
-    html = html.concat('<img style="width: 50px" src="assets/spinner.gif">')
-    html = html.concat(message)
+    html = '<div style="min-height: 150px" class="d-flex flex-column align-items-center justify-content-center">'
+    html = html.concat('<img style="max-width: 150px" src="assets/loading.gif">')
     html = html.concat('</div>')
+    html = html.concat('<p class="text-muted">' + message + '</p>')
     Swal.fire({
         html: html,
         allowOutsideClick: false,
         showConfirmButton: false,
         width: 350,
         padding: 20,
-        timer: 2000
+        timer: 3000
     })
 }
 

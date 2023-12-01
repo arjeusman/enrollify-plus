@@ -17,7 +17,7 @@
     <div style="height: 100vh;" class="d-flex flex-column align-items-center justify-content-center">
         <form name="signin" style="max-width: 300px;" method="post" action="" class="card text-bg-white border-0 rounded-2 overflow-hidden needs-validation w-100" novalidate>
             <div style="height: 100px;" class="card-header bg-dark bg-gradient py-4 border-0 rounded-0 d-flex align-items-center justify-content-center">
-                <img style="width: 150px;" src="assets/enrollify.png">
+                <img style="width: 150px;" src="assets/enrollify-white.png">
             </div>
             <div class="card-body">
                 <label for="email" class="form-label"><i class="fa-solid fa-user"></i> Email Address</label>
@@ -54,7 +54,7 @@
                     localStorage.setItem('enrollify_current_user', user.id)
                     localStorage.setItem('enrollify_users', JSON.stringify(users))
                     Redirect('dashboard.html')
-                }, 1000)
+                }, 2000)
             }
             form.classList.add('was-validated')
         }, false)
