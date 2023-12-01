@@ -379,6 +379,20 @@ function editStudent(form, student) {
     }, false)
 }
 
+function updateStudent(student) {
+    Process('Updating please wait.')
+    let students = JSON.parse(localStorage.getItem('enrollify_students'))
+    let new_students = []
+    students.forEach((item) => {
+        if (item.id == student.id) {
+            item = student
+        }
+        new_students.push(item)
+    })
+    localStorage.setItem('enrollify_students', JSON.stringify(new_students))
+    Success('Student was updated successfully.')
+}
+
 function deleteStudent(data) {
     Swal.fire({
         icon: 'warning',
@@ -578,6 +592,16 @@ function formatName(name, format) {
 
 function formatAdvisoryName(advisory) {
     return 'Grade ' + advisory.level + ' ' + advisory.name
+}
+
+function clickCard(student, option) {
+    student.card = option
+    updateStudent(student)
+}
+
+function clickPSA(student, option) {
+    student.psa = option
+    updateStudent(student)
 }
 
 //tools

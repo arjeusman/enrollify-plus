@@ -8,7 +8,9 @@
         "lastname": "Monkey",
         "gender": "male",
         "age": 18,
-        "birthdate": "2000-08-23"
+        "birthdate": "2000-08-23",
+        "card": true,
+        "psa": true
     },
     {
         "id": 1002,
@@ -19,7 +21,9 @@
         "lastname": "Roronoa",
         "gender": "male",
         "age": 19,
-        "birthdate": "2000-08-23"
+        "birthdate": "2000-08-23",
+        "card": true,
+        "psa": true
     },
     {
         "id": 1003,
@@ -30,7 +34,9 @@
         "lastname": "Vinsmoke",
         "gender": "male",
         "age": 19,
-        "birthdate": "2000-08-23"
+        "birthdate": "2000-08-23",
+        "card": true,
+        "psa": true
     },
     {
         "id": 1004,
@@ -41,7 +47,9 @@
         "lastname": "Chopper",
         "gender": "male",
         "age": 12,
-        "birthdate": "2000-08-23"
+        "birthdate": "2000-08-23",
+        "card": true,
+        "psa": false
     },
     {
         "id": 1005,
@@ -52,7 +60,9 @@
         "lastname": "Nico",
         "gender": "female",
         "age": 20,
-        "birthdate": "2000-08-23"
+        "birthdate": "2000-08-23",
+        "card": true,
+        "psa": true
     },
     {
         "id": 1006,
@@ -63,7 +73,9 @@
         "lastname": "Flum",
         "gender": "male",
         "age": 21,
-        "birthdate": "2000-08-23"
+        "birthdate": "2000-08-23",
+        "card": true,
+        "psa": false
     },
     {
         "id": 1007,
@@ -74,6 +86,8 @@
         "lastname": "Nami",
         "gender": "female",
         "age": 21,
-        "birthdate": "2000-08-23"
+        "birthdate": "2000-08-23",
+        "card": false,
+        "psa": true
     }
 ]
