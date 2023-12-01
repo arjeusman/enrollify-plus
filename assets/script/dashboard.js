@@ -1,6 +1,6 @@
 //check if user is signed in
 function checkAuth(){
-    let id = localStorage.getItem('gz_current_user')
+    let id = localStorage.getItem('enrollify_current_user')
     if (id == null || id == '' || id == undefined) {
         Swal.fire({
             icon: 'warning',
@@ -24,7 +24,7 @@ function checkAuth(){
 
 //redirect if user is signed in
 function isSigned() {
-    let id = localStorage.getItem('gz_current_user')
+    let id = localStorage.getItem('enrollify_current_user')
     if (id != null) {
         Swal.fire({
             icon: 'warning',
@@ -62,7 +62,7 @@ function logout() {
     }).then((result) => {
         if (result.isConfirmed) {
             Process('Logging out please wait')
-            localStorage.removeItem('gz_current_user')
+            localStorage.removeItem('enrollify_current_user')
             Redirect('signin.html')
         }
     })
@@ -117,7 +117,7 @@ function Redirect(redirect) {
 // function for users
 
 function getUser(email, password) {
-    let data = JSON.parse(localStorage.getItem('gz_users'))
+    let data = JSON.parse(localStorage.getItem('enrollify_users'))
     data.forEach((d) => {
         if (d.email == email && d.password == password) {
             data = d
@@ -129,8 +129,8 @@ function getUser(email, password) {
 }
 
 function getUserInfo() {
-    let id = localStorage.getItem('gz_current_user')
-    let data = JSON.parse(localStorage.getItem('gz_users'))
+    let id = localStorage.getItem('enrollify_current_user')
+    let data = JSON.parse(localStorage.getItem('enrollify_users'))
     let a = {}
     data.forEach((d) => {
        (d.id == id) && (a = d)
@@ -141,7 +141,7 @@ function getUserInfo() {
 // function for advisory
 
 function getAdvisory(id) {
-    let data = JSON.parse(localStorage.getItem('gz_advisory'))
+    let data = JSON.parse(localStorage.getItem('enrollify_advisory'))
     let a = {}
     data.forEach((d) => {
         if (d.id == id) {
@@ -152,8 +152,8 @@ function getAdvisory(id) {
 }
 
 function getAdvisories() {
-    let id = parseInt(localStorage.getItem('gz_current_user'))
-    let data = JSON.parse(localStorage.getItem('gz_advisory'))
+    let id = parseInt(localStorage.getItem('enrollify_current_user'))
+    let data = JSON.parse(localStorage.getItem('enrollify_advisory'))
     let a = []
     data.forEach((d) => {
         if (d.owner == id) a.push(d)
@@ -162,11 +162,11 @@ function getAdvisories() {
 }
 
 function getStudents() {
-    let id = parseInt(localStorage.getItem('gz_current_user'))
+    let id = parseInt(localStorage.getItem('enrollify_current_user'))
     let advisories = getAdvisories(id)
     let data = []
     //get students
-    let students = JSON.parse(localStorage.getItem('gz_students'))
+    let students = JSON.parse(localStorage.getItem('enrollify_students'))
     advisories.forEach((advisory) => {
         students.forEach((student) => {
             if(advisory.id == student.advisory) data.push(student)
@@ -176,7 +176,7 @@ function getStudents() {
 }
 
 function getAdvisoryList(owner) {
-    let data = JSON.parse(localStorage.getItem('gz_advisory'))
+    let data = JSON.parse(localStorage.getItem('enrollify_advisory'))
     let list = []
     data.forEach((d) => {
         if (d.owner == owner) {
@@ -190,7 +190,7 @@ function getAdvisoryList(owner) {
 }
 
 function countMale(id) {
-    let data = JSON.parse(localStorage.getItem('gz_students'))
+    let data = JSON.parse(localStorage.getItem('enrollify_students'))
     let a = []
     data.forEach((d) => {
         if (d.advisory == id && d.gender == 'male') {
@@ -201,7 +201,7 @@ function countMale(id) {
 }
 
 function countFemale(id) {
-    let data = JSON.parse(localStorage.getItem('gz_students'))
+    let data = JSON.parse(localStorage.getItem('enrollify_students'))
     let a = []
     data.forEach((d) => {
         if (d.advisory == id && d.gender == 'female') {
@@ -214,13 +214,13 @@ function countFemale(id) {
 function addAdvisory(form) {
     let data = {}
     //set data
-    data.owner = parseInt(localStorage.getItem('gz_current_user'))
+    data.owner = parseInt(localStorage.getItem('enrollify_current_user'))
     data.name = form.name.value
     data.level = parseInt(form.level.value)
     data.id = Date.now()
-    let advisory = JSON.parse(localStorage.getItem('gz_advisory'))
+    let advisory = JSON.parse(localStorage.getItem('enrollify_advisory'))
     advisory.push(data)
-    localStorage.setItem('gz_advisory', JSON.stringify(advisory))
+    localStorage.setItem('enrollify_advisory', JSON.stringify(advisory))
     Process()
     Success('Advisory was added successfully.')
 }
@@ -242,7 +242,7 @@ function editAdvisory(form, advisory) {
         } else {
             Process('Editing please wait.')
             {
-                let advisories = JSON.parse(localStorage.getItem('gz_advisory'))
+                let advisories = JSON.parse(localStorage.getItem('enrollify_advisory'))
                 let new_advisories = []
                 advisories.forEach((item) => {
                     if (item.id == advisory.id) {
@@ -251,7 +251,7 @@ function editAdvisory(form, advisory) {
                     }
                     new_advisories.push(item)
                 })
-                localStorage.setItem('gz_advisory', JSON.stringify(new_advisories))
+                localStorage.setItem('enrollify_advisory', JSON.stringify(new_advisories))
                 Success('Advisory was updated successfully.')
             }
         }
@@ -278,19 +278,19 @@ function deleteAdvisory(advisory) {
     }).then((result) => {
         if (result.isConfirmed) {
             Process('Deleting please wait.')
-            let data = JSON.parse(localStorage.getItem('gz_advisory'))
+            let data = JSON.parse(localStorage.getItem('enrollify_advisory'))
             let new_data = []
             data.forEach((d) => {
                 return (d.id!=advisory.id) && new_data.push(d)
             })
-            localStorage.setItem('gz_advisory', JSON.stringify(new_data))//update advisory
+            localStorage.setItem('enrollify_advisory', JSON.stringify(new_data))//update advisory
             //delete all students inside the advisory
             new_data = []
-            data = JSON.parse(localStorage.getItem('gz_students'))
+            data = JSON.parse(localStorage.getItem('enrollify_students'))
             data.forEach((d) => {
                 return (d.advisory!=advisory.id) && new_data.push(d)
             })
-            localStorage.setItem('gz_students', JSON.stringify(new_data))//update students
+            localStorage.setItem('enrollify_students', JSON.stringify(new_data))//update students
             Success('Advisory was deleted successfully.', 'db-advisory.html')
         }
     })
@@ -300,7 +300,7 @@ function deleteAdvisory(advisory) {
 //functions for students
 
 function getStudent(id) {
-    let data = JSON.parse(localStorage.getItem('gz_students'))
+    let data = JSON.parse(localStorage.getItem('enrollify_students'))
     let a = {}
     data.forEach((d) => {
         if (d.id == id) {
@@ -311,7 +311,7 @@ function getStudent(id) {
 }
 
 function getStudentList(advisory) {
-    let data = JSON.parse(localStorage.getItem('gz_students'))
+    let data = JSON.parse(localStorage.getItem('enrollify_students'))
     let list = []
     data.forEach((d) => {
         if(d.advisory == advisory) list.push(d)
@@ -322,7 +322,7 @@ function getStudentList(advisory) {
 function addStudent(form) {
     let data = {}
     let id = Date.now()
-    let advisory = localStorage.getItem('gz_current_advisory')
+    let advisory = localStorage.getItem('enrollify_current_advisory')
     //set data
     data.id = parseInt(id)
     data.advisory = parseInt(advisory)
@@ -333,10 +333,10 @@ function addStudent(form) {
     data.gender = form.gender.value
     data.age = parseInt(form.age.value)
     data.birthdate = form.birthdate.value
-    let students = localStorage.getItem('gz_students')
+    let students = localStorage.getItem('enrollify_students')
     students = JSON.parse(students)
     students.push(data)
-    localStorage.setItem('gz_students', JSON.stringify(students))
+    localStorage.setItem('enrollify_students', JSON.stringify(students))
     Process()
     Success('Student was added successfully.')
 }
@@ -358,7 +358,7 @@ function editStudent(form, student) {
             e.stopPropagation()
         } else {
             Process('Editing please wait.')
-            let students = JSON.parse(localStorage.getItem('gz_students'))
+            let students = JSON.parse(localStorage.getItem('enrollify_students'))
             let new_students = []
             students.forEach((item) => {
                 if (item.id == student.id) {
@@ -372,7 +372,7 @@ function editStudent(form, student) {
                 }
                 new_students.push(item)
             })
-            localStorage.setItem('gz_students', JSON.stringify(new_students))
+            localStorage.setItem('enrollify_students', JSON.stringify(new_students))
             Success('Student was updated successfully.')
         }
         form.classList.add('was-validated')
@@ -398,13 +398,13 @@ function deleteStudent(data) {
     }).then((result) => {
         if (result.isConfirmed) {
             //delete students
-            let students = JSON.parse(localStorage.getItem('gz_students'))//get students
+            let students = JSON.parse(localStorage.getItem('enrollify_students'))//get students
             let newStudents = students.filter((student) => { return (student.id!=data.id) && student })
-            localStorage.setItem('gz_students', JSON.stringify(newStudents))//save students
+            localStorage.setItem('enrollify_students', JSON.stringify(newStudents))//save students
             // delete grades
-            let grades = JSON.parse(localStorage.getItem('gz_grades'))//get grades
+            let grades = JSON.parse(localStorage.getItem('enrollify_grades'))//get grades
             let newGrades = grades.filter((g) => { return (g.student_id!=data.id) && g })
-            localStorage.setItem('gz_grades', JSON.stringify(newGrades))//save grades
+            localStorage.setItem('enrollify_grades', JSON.stringify(newGrades))//save grades
             Process()
             Success('Student was deleted successfully.')
         }
@@ -414,7 +414,7 @@ function deleteStudent(data) {
 //function for grades
 
 function getGrades(id) {
-    let data = JSON.parse(localStorage.getItem('gz_grades'))
+    let data = JSON.parse(localStorage.getItem('enrollify_grades'))
     let a = []
     data.forEach((d) => {
         if (d.student_id == id) {
@@ -425,7 +425,7 @@ function getGrades(id) {
 }
 
 function checkQuarter(id, quarter) {
-    let data = JSON.parse(localStorage.getItem('gz_grades'))
+    let data = JSON.parse(localStorage.getItem('enrollify_grades'))
     let a = null
     data.forEach((d) => {
         if (d.student_id == id && d.quarter == quarter) {
@@ -438,7 +438,7 @@ function checkQuarter(id, quarter) {
 function addGrades(form, g) {
     new bootstrap.Modal(document.querySelector("#addGrades")).show() //show form
 
-    let id = parseInt(localStorage.getItem('gz_current_student'))
+    let id = parseInt(localStorage.getItem('enrollify_current_student'))
 
     if (g != undefined) {
         form.quarter.selectedIndex = g.quarter
@@ -508,7 +508,7 @@ function addGrades(form, g) {
             grades.subjects.pe = Math.round(parseInt(form.pe.value))
             grades.subjects.health = Math.round(parseInt(form.health.value))
             //save the data
-            let data = JSON.parse(localStorage.getItem('gz_grades'))
+            let data = JSON.parse(localStorage.getItem('enrollify_grades'))
             if (checkQuarter(id, quarter) == null) {
                 data.push(grades)
                 Process('Adding please wait.')
@@ -523,7 +523,7 @@ function addGrades(form, g) {
                 data = new_data
                 Process('Updating please wait.')
             }
-            localStorage.setItem('gz_grades', JSON.stringify(data)) //updates grades
+            localStorage.setItem('enrollify_grades', JSON.stringify(data)) //updates grades
             Success('Process completed!')
         }
         form.classList.add('was-validated')
@@ -550,9 +550,9 @@ function deleteGrade(id) {
     }).then((result) => {
         if (result.isConfirmed) {
             //delete grade
-            let grades = JSON.parse(localStorage.getItem('gz_grades'))//get grades
+            let grades = JSON.parse(localStorage.getItem('enrollify_grades'))//get grades
             let newGrades = grades.filter((grade) => { return (grade.id != id) && grade })
-            localStorage.setItem('gz_grades', JSON.stringify(newGrades))//save students
+            localStorage.setItem('enrollify_grades', JSON.stringify(newGrades))//save students
             Process()
             Success('Quarter was deleted successfully.')
         }
