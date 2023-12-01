@@ -1,2 +1,2 @@
-# enrollify-plus
+# Enrollify+
 My KodeGo mini project.
