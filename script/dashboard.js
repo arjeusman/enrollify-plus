@@ -63,7 +63,7 @@ function logout() {
         if (result.isConfirmed) {
             Process('Logging out please wait')
             localStorage.removeItem('enrollify_current_user')
-            Redirect('signin.html')
+            Redirect('../signin.html')
         }
     })
 }

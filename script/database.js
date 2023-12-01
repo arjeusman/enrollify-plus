@@ -1,7 +1,7 @@
-import Users from '../../data/users.json' assert { type: 'json' }
-import Advisory from '../../data/sections.json' assert { type: 'json' }
-import Students from '../../data/students.json' assert { type: 'json' }
-import Grades from '../../data/grades.json' assert { type: 'json' }
+import Users from '../data/users.json' assert { type: 'json' }
+import Advisory from '../data/sections.json' assert { type: 'json' }
+import Students from '../data/students.json' assert { type: 'json' }
+import Grades from '../data/grades.json' assert { type: 'json' }
 
 let tempUsers = localStorage.getItem('enrollify_users')
 let tempAdvisory = localStorage.getItem('enrollify_advisory')
