@@ -208,7 +208,7 @@
             })
             view.addEventListener('click', (e) => {
                 Process()
-                localStorage.setItem('enrollify_current_section', section.id)
+                localStorage.setItem('current_section', section.id)
                 Redirect('section-view.html')
             })
             let edit = createButton(manage, '', '<i class="fa-solid fa-pen-to-square"></i> ')

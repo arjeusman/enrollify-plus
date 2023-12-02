@@ -201,7 +201,7 @@ function countFemale(id) {
 function addAdvisory(form) {
     let data = {}
     //set data
-    data.owner = parseInt(localStorage.getItem('enrollify_current_user'))
+    data.owner = parseInt(localStorage.getItem('current_user'))
     data.name = form.name.value
     data.level = parseInt(form.level.value)
     data.id = Date.now()
@@ -209,7 +209,7 @@ function addAdvisory(form) {
     advisory.push(data)
     localStorage.setItem('enrollify_sections', JSON.stringify(advisory))
     Process()
-    Success('Advisory was added successfully.')
+    Success('Section was added successfully.')
 }
 
 function editAdvisory(form, advisory) {
