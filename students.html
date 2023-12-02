@@ -221,13 +221,13 @@
             let gm = createElement('span')
             gm.title = 'Good Moral Character'
             if (student.gm) {
-                addClasses(gm, 'badge me-1 bg-info')
+                addClasses(gm, 'badge me-1 bg-primary')
                 gm.innerHTML = '<i class="fa-solid fa-check"></i> GMC'
-                gm.addEventListener('click', (e) => clickPSA(student, false))
+                gm.addEventListener('click', (e) => clickGM(student, false))
             } else {
                 addClasses(gm, 'badge me-1 bg-secondary bg-opacity-25 text-dark')
                 gm.innerHTML = '<i class="fa-solid fa-times"></i> GMC'
-                gm.addEventListener('click', (e) => clickPSA(student, true))
+                gm.addEventListener('click', (e) => clickGM(student, true))
             }
             td7.appendChild(card)
             td7.appendChild(psa)

@@ -46,7 +46,7 @@
                 Process('Signing in please wait.')
                 window.setTimeout((e) => {
                     if (user != null) {
-                        localStorage.setItem('enrollify_current_user', user.id)
+                        localStorage.setItem('current_user', user.id)
                         window.location.href = 'dashboard.html'
                     } else {
                         Swal.fire({

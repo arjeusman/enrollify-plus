@@ -27,29 +27,29 @@
                             <a class="nav-link" href="dashboard.html"><i class="fa-solid fa-dashboard me-2"></i><span>Dashboard</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="students.html"><i class="fa-solid fa-users me-2"></i><span>My Students</span></a>
+                            <a class="nav-link" href="students.html"><i class="fa-solid fa-users me-2"></i><span>Enrollment</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="sections.html"><i class="fa-solid fa-screen-users me-2"></i><span>My Advisory</span></a>
+                            <a class="nav-link active" href="sections.html"><i class="fa-solid fa-screen-users me-2"></i><span>Sections</span></a>
                         </li>
                         <li class="nav-item">
-                            <a onclick="logout()" class="nav-link" href="#logout"><i class="fa-solid fa-right-from-bracket me-2"></i><span>Logout</span></a>
+                            <a onclick="logout()" class="nav-link rounded-0" href="#logout"><i class="fa-solid fa-right-from-bracket me-2"></i><span>Logout</span></a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
         <!-- Add Modal -->
-        <div class="modal fade" id="add" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="addSection" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" style="width: 350px">
-                <form name="addAdvisory" method="post" class="modal-content needs-validation" novalidate>
+                <form name="addSection" method="post" class="modal-content needs-validation" novalidate>
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-screen-users"></i> Add Advisory</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-screen-users"></i> Add Section</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body py-4">
-                        <label class="form-label" for="name">Advisory Name</label>
+                        <label class="form-label" for="name">section Name</label>
                         <input id="name" type="text" name="name" class="form-control mb-2" autocomplete="off" required>
                         <label class="form-label" for="level">Gender</label>
                         <select name="level" id="level" class="form-control" required>
@@ -61,27 +61,27 @@
                         </select>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success bg-gradient"><i class="fa-solid fa-plus"></i> Add Advisory</button>
+                        <button type="submit" class="btn btn-success bg-gradient"><i class="fa-solid fa-plus"></i> Add Section</button>
                     </div>
                 </form>
             </div>
         </div>
         <!-- Add Modal -->
         <!-- Edit Modal -->
-        <div class="modal fade" id="editAdvisory" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="editSection" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" style="width: 350px">
-                <form name="editAdvisory" method="post" class="modal-content needs-validation" novalidate>
+                <form name="editSection" method="post" class="modal-content needs-validation" novalidate>
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-pen-to-square"></i> Edit Advisory</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-pen-to-square"></i> Edit Section</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body py-4">
-                        <input type="hidden" name="advisory_id">
-                        <label class="form-label" for="name">Advisory Name</label>
-                        <input id="name" type="text" name="advisory_name" class="form-control mb-2" autocomplete="off" required>
+                        <input type="hidden" name="section_id">
+                        <label class="form-label" for="name">section Name</label>
+                        <input id="name" type="text" name="section_name" class="form-control mb-2" autocomplete="off" required>
                         <label class="form-label" for="level">Gender</label>
-                        <select id="level" name="advisory_level" class="form-control" required>
+                        <select id="level" name="section_level" class="form-control" required>
                             <option value="">Select</option>
                             <option value="7">Grade 7</option>
                             <option value="8">Grade 8</option>
@@ -119,16 +119,16 @@
                     <div class="card"><!-- card -->
                         <div class="d-flex flex-column flex-sm-row justify-content-end p-2 py-3 gap-2">
                             <form action="post" class="order2-last">
-                                <input id="search" type="search" class="form-control" placeholder="Search advisory">
+                                <input id="search" type="search" class="form-control" placeholder="Search section">
                             </form>
-                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add"><i class="fas fa-plus"></i> Add Advisory</button>
+                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addSection"><i class="fas fa-plus"></i> Add section</button>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-hover" style="font-size: 13px;">
                                 <thead>
                                     <tr class="bg-secondary bg-opacity-10 text-uppercase text-truncate">
-                                        <th style="width: 150px;">Advisory ID</th>
-                                        <th>Advisory Name</th>
+                                        <th style="width: 150px;">Section ID</th>
+                                        <th>Section Name</th>
                                         <th style="width: 50px;" class="text-center"><i class="fa-solid fa-mars"></i></th>
                                         <th style="width: 50px;" class="text-center"><i class="fa-solid fa-venus"></i></th>
                                         <th style="width: 50px;" class="text-center"><i class="fa-solid fa-screen-users"></i></th>
@@ -150,52 +150,52 @@
         let list = document.getElementById('list')
 
         //display default
-        displayAdvisory('')
+        displaySections('')
 
-        function displayAdvisory(filter) {
+        function displaySections(filter) {
             list.innerHTML = ''
-            let advisories = getAdvisoryList(parseInt(localStorage.getItem('gz_current_user')))
-            let filteredAdvisories = []
-            if (advisories.length == 0 && filter == '') {
+            let sections = getSections()
+            let filteredsections = []
+            if (sections.length == 0 && filter == '') {
                 let row = createRow(list)
                 let td1 = insertCell(row, "No records found.")
                 addClasses(td1, 'd-table-cell p-3')
                 td1.colSpan = "100"
             }
             if (filter != '') {
-                advisories.forEach((advisory) => {
-                    if (advisory.name.toLowerCase().includes(filter)) {
-                        filteredAdvisories.push(advisory)
+                sections.forEach((section) => {
+                    if (section.name.toLowerCase().includes(filter)) {
+                        filteredsections.push(section)
                     }
                 })
-                if (filteredAdvisories.length == 0) {
+                if (filteredsections.length == 0) {
                     let row = createRow(list)
                     let td1 = insertCell(row, "")
                     addClasses(td1, 'd-table-cell')
                     td1.innerHTML = 'No search results found for <b class="fw-bolder">' + filter + '</b>.'
                     td1.colSpan = "100"
                 }
-                filteredAdvisories.forEach((advisory) => {
-                    createAdvisory(list, advisory)
+                filteredsections.forEach((section) => {
+                    createsection(list, section)
                 })
             } else {
-                advisories.forEach((advisory) => {
-                    createAdvisory(list, advisory)
+                sections.forEach((section) => {
+                    createsection(list, section)
                 })
             }
         }
 
         //create adisory
-        function createAdvisory(list, advisory) {
+        function createsection(list, section) {
             let row = createRow(list)
             addClasses(row, 'text-uppercase text-truncate')
-            let a = insertCell(row, advisory.id.toString())
-            let b = insertCell(row, 'Grade ' + advisory.level + ' ' + advisory.name)
-            let c = insertCell(row, advisory.male)
+            let a = insertCell(row, section.id.toString())
+            let b = insertCell(row, 'Grade ' + section.level + ' ' + section.name)
+            let c = insertCell(row, section.male)
             addClasses(c, 'text-center')
-            let d = insertCell(row, advisory.female)
+            let d = insertCell(row, section.female)
             addClasses(d, 'text-center')
-            let e = insertCell(row, advisory.total)
+            let e = insertCell(row, section.total)
             addClasses(e, 'text-center')
             let manage = insertCell(row, "")
             manage.classList.add('text-end')
@@ -203,42 +203,42 @@
             addClasses(view, 'btn btn-sm btn-success me-1')
             b.addEventListener('click', (e) => {
                 Process()
-                localStorage.setItem('gz_current_advisory', advisory.id)
-                Redirect('db-advisory-view.html')
+                localStorage.setItem('enrollify_current_section', section.id)
+                Redirect('section-view.html')
             })
             view.addEventListener('click', (e) => {
                 Process()
-                localStorage.setItem('gz_current_advisory', advisory.id)
-                Redirect('db-advisory-view.html')
+                localStorage.setItem('enrollify_current_section', section.id)
+                Redirect('section-view.html')
             })
             let edit = createButton(manage, '', '<i class="fa-solid fa-pen-to-square"></i> ')
             addClasses(edit, 'btn btn-sm btn-warning me-1')
             edit.addEventListener('click', (e) => {
-                let form = document.forms.namedItem('editAdvisory')
-                editAdvisory(form, advisory)
+                let form = document.forms.namedItem('editSection')
+                editsection(form, section)
             })
             let del = createButton(manage, '', '<i class="fa-solid fa-trash"></i> ')
             addClasses(del, 'btn btn-sm btn-danger me-1')
             del.addEventListener('click', (e) => {
-                deleteAdvisory(advisory)
+                deletesection(section)
             })
         }
 
-        //add advisory
-        let form = document.forms.namedItem('addAdvisory')
+        //add section
+        let form = document.forms.namedItem('addSection')
         form.addEventListener('submit', (e) => {
             e.preventDefault()
             if (!form.checkValidity()) {
                 e.stopPropagation()
             } else {
-                addAdvisory(form)
+                addsection(form)
             }
             form.classList.add('was-validated')
         }, false)
 
-        //search advisory
+        //search section
         document.getElementById('search').addEventListener('input', (e) => {
-            displayAdvisory(e.target.value)
+            displaySections(e.target.value)
         })
     </script>
     <style>

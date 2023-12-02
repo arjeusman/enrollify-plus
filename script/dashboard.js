@@ -1,6 +1,6 @@
 //check if user is signed in
 function checkAuth(){
-    let id = localStorage.getItem('enrollify_current_user')
+    let id = localStorage.getItem('current_user')
     if (id == null || id == '' || id == undefined) {
         Swal.fire({
             icon: 'warning',
@@ -24,7 +24,7 @@ function checkAuth(){
 
 //redirect if user is signed in
 function isSigned() {
-    let id = localStorage.getItem('enrollify_current_user')
+    let id = localStorage.getItem('current_user')
     if (id != null) {
         Swal.fire({
             icon: 'warning',
@@ -138,10 +138,11 @@ function getUserInfo() {
     return a
 }
 
-// function for advisory
+// function for sections
 
-function getAdvisory(id) {
-    let data = JSON.parse(localStorage.getItem('enrollify_advisory'))
+function getSection() {
+    let id = parseInt(localStorage.getItem('current_section'))
+    let data = JSON.parse(localStorage.getItem('enrollify_sections'))
     let a = {}
     data.forEach((d) => {
         if (d.id == id) {
@@ -151,42 +152,28 @@ function getAdvisory(id) {
     return a
 }
 
-function getAdvisories() {
-    let id = parseInt(localStorage.getItem('enrollify_current_user'))
-    let data = JSON.parse(localStorage.getItem('enrollify_advisory'))
+function getSections() {
+    let id = parseInt(localStorage.getItem('current_user'))
+    let data = JSON.parse(localStorage.getItem('enrollify_sections'))
     let a = []
     data.forEach((d) => {
-        if (d.owner == id) a.push(d)
+        if (d.owner == id) {
+            d.male = countMale(d.id)
+            d.female = countFemale(d.id)
+            d.total = d.male + d.female
+            a.push(d)
+        }
     })
     return a
 }
 
-function getStudents() {
-    let id = parseInt(localStorage.getItem('enrollify_current_user'))
-    let advisories = getAdvisories(id)
+function getStudents(section) {
     let data = []
-    //get students
     let students = JSON.parse(localStorage.getItem('enrollify_students'))
-    advisories.forEach((advisory) => {
-        students.forEach((student) => {
-            if(advisory.id == student.advisory) data.push(student)
-        })
+    students.forEach((student) => {
+        if (section.id == student.advisory) data.push(student)
     })
     return data
-}
-
-function getAdvisoryList(owner) {
-    let data = JSON.parse(localStorage.getItem('enrollify_advisory'))
-    let list = []
-    data.forEach((d) => {
-        if (d.owner == owner) {
-            d.male = countMale(d.id)
-            d.female = countFemale(d.id)
-            d.total = d.male + d.female
-            list.push(d)
-        }
-    })
-    return list
 }
 
 function countMale(id) {
@@ -218,15 +205,15 @@ function addAdvisory(form) {
     data.name = form.name.value
     data.level = parseInt(form.level.value)
     data.id = Date.now()
-    let advisory = JSON.parse(localStorage.getItem('enrollify_advisory'))
+    let advisory = JSON.parse(localStorage.getItem('enrollify_sections'))
     advisory.push(data)
-    localStorage.setItem('enrollify_advisory', JSON.stringify(advisory))
+    localStorage.setItem('enrollify_sections', JSON.stringify(advisory))
     Process()
     Success('Advisory was added successfully.')
 }
 
 function editAdvisory(form, advisory) {
-    new bootstrap.Modal(document.querySelector("#editAdvisory")).show() //show form
+    new bootstrap.Modal(document.querySelector("#editSection")).show() //show form
     form.advisory_id.value = advisory.id
     form.advisory_name.value = advisory.name
     let index = 0
@@ -242,7 +229,7 @@ function editAdvisory(form, advisory) {
         } else {
             Process('Editing please wait.')
             {
-                let advisories = JSON.parse(localStorage.getItem('enrollify_advisory'))
+                let advisories = JSON.parse(localStorage.getItem('enrollify_sections'))
                 let new_advisories = []
                 advisories.forEach((item) => {
                     if (item.id == advisory.id) {
@@ -251,7 +238,7 @@ function editAdvisory(form, advisory) {
                     }
                     new_advisories.push(item)
                 })
-                localStorage.setItem('enrollify_advisory', JSON.stringify(new_advisories))
+                localStorage.setItem('enrollify_sections', JSON.stringify(new_advisories))
                 Success('Advisory was updated successfully.')
             }
         }
@@ -278,12 +265,12 @@ function deleteAdvisory(advisory) {
     }).then((result) => {
         if (result.isConfirmed) {
             Process('Deleting please wait.')
-            let data = JSON.parse(localStorage.getItem('enrollify_advisory'))
+            let data = JSON.parse(localStorage.getItem('enrollify_sections'))
             let new_data = []
             data.forEach((d) => {
                 return (d.id!=advisory.id) && new_data.push(d)
             })
-            localStorage.setItem('enrollify_advisory', JSON.stringify(new_data))//update advisory
+            localStorage.setItem('enrollify_sections', JSON.stringify(new_data))//update advisory
             //delete all students inside the advisory
             new_data = []
             data = JSON.parse(localStorage.getItem('enrollify_students'))
@@ -601,6 +588,11 @@ function clickCard(student, option) {
 
 function clickPSA(student, option) {
     student.psa = option
+    updateStudent(student)
+}
+
+function clickGM(student, option) {
+    student.gm = option
     updateStudent(student)
 }
 
