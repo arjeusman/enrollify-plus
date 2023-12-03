@@ -16,9 +16,8 @@
 <body onload="checkAuth()">
     <div class="wrapper"><!-- wrapper -->
         <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar">
-            <div class="offcanvas-header">
-                <img style="max-width: 150px;" src="assets/enrollify-dark.png" />
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <div class="offcanvas-header bg-dark py-4 d-flex align-items-center justify-content-center">
+                <img style="width: 60%;" src="assets/enrollify-white.png" />
             </div>
             <div class="offcanvas-body">
                 <div class="sidebar-content">
@@ -45,7 +44,7 @@
                     <i class="hamburger align-self-center"></i>
                 </a>
                 <a href="dashboard.html" class="navbar-brand">
-                    <img style="width: 140px;" src="assets/enrollify-white.png" alt="">
+                    <img style="width: 100px;" src="assets/enrollify-white.png" alt="">
                 </a>
             </nav>
             <main class="content"><!-- content -->
@@ -63,8 +62,8 @@
                         <div class="container p-2 p-sm-3">
                             <div class="d-flex flex-row flex-nowrap gap-2 px-0 py-2">
                                 <button class="btn btn-secondary" onclick="history.back()"><i class="fas fa-arrow-left"></i> Back</button>
-                                <button id="add" class="btn btn-success"><i class="fa-solid fa-plus"></i> Add Grades</button>
-                                <button id="print" class="btn btn-primary" onclick="printPage('card.html')"><i class="fa-solid fa-print"></i> Print Card</button>
+                                <button id="add" class="btn btn-success"><i class="fa-solid fa-plus"></i> Grades</button>
+                                <button id="print" class="btn btn-primary" onclick="printPage('card.html')"><i class="fa-solid fa-print"></i> Card</button>
                             </div>
                             <div class="table-responsive border border-dark">
                                 <table class="table table-hover table-borderless m-0">
@@ -205,8 +204,8 @@
         //ordinal format
         function nth(n) { return ["st", "nd", "rd"][((n + 90) % 100 - 10) % 10 - 1] || "th" }
 
-        document.getElementById('student_name').innerHTML = formatName(student)
-        document.getElementById('student_name_sub').innerHTML = student.firstname
+        document.getElementById('student_name').innerHTML = formatName(student, 'normal')
+        document.getElementById('student_name_sub').innerHTML = formatName(student, 'normal')
         document.getElementById('section_name').innerHTML = formatsectionName(section)
 
         let general = {

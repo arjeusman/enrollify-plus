@@ -16,9 +16,8 @@
 <body onload="checkAuth()">
     <div class="wrapper"><!-- wrapper -->
         <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar">
-            <div class="offcanvas-header">
-                <img style="max-width: 150px;" src="assets/enrollify-dark.png" />
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <div class="offcanvas-header bg-dark py-4 d-flex align-items-center justify-content-center">
+                <img style="width: 60%;" src="assets/enrollify-white.png" />
             </div>
             <div class="offcanvas-body">
                 <div class="sidebar-content">
@@ -45,38 +44,40 @@
                     <i class="hamburger align-self-center"></i>
                 </a>
                 <a href="dashboard.html" class="navbar-brand">
-                    <img style="width: 140px;" src="assets/enrollify-white.png" alt="">
+                    <img style="width: 100px;" src="assets/enrollify-white.png" alt="">
                 </a>
             </nav>
             <main class="content"><!-- content -->
-                <div class="container-fluid p-0 px-sm-5"><!-- container -->
+                <div class="container p-0"><!-- container -->
                     <div class="header"><!-- header -->
                         <h1 class="header-title">Dashboard</h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb text-white">
-                                <li class="breadcrumb-item">Enrollify+</li>
                                 <li class="breadcrumb-item">Dashboard</li>
+                                <li class="breadcrumb-item">Quick Count</li>
                             </ol>
                         </nav>
                     </div><!-- header -->
                     <div class="card"><!-- card -->
-                        <div class="row px-2 justify-content-center">
-                            <div class="col-sm-12 col-md-4 col-lg-4 py-2">
-                                <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-info bg-opacity-75 bg-gradient border-info" style="height: 100px;">
-                                    <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 h-100 gap-1">
-                                        <i class="fa-solid fa-screen-users" style="font-size: 35px; line-height: normal;"></i>
-                                        <small style="font-size: 10px" class="text-uppercase">Sections</small>
+                        <div class="container p-2 p-sm-3">
+                            <div class="row px-2">
+                                <div class="col-sm-12 col-md-4 col-lg-4 py-2">
+                                    <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-info bg-opacity-75 bg-gradient border-info" style="height: 100px;">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 h-100 gap-1">
+                                            <i class="fa-solid fa-screen-users" style="font-size: 35px; line-height: normal;"></i>
+                                            <small style="font-size: 10px" class="text-uppercase">Sections</small>
+                                        </div>
+                                        <h1 id="count_sections" style="font-size: 50px;" class="m-0 text-center flex-fill">0</h1>
                                     </div>
-                                    <h1 id="count_sections" style="font-size: 50px;" class="m-0 text-center flex-fill">0</h1>
                                 </div>
-                            </div>
-                            <div class="col-sm-12 col-md-4 col-lg-4 py-2">
-                                <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-success bg-opacity-75 bg-gradient border-success" style="height: 100px;">
-                                    <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 h-100 gap-1">
-                                        <i class="fa-solid fa-users" style="font-size: 35px; line-height: normal;"></i>
-                                        <small style="font-size: 10px" class="text-uppercase">Students</small>
+                                <div class="col-sm-12 col-md-4 col-lg-4 py-2">
+                                    <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-success bg-opacity-75 bg-gradient border-success" style="height: 100px;">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 h-100 gap-1">
+                                            <i class="fa-solid fa-users" style="font-size: 35px; line-height: normal;"></i>
+                                            <small style="font-size: 10px" class="text-uppercase">Students</small>
+                                        </div>
+                                        <h1 id="count_students" style="font-size: 50px;" class="m-0 text-center flex-fill">0</h1>
                                     </div>
-                                    <h1 id="count_students" style="font-size: 50px;" class="m-0 text-center flex-fill">0</h1>
                                 </div>
                             </div>
                         </div>

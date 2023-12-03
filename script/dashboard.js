@@ -143,8 +143,14 @@ function getUserInfo() {
 
 // function for sections
 
-function getSection() {
-    let id = parseInt(localStorage.getItem('current_section'))
+function viewSection(section){
+    Process()
+    localStorage.setItem('current_section', section.id)
+    Redirect('section-view.html')
+}
+
+function getSection(id) {
+    {(id==undefined) && (id = parseInt(localStorage.getItem('current_section')))}
     let data = JSON.parse(localStorage.getItem('enrollify_sections'))
     let a = {}
     data.forEach((d) => {
@@ -170,7 +176,7 @@ function getSections() {
     return a
 }
 
-function getStudents(section) {
+function getStudentsInSection(section) {
     let data = []
     let students = JSON.parse(localStorage.getItem('enrollify_students'))
     students.forEach((student) => {
@@ -292,6 +298,11 @@ function deleteSection(section) {
 
 //functions for students
 
+function Students() {
+    let data = JSON.parse(localStorage.getItem('enrollify_students'))
+    return data
+}
+
 function getStudent(id) {
     let data = JSON.parse(localStorage.getItem('enrollify_students'))
     let a = {}
@@ -303,13 +314,14 @@ function getStudent(id) {
     return a
 }
 
-function getStudentList(section) {
-    let data = JSON.parse(localStorage.getItem('enrollify_students'))
-    let list = []
-    data.forEach((d) => {
-        if(d.section == section) list.push(d)
+function getStudents() {
+    let data = []
+    let sections = []
+    getSections().forEach((s) => sections.push(s.id))
+    Students().forEach((s) => {
+        {((sections.includes(s.section))) && data.push(s)}
     })
-    return list
+    return data
 }
 
 function viewStudent(student){
@@ -418,8 +430,8 @@ function deleteStudent(data) {
             let grades = JSON.parse(localStorage.getItem('enrollify_grades'))//get grades
             let newGrades = grades.filter((g) => { return (g.student_id!=data.id) && g })
             localStorage.setItem('enrollify_grades', JSON.stringify(newGrades))//save grades
-            // delete sttendance
-            let attendance = JSON.parse(localStorage.getItem('enrollify_attendancec'))//get attendance
+            // delete attendance
+            let attendance = JSON.parse(localStorage.getItem('enrollify_attendance'))//get attendance
             let newAttendance = attendance.filter((a) => { return (g=a.student_id!=data.id) && a })
             localStorage.setItem('enrollify_attendance', JSON.stringify(newAttendance))//save attendance
             Process()
