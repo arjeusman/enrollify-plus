@@ -11,10 +11,6 @@
     display: none;
 }
 
-.blur {
-    filter: blur(1px);
-}
-
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #ddd;
@@ -28,6 +24,43 @@ body {
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
     display: none;
+}
+
+.spinner-border {
+    animation-duration: 1s;
+}
+
+.spinner-grow {
+    animation-duration: 1s;
+}
+
+.gauge {
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 1 / 1;
+    padding: 0px;
+    display: inline-block;
+    background-color: transparent;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    background-image: url(../assets/loading.gif);
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.gauge .spinner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    border-width: 10px;
 }
 
 a {

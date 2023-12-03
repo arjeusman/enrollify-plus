@@ -70,8 +70,11 @@ function logout() {
 
 function Process(message = 'Processing please wait.', duration=3000) {
     let html;
-    html = '<div style="min-height: 150px" class="d-flex flex-column align-items-center justify-content-center">'
-    html = html.concat('<img style="width: 100%; max-width: 150px" src="assets/loading.gif">')
+    html = '<div class="d-flex align-items-center justify-content-center p-4">'
+    html = html.concat('<div class="gauge">')
+    html = html.concat('<div class="spinner spinner-border text-warning opacity-25"></div>')
+    html = html.concat('<div class="spinner spinner-grow text-warning opacity-25"></div>')
+    html = html.concat('</div>')
     html = html.concat('</div>')
     html = html.concat('<p class="text-muted">' + message + '</p>')
     Swal.fire({
@@ -240,7 +243,7 @@ function editSection(section) {
                     new_advisories.push(item)
                 })
                 localStorage.setItem('enrollify_sections', JSON.stringify(new_advisories))
-                Success('section was updated successfully.')
+                Success('Section was updated successfully.')
             }
         }
         form.classList.add('was-validated')
@@ -281,7 +284,7 @@ function deleteSection(section) {
             })
             localStorage.setItem('enrollify_students', JSON.stringify(new_data))//update students
             localStorage.removeItem('current_section')
-            Success('section was deleted successfully.', 'sections.html')
+            Success('Section was deleted successfully.', 'sections.html')
         }
     })
 }
@@ -463,7 +466,7 @@ function checkQuarter(id, quarter) {
 function addGrades(form, g) {
     new bootstrap.Modal(document.querySelector("#addGrades")).show() //show form
 
-    let id = parseInt(localStorage.getItem('enrollify_current_student'))
+    let id = parseInt(localStorage.getItem('current_student'))
 
     if (g != undefined) {
         form.quarter.selectedIndex = g.quarter
@@ -484,7 +487,8 @@ function addGrades(form, g) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Update!',
-                html: 'Please note that this will update the current quarter grades.',
+                iconColor: '#f3676e',
+                html: 'Please note that this will update the quarter grades.',
                 allowOutsideClick: false,
                 showConfirmButton: false,
                 width: 350,
@@ -495,20 +499,12 @@ function addGrades(form, g) {
             form.math.value = check.subjects.math
             form.arpan.value = check.subjects.arpan
             form.tle.value = check.subjects.tle
+            let mapeh = Math.round((check.subjects.music + check.subjects.arts + check.subjects.pe + check.subjects.health)/4)
+            document.getElementById('mapeh').innerHTML = mapeh
             form.music.value = check.subjects.music
             form.arts.value = check.subjects.arts
             form.pe.value = check.subjects.pe
             form.health.value = check.subjects.health
-        } else {
-            form.filipino.value = ''
-            form.english.value = ''
-            form.math.value = ''
-            form.arpan.value = ''
-            form.tle.value = ''
-            form.music.value = ''
-            form.arts.value = ''
-            form.pe.value = ''
-            form.health.value = ''
         }
     })
     form.addEventListener('submit', (e) => {
@@ -558,9 +554,10 @@ function addGrades(form, g) {
 function deleteGrade(id) {
     Swal.fire({
         icon: 'warning',
-        iconHtml: '<i class="fa-solid fa-trash"></i>',
+        iconColor: '#f3676e',
+        iconHtml: '<i class="fa-solid fa-question"></i>',
         title: 'Delete?',
-        html: 'Are you sure you want to delete this quarterly grades?',
+        html: 'Are you sure you want to delete this grades?',
         width: 350,
         padding: 20,
         showConfirmButton: true,
@@ -588,7 +585,13 @@ function deleteGrade(id) {
 function formatName(name, format) {
     if (format == 'standard') {
         if (name.middlename != '') {
-            return name.lastname + ', ' + name.firstname + ' ' + name.middlename[0] + '.'
+            return name.lastname + ' ' + name.firstname + ' ' + name.middlename[0] + '.'
+        } else {
+            return name.firstname + ' ' + name.lastname
+        }
+    } else if (format == 'normal') {
+        if (name.middlename != '') {
+            return name.firstname + ' ' + name.middlename[0] + '. ' + name.lastname
         } else {
             return name.firstname + ' ' + name.lastname
         }
