@@ -40,8 +40,7 @@
             </div>
         </div>
         <!-- Add Modal -->
-        <div class="modal fade" id="addSection" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
+        <div class="modal fade" id="addSection" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" style="width: 350px">
                 <form name="addSection" method="post" class="modal-content needs-validation" novalidate>
                     <div class="modal-header">
@@ -68,8 +67,7 @@
         </div>
         <!-- Add Modal -->
         <!-- Edit Modal -->
-        <div class="modal fade" id="editSection" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
+        <div class="modal fade" id="editSection" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" style="width: 350px">
                 <form name="editSection" method="post" class="modal-content needs-validation" novalidate>
                     <div class="modal-header">
@@ -117,27 +115,27 @@
                         </nav>
                     </div><!-- header -->
                     <div class="card"><!-- card -->
-                        <div class="d-flex flex-column flex-sm-row justify-content-end p-2 py-3 gap-2">
-                            <form action="post" class="order2-last">
-                                <input id="search" type="search" class="form-control" placeholder="Search section">
-                            </form>
-                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addSection"><i class="fas fa-plus"></i> Add section</button>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-hover" style="font-size: 13px;">
-                                <thead>
-                                    <tr class="bg-secondary bg-opacity-10 text-uppercase text-truncate">
-                                        <th style="width: 150px;">Section ID</th>
-                                        <th>Section Name</th>
-                                        <th style="width: 50px;" class="text-center"><i class="fa-solid fa-mars"></i></th>
-                                        <th style="width: 50px;" class="text-center"><i class="fa-solid fa-venus"></i></th>
-                                        <th style="width: 50px;" class="text-center"><i class="fa-solid fa-screen-users"></i></th>
-                                        <th style="width: 250px;" class="text-end">Manage</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="list">
-                                </tbody>
-                            </table>
+                        <div class="container p-2">
+                            <div class="d-flex align-items-center justify-content-center justify-content-sm-end py-3 gap-2">
+                                <input style="max-width: 300px;" id="search" type="search" class="form-control order-last" placeholder="Search section">
+                                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addSection"><i class="fas fa-plus"></i><span class="d-none d-md-inline ms-2">Add Section</span></button>
+                            </div>
+                            <div class="table-responsive border">
+                                <table class="table table-hover m-0" style="font-size: 13px;">
+                                    <thead>
+                                        <tr class="bg-secondary bg-opacity-10 text-uppercase text-truncate">
+                                            <th style="width: 150px;">Section ID</th>
+                                            <th>Section Name</th>
+                                            <th style="width: 50px;" class="text-center"><i class="fa-solid fa-mars"></i></th>
+                                            <th style="width: 50px;" class="text-center"><i class="fa-solid fa-venus"></i></th>
+                                            <th style="width: 50px;" class="text-center"><i class="fa-solid fa-screen-users"></i></th>
+                                            <th style="width: 250px;" class="text-end">Manage</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="list">
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div><!-- card -->
                 </div><!-- container -->
@@ -199,11 +197,11 @@
             addClasses(e, 'text-center')
             let manage = insertCell(row, "")
             manage.classList.add('text-end')
-            let view = createButton(manage, '', '<i class="fa-solid fa-screen-users"></i> ')
+            let view = createButton(manage, '', '<i class="fa-solid fa-screen-users"></i> <span class="d-none d-sm-inline">View</span>')
             addClasses(view, 'btn btn-sm btn-success me-1')
             b.addEventListener('click', (e) => {
                 Process()
-                localStorage.setItem('enrollify_current_section', section.id)
+                localStorage.setItem('current_section', section.id)
                 Redirect('section-view.html')
             })
             view.addEventListener('click', (e) => {
@@ -211,16 +209,15 @@
                 localStorage.setItem('current_section', section.id)
                 Redirect('section-view.html')
             })
-            let edit = createButton(manage, '', '<i class="fa-solid fa-pen-to-square"></i> ')
+            let edit = createButton(manage, '', '<i class="fa-solid fa-pen-to-square"></i> <span class="d-none d-sm-inline">Edit</span>')
             addClasses(edit, 'btn btn-sm btn-warning me-1')
             edit.addEventListener('click', (e) => {
-                let form = document.forms.namedItem('editSection')
-                editsection(form, section)
+                editSection(section)
             })
-            let del = createButton(manage, '', '<i class="fa-solid fa-trash"></i> ')
+            let del = createButton(manage, '', '<i class="fa-solid fa-trash"></i> <span class="d-none d-sm-inline">Delete</span>')
             addClasses(del, 'btn btn-sm btn-danger me-1')
             del.addEventListener('click', (e) => {
-                deletesection(section)
+                deleteSection(section)
             })
         }
 
@@ -231,7 +228,7 @@
             if (!form.checkValidity()) {
                 e.stopPropagation()
             } else {
-                addsection(form)
+                addSection(form)
             }
             form.classList.add('was-validated')
         }, false)
@@ -261,9 +258,7 @@
     </style>
     <!-- javascript -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
 </html>

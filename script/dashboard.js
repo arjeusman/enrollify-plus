@@ -47,7 +47,7 @@ function isSigned() {
 function logout() {
     Swal.fire({
         icon: 'warning',
-        iconHtml: '<i class="fa-solid fa-right-from-bracket"></i>',
+        iconHtml: '<i class="fa-solid fa-question"></i>',
         html: 'Are you sure you want to logout?',
         width: 350,
         showConfirmButton: true,
@@ -62,16 +62,16 @@ function logout() {
     }).then((result) => {
         if (result.isConfirmed) {
             Process('Logging out please wait')
-            localStorage.removeItem('enrollify_current_user')
+            localStorage.removeItem('current_user')
             Redirect('../signin.html')
         }
     })
 }
 
-function Process(message = 'Processing please wait.') {
+function Process(message = 'Processing please wait.', duration=3000) {
     let html;
     html = '<div style="min-height: 150px" class="d-flex flex-column align-items-center justify-content-center">'
-    html = html.concat('<img style="max-width: 150px" src="assets/loading.gif">')
+    html = html.concat('<img style="width: 100%; max-width: 150px" src="assets/loading.gif">')
     html = html.concat('</div>')
     html = html.concat('<p class="text-muted">' + message + '</p>')
     Swal.fire({
@@ -80,7 +80,7 @@ function Process(message = 'Processing please wait.') {
         showConfirmButton: false,
         width: 350,
         padding: 20,
-        timer: 3000
+        timer: duration
     })
 }
 
@@ -171,7 +171,7 @@ function getStudents(section) {
     let data = []
     let students = JSON.parse(localStorage.getItem('enrollify_students'))
     students.forEach((student) => {
-        if (section.id == student.advisory) data.push(student)
+        if (section.id == student.section) data.push(student)
     })
     return data
 }
@@ -180,7 +180,7 @@ function countMale(id) {
     let data = JSON.parse(localStorage.getItem('enrollify_students'))
     let a = []
     data.forEach((d) => {
-        if (d.advisory == id && d.gender == 'male') {
+        if (d.section == id && d.gender == 'male') {
             a.push(d)
         }
     })
@@ -191,37 +191,38 @@ function countFemale(id) {
     let data = JSON.parse(localStorage.getItem('enrollify_students'))
     let a = []
     data.forEach((d) => {
-        if (d.advisory == id && d.gender == 'female') {
+        if (d.section == id && d.gender == 'female') {
             a.push(d)
         }
     })
     return a.length
 }
 
-function addAdvisory(form) {
+function addSection(form) {
     let data = {}
     //set data
     data.owner = parseInt(localStorage.getItem('current_user'))
     data.name = form.name.value
     data.level = parseInt(form.level.value)
     data.id = Date.now()
-    let advisory = JSON.parse(localStorage.getItem('enrollify_sections'))
-    advisory.push(data)
-    localStorage.setItem('enrollify_sections', JSON.stringify(advisory))
-    Process()
+    let section = JSON.parse(localStorage.getItem('enrollify_sections'))
+    section.push(data)
+    localStorage.setItem('enrollify_sections', JSON.stringify(section))
+    Process('Adding please wait.')
     Success('Section was added successfully.')
 }
 
-function editAdvisory(form, advisory) {
+function editSection(section) {
     new bootstrap.Modal(document.querySelector("#editSection")).show() //show form
-    form.advisory_id.value = advisory.id
-    form.advisory_name.value = advisory.name
+    let form = document.forms.namedItem('editSection')
+    form.section_id.value = section.id
+    form.section_name.value = section.name
     let index = 0
-    index = (advisory.level == 7) ? 1 : index
-    index = (advisory.level == 8) ? 2 : index
-    index = (advisory.level == 9) ? 3 : index
-    index = (advisory.level == 10) ? 4 : index
-    form.advisory_level.selectedIndex = index
+    index = (section.level == 7) ? 1 : index
+    index = (section.level == 8) ? 2 : index
+    index = (section.level == 9) ? 3 : index
+    index = (section.level == 10) ? 4 : index
+    form.section_level.selectedIndex = index
     form.addEventListener('submit', (e) => {
         e.preventDefault()
         if (!form.checkValidity()) {
@@ -232,25 +233,26 @@ function editAdvisory(form, advisory) {
                 let advisories = JSON.parse(localStorage.getItem('enrollify_sections'))
                 let new_advisories = []
                 advisories.forEach((item) => {
-                    if (item.id == advisory.id) {
-                        item.name = form.advisory_name.value
-                        item.level = parseInt(form.advisory_level.value)
+                    if (item.id == section.id) {
+                        item.name = form.section_name.value
+                        item.level = parseInt(form.section_level.value)
                     }
                     new_advisories.push(item)
                 })
                 localStorage.setItem('enrollify_sections', JSON.stringify(new_advisories))
-                Success('Advisory was updated successfully.')
+                Success('section was updated successfully.')
             }
         }
         form.classList.add('was-validated')
     }, false)
 }
 
-function deleteAdvisory(advisory) {
+function deleteSection(section) {
     Swal.fire({
-        icon: 'error',
-        iconHtml: '<i class="fa-solid fa-trash"></i>',
-        html: 'Are you sure you want to delete <b class="fw-bolder">Grade '+advisory.level+' '+advisory.name+'</b>?',
+        icon: 'warning',
+        iconColor: '#f3676e',
+        iconHtml: '<i class="fa-solid fa-question"></i>',
+        html: 'Are you sure you want to delete <b class="fw-bolder">Grade '+section.level+' '+section.name+'</b>?',
         width: 350,
         padding: 20,
         showConfirmButton: true,
@@ -268,17 +270,18 @@ function deleteAdvisory(advisory) {
             let data = JSON.parse(localStorage.getItem('enrollify_sections'))
             let new_data = []
             data.forEach((d) => {
-                return (d.id!=advisory.id) && new_data.push(d)
+                return (d.id!=section.id) && new_data.push(d)
             })
-            localStorage.setItem('enrollify_sections', JSON.stringify(new_data))//update advisory
-            //delete all students inside the advisory
+            localStorage.setItem('enrollify_sections', JSON.stringify(new_data))//update section
+            //delete all students inside the section
             new_data = []
             data = JSON.parse(localStorage.getItem('enrollify_students'))
             data.forEach((d) => {
-                return (d.advisory!=advisory.id) && new_data.push(d)
+                return (d.section!=section.id) && new_data.push(d)
             })
             localStorage.setItem('enrollify_students', JSON.stringify(new_data))//update students
-            Success('Advisory was deleted successfully.', 'db-advisory.html')
+            localStorage.removeItem('current_section')
+            Success('section was deleted successfully.', 'sections.html')
         }
     })
 }
@@ -297,22 +300,28 @@ function getStudent(id) {
     return a
 }
 
-function getStudentList(advisory) {
+function getStudentList(section) {
     let data = JSON.parse(localStorage.getItem('enrollify_students'))
     let list = []
     data.forEach((d) => {
-        if(d.advisory == advisory) list.push(d)
+        if(d.section == section) list.push(d)
     })
     return list
+}
+
+function viewStudent(student){
+    Process()
+    localStorage.setItem('current_student', student.id)
+    Redirect('student-view.html')
 }
 
 function addStudent(form) {
     let data = {}
     let id = Date.now()
-    let advisory = localStorage.getItem('enrollify_current_advisory')
+    let section = localStorage.getItem('current_section')
     //set data
     data.id = parseInt(id)
-    data.advisory = parseInt(advisory)
+    data.section = parseInt(section)
     data.lrn = form.lrn.value
     data.firstname = form.firstname.value
     data.middlename = form.middlename.value
@@ -328,8 +337,9 @@ function addStudent(form) {
     Success('Student was added successfully.')
 }
 
-function editStudent(form, student) {
+function editStudent(student) {
     new bootstrap.Modal(document.querySelector("#editStudent")).show() //show form
+    let form = document.forms.namedItem('editStudent')
     form.student_id.value = student.id
     form.student_lrn.value = student.lrn
     form.student_firstname.value = student.firstname
@@ -367,7 +377,6 @@ function editStudent(form, student) {
 }
 
 function updateStudent(student) {
-    Process('Updating please wait.')
     let students = JSON.parse(localStorage.getItem('enrollify_students'))
     let new_students = []
     students.forEach((item) => {
@@ -377,13 +386,13 @@ function updateStudent(student) {
         new_students.push(item)
     })
     localStorage.setItem('enrollify_students', JSON.stringify(new_students))
-    Success('Student was updated successfully.')
 }
 
 function deleteStudent(data) {
     Swal.fire({
         icon: 'warning',
-        iconHtml: '<i class="fa-solid fa-trash"></i>',
+        iconColor: '#f3676e',
+        iconHtml: '<i class="fa-solid fa-question"></i>',
         html: 'Are you sure you want to delete <b class="fw-bolder">'+data.firstname+' '+data.lastname+'</b>?',
         width: 350,
         padding: 20,
@@ -406,10 +415,25 @@ function deleteStudent(data) {
             let grades = JSON.parse(localStorage.getItem('enrollify_grades'))//get grades
             let newGrades = grades.filter((g) => { return (g.student_id!=data.id) && g })
             localStorage.setItem('enrollify_grades', JSON.stringify(newGrades))//save grades
+            // delete sttendance
+            let attendance = JSON.parse(localStorage.getItem('enrollify_attendancec'))//get attendance
+            let newAttendance = attendance.filter((a) => { return (g=a.student_id!=data.id) && a })
+            localStorage.setItem('enrollify_attendance', JSON.stringify(newAttendance))//save attendance
             Process()
             Success('Student was deleted successfully.')
         }
     })
+}
+
+//functions for attendance
+
+function getAttendance(student){
+    let data = JSON.parse(localStorage.getItem('enrollify_attendance'))
+    let a = null
+    data.forEach((d) => {
+        if(d.student_id == student.id){ a = d }
+    })
+    return (a)
 }
 
 //function for grades
@@ -577,23 +601,8 @@ function formatName(name, format) {
     }
 }
 
-function formatAdvisoryName(advisory) {
-    return 'Grade ' + advisory.level + ' ' + advisory.name
-}
-
-function clickCard(student, option) {
-    student.card = option
-    updateStudent(student)
-}
-
-function clickPSA(student, option) {
-    student.psa = option
-    updateStudent(student)
-}
-
-function clickGM(student, option) {
-    student.gm = option
-    updateStudent(student)
+function formatsectionName(section) {
+    return 'Grade ' + section.level + ' ' + section.name
 }
 
 //tools

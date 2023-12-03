@@ -39,126 +39,8 @@
                 </div>
             </div>
         </div>
-        <!-- Add Student Modal -->
-        <div class="modal fade" id="add" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" style="width: 450px">
-                <form name="addStudent" method="post" class="modal-content needs-validation" novalidate>
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-user-plus"></i> Add Student </h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <label class="form-label" for="lrn">Learner's Reference Number</label>
-                        <input id="lrn" type="text" name="lrn" class="form-control mb-2" autocomplete="off" required>
-                        <label class="form-label" for="firstname">First Name</label>
-                        <input id="firstname" type="text" name="firstname" class="form-control mb-2" autocomplete="off" required>
-                        <label class="form-label" for="middlename">Middle Name</label>
-                        <input id="middlename" type="text" name="middlename" class="form-control mb-2" autocomplete="off" required>
-                        <label class="form-label" for="lastname">Last Name</label>
-                        <input id="lastname" type="text" name="lastname" class="form-control mb-2" autocomplete="off" required>
-                        <div class="row">
-                            <div class="col">
-                                <label class="form-label" for="gender">Gender</label>
-                                <select name="gender" id="gender" class="form-control" required>
-                                    <option value="">Select</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                </select>
-                            </div>
-                            <div class="col">
-                                <label class="form-label" for="birthdate">Birth Date</label>
-                                <input id="birthdate" type="date" name="birthdate" class="form-control mb-2" autocomplete="off" required>
-                            </div>
-                            <div class="col">
-                                <label class="form-label" for="age">Age</label>
-                                <input id="age" type="number" name="age" class="form-control mb-2" autocomplete="off" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-success bg-gradient"><i class="fa-solid fa-user-plus"></i> Add Student</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- Add Student Modal -->
-        <!-- Edit Student Modal -->
-        <div class="modal fade" id="editStudent" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" style="width: 450px">
-                <form name="editStudent" method="post" class="modal-content needs-validation" novalidate>
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-pen-to-square"></i> Edit Student </h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <input type="hidden" id="student_id">
-                        <label class="form-label" for="lrn">Learner's Reference Number</label>
-                        <input id="lrn" type="text" name="student_lrn" class="form-control mb-2" autocomplete="off" required>
-                        <label class="form-label" for="firstname">First Name</label>
-                        <input id="firstname" type="text" name="student_firstname" class="form-control mb-2" autocomplete="off" required>
-                        <label class="form-label" for="middlename">Middle Name</label>
-                        <input id="middlename" type="text" name="student_middlename" class="form-control mb-2" autocomplete="off">
-                        <label class="form-label" for="lastname">Last Name</label>
-                        <input id="lastname" type="text" name="student_lastname" class="form-control mb-2" autocomplete="off" required>
-                        <div class="row">
-                            <div class="col">
-                                <label class="form-label" for="gender">Gender</label>
-                                <select name="student_gender" id="gender" class="form-control" required>
-                                    <option value="">Select</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                </select>
-                            </div>
-                            <div class="col">
-                                <label class="form-label" for="birthdate">Birth Date</label>
-                                <input id="birthdate" type="date" name="student_birthdate" class="form-control mb-2" autocomplete="off" required>
-                            </div>
-                            <div class="col">
-                                <label class="form-label" for="age">Age</label>
-                                <input id="age" type="number" name="student_age" class="form-control mb-2" autocomplete="off" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-success bg-gradient px-3"><i class="fa-solid fa-save"></i> Save</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- Edit Student Modal -->
-        <!-- Edit Section Modal -->
-        <div class="modal fade" id="editSection" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" style="width: 350px">
-                <form name="editSection" method="post" class="modal-content needs-validation" novalidate>
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-pen-to-square"></i> Edit Section</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body py-4">
-                        <input type="hidden" name="sections_id">
-                        <label class="form-label" for="name">sections Name</label>
-                        <input id="name" type="text" name="sections_name" class="form-control mb-2" autocomplete="off" required>
-                        <label class="form-label" for="level">Gender</label>
-                        <select id="level" name="sections_level" class="form-control" required>
-                            <option value="">Select</option>
-                            <option value="7">Grade 7</option>
-                            <option value="8">Grade 8</option>
-                            <option value="9">Grade 9</option>
-                            <option value="10">Grade 10</option>
-                        </select>
-                    </div>
-                    <div class="modal-footer justify-content-start">
-                        <button type="submit" class="btn btn-success bg-gradient"><i class="fa-solid fa-pen-to-square"></i> Edit sections</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- Edit Section Modal -->
         <div class="main"><!-- main -->
-            <nav class="navbar navbar-expand navbar-theme py-2">
+            <nav class="navbar bg-dark navbar-expand navbar-theme py-2 sticky-top">
                 <a data-bs-toggle="offcanvas" data-bs-target="#sidebar" class="sidebar-toggle d-flex me-2">
                     <i class="hamburger align-self-center"></i>
                 </a>
@@ -169,58 +51,229 @@
             <main class="content"><!-- content -->
                 <div class="container-fluid p-0 px-sm-5"><!-- container -->
                     <div class="header"><!-- header -->
-                        <h1 class="header-title" id="sections_name">Section Name</h1>
+                        <h1 class="header-title" id="section_name">Section Name</h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb text-white">
                                 <li class="breadcrumb-item">Sections</li>
-                                <li class="breadcrumb-item" id="sections_name_sub">Section Sub</li>
+                                <li class="breadcrumb-item" id="section_name_sub">Section Sub Name</li>
+                                <li class="breadcrumb-item" id="section_sub" style="text-transform: capitalize;">Profiles</li>
                             </ol>
                         </nav>
                     </div><!-- header -->
                     <div class="card"><!-- card -->
-                        <div class="d-flex flex-column flex-sm-row justify-content-end p-2 py-3 gap-2">
-                            <button class="btn btn-secondary" onclick="history.back()"><i class="fas fa-arrow-left"></i> Back</button>
-                            <form action="post" class="order-2 order-sm-5">
-                                <input id="search" type="search" class="form-control" placeholder="Search student">
-                            </form>
-                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add"><i class="fas fa-user-plus"></i> Add</button>
-                            <button id="edit" class="btn btn-warning"><i class="fas fa-pen-to-square"></i> Edit</button>
-                            <button id="delete" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</button>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-hover" style="font-size: 13px;">
-                                <thead>
-                                    <tr class="bg-secondary bg-opacity-10 text-uppercase text-truncate">
-                                        <th style="width: 150px;">LRN</th>
-                                        <th>Name</th>
-                                        <th style="width: 80px;">Gender</th>
-                                        <th style="width: 50px;">Age</th>
-                                        <th>Birth Date</th>
-                                        <th>Documents Submitted</th>
-                                        <th class="text-end">Manage</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="list">
-                                </tbody>
-                            </table>
+                        <div class="container">
+                            <div class="row">
+                                <div class="d-flex flex-row flex-nowrap gap-2 px-0 py-2">
+                                    <button class="btn btn-secondary" onclick="history.back()"><i class="fas fa-arrow-left"></i><span class="d-none d-sm-inline">Back</span></button>
+                                    <input style="max-width: 300px;" id="search" type="search" class="form-control" placeholder="Search student">
+                                </div>
+                                <nav class="navbar navbar-dark bg-dark bg-gradient navbar-expand-md bg-body-tertiary p-0 py-2 py-sm-0 rounded-2">
+                                    <div class="container-fluid p-0 px-sm-2">
+                                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                            <span class="navbar-toggler-icon"></span>
+                                        </button>
+                                        <span class="navbar-text h5 m-0 mx-2 text-uppercase">Menu</span>
+                                        <div class="navbar-collapse collapse" id="menu">
+                                            <ul class="navbar-nav">
+                                                <li class="nav-item">
+                                                    <button onclick="toggleMenu(this)" id="enrollment" class="nav-link p-0 p-sm-2 active"><i class="fa-solid fa-screen-users"></i><span class="ms-2 d-md-none d-lg-inline">Enrollment</span></button>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <button onclick="toggleMenu(this)" id="attendance" class="nav-link p-0 p-sm-2"><i class="fa-solid fa-calendar-days"></i><span class="ms-2 d-md-none d-lg-inline">Attendance</span></button>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <button onclick="toggleMenu(this)" id="documents" class="nav-link p-0 p-sm-2"><i class="fa-solid fa-files"></i><span class="ms-2 d-md-none d-lg-inline">Documents</span></button>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <button onclick="toggleMenu(this)" id="status" class="nav-link p-0 p-sm-2"><i class="fa-solid fa-info-circle"></i><span class="ms-2 d-md-none d-lg-inline">Status</span></button>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <button onclick="toggleMenu(this)" id="remarks" class="nav-link p-0 p-sm-2"><i class="fa-solid fa-star"></i><span class="ms-2 d-md-none d-lg-inline">Remarks</span></button>
+                                                </li>
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link p-0 p-sm-2 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-gear"></i><span class="ms-2 d-md-none d-lg-inline">Manage</span></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addStudent"><i class="fas fa-user-plus"></i> Add Student</a></li>
+                                                        <li><a class="dropdown-item" href="#" id="edit"><i class="fas fa-pen-to-square"></i> Edit Section</a></li>
+                                                        <li><a class="dropdown-item" href="#" id="delete"><i class="fas fa-trash"></i> Delete Section</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </nav>
+                            </div>
+                            <div class="row no-gutters">
+                                <div class="col-12 p-0">
+                                    <div class="table-responsive border my-2 m-0">
+                                        <table class="table table-borderless table-hover m-0" style="font-size: 13px;">
+                                            <thead>
+                                                <tr class="bg-secondary bg-opacity-10 text-uppercase text-truncate">
+                                                    <th style="width: 150px;">LRN</th>
+                                                    <th>Name</th>
+                                                    <th style="width: 80px;">Gender</th>
+                                                    <th style="width: 50px;">Age</th>
+                                                    <th>Birth Date</th>
+                                                    <th class="text-end"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="list">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div><!-- card -->
                 </div><!-- container -->
             </main><!-- content -->
         </div><!-- main -->
     </div><!-- wrapper -->
+
+    <!-- Add Student Modal -->
+    <div class="modal fade" id="addStudent" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <form name="addStudent" method="post" class="modal-content needs-validation" style="max-width: 450px" novalidate>
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-user-plus"></i> Add Student </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label class="form-label" for="lrn">Learner's Reference Number</label>
+                    <input id="lrn" type="text" name="lrn" class="form-control mb-2" autocomplete="off" required>
+                    <label class="form-label" for="firstname">First Name</label>
+                    <input id="firstname" type="text" name="firstname" class="form-control mb-2" autocomplete="off" required>
+                    <label class="form-label" for="middlename">Middle Name</label>
+                    <input id="middlename" type="text" name="middlename" class="form-control mb-2" autocomplete="off" required>
+                    <label class="form-label" for="lastname">Last Name</label>
+                    <input id="lastname" type="text" name="lastname" class="form-control mb-2" autocomplete="off" required>
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label" for="gender">Gender</label>
+                            <select name="gender" id="gender" class="form-control" required>
+                                <option value="">Select</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label class="form-label" for="birthdate">Birth Date</label>
+                            <input id="birthdate" type="date" name="birthdate" class="form-control mb-2" autocomplete="off" required>
+                        </div>
+                        <div class="col">
+                            <label class="form-label" for="age">Age</label>
+                            <input id="age" type="number" name="age" class="form-control mb-2" autocomplete="off" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success bg-gradient"><i class="fa-solid fa-user-plus"></i> Add Student</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Add Student Modal -->
+    <!-- Edit Student Modal -->
+    <div class="modal fade" id="editStudent" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <form name="editStudent" method="post" class="modal-content needs-validation" style="max-width: 450px" novalidate>
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-pen-to-square"></i> Edit Student </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="student_id">
+                    <label class="form-label" for="lrn">Learner's Reference Number</label>
+                    <input id="lrn" type="text" name="student_lrn" class="form-control mb-2" autocomplete="off" required>
+                    <label class="form-label" for="firstname">First Name</label>
+                    <input id="firstname" type="text" name="student_firstname" class="form-control mb-2" autocomplete="off" required>
+                    <label class="form-label" for="middlename">Middle Name</label>
+                    <input id="middlename" type="text" name="student_middlename" class="form-control mb-2" autocomplete="off">
+                    <label class="form-label" for="lastname">Last Name</label>
+                    <input id="lastname" type="text" name="student_lastname" class="form-control mb-2" autocomplete="off" required>
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label" for="gender">Gender</label>
+                            <select name="student_gender" id="gender" class="form-control" required>
+                                <option value="">Select</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label class="form-label" for="birthdate">Birth Date</label>
+                            <input id="birthdate" type="date" name="student_birthdate" class="form-control mb-2" autocomplete="off" required>
+                        </div>
+                        <div class="col">
+                            <label class="form-label" for="age">Age</label>
+                            <input id="age" type="number" name="student_age" class="form-control mb-2" autocomplete="off" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success bg-gradient px-3"><i class="fa-solid fa-save"></i> Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Edit Student Modal -->
+    <!-- Edit Section Modal -->
+    <div class="modal fade" id="editSection" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered" style="max-width: 300px;">
+            <form name="editSection" method="post" class="modal-content needs-validation" novalidate>
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-pen-to-square"></i> Edit Section</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-4">
+                    <input type="hidden" name="section_id">
+                    <label class="form-label" for="name">sections Name</label>
+                    <input id="name" type="text" name="section_name" class="form-control mb-2" autocomplete="off" required>
+                    <label class="form-label" for="level">Gender</label>
+                    <select id="level" name="section_level" class="form-control" required>
+                        <option value="">Select</option>
+                        <option value="7">Grade 7</option>
+                        <option value="8">Grade 8</option>
+                        <option value="9">Grade 9</option>
+                        <option value="10">Grade 10</option>
+                    </select>
+                </div>
+                <div class="modal-footer justify-content-start">
+                    <button type="submit" class="btn btn-success bg-gradient"><i class="fa-solid fa-pen-to-square"></i> Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Edit Section Modal -->
+
     <script type="text/javascript">
 
+        function toggleMenu(menu) {
+            let menus = document.querySelectorAll('#menu .nav-link')
+            // console.log(menu.id)
+            menus.forEach((m) => {
+                m.classList.remove('active')
+                if (m.id == menu.id) {
+                    m.classList.add('active')
+                }
+            })
+            document.getElementById('section_sub').innerHTML = menu.id.toLowerCase()
+            Loading(menu, 1000)
+            let collapse = document.getElementById('menu')
+            collapse.classList.remove('show')
+        }
+
         //set labels
-        let section = getSection(localStorage.getItem('current_section'))
+        let section = getSection()
+        if (section == null) Redirect('sections.html')
         document.getElementById('title').innerHTML = 'Grade ' + section.level + '  ' + section.name + ' - Enrollify+'
-        document.getElementById('sections_name').innerHTML = 'Grade ' + section.level + '  ' + section.name
-        document.getElementById('sections_name_sub').innerHTML = 'Grade ' + section.level + '  ' + section.name
+        document.getElementById('section_name').innerHTML = 'Grade ' + section.level + '  ' + section.name
+        document.getElementById('section_name_sub').innerHTML = 'Grade ' + section.level + '  ' + section.name
 
         //display default
-        displayStudents('')
+        displayStudents('', document.getElementById('enrollment'))
 
-        function displayStudents(filter) {
+        function displayStudents(filter, menu) {
             //the table body
             let list = document.getElementById('list')
             list.innerHTML = ''
@@ -228,7 +281,7 @@
             let filteredStudents = []
             if (students.length == 0 && filter == '') {
                 let row = createRow(list)
-                let td1 = insertCell(row, "No records found.")
+                let td1 = insertCell(row, '<i class="fa-solid fa-folder me-2"></i> No records found.')
                 addClasses(td1, 'd-table-cell p-3')
                 td1.colSpan = "100"
             }
@@ -245,86 +298,187 @@
                 if (filteredStudents.length == 0) {
                     let row = createRow(list)
                     let td1 = insertCell(row, "")
-                    addClasses(td1, 'd-table-cell')
-                    td1.innerHTML = 'No search results found for <b class="fw-bolder">' + filter + '</b>.'
+                    addClasses(td1, 'd-table-cell p-3')
+                    td1.innerHTML = '<i class="fa-solid fa-search me-2"></i> No search results found for <b class="fw-bolder">' + filter + '</b>.'
                     td1.colSpan = "100"
                 }
                 filteredStudents.forEach((student) => {
-                    createStudent(list, student)
+                    createStudent(list, student, menu)
                 })
             } else {
                 students.forEach((student) => {
-                    createStudent(list, student)
+                    createStudent(list, student, menu)
                 })
             }
         }
 
         //create student
-        function createStudent(list, student) {
+        function createStudent(list, student, menu) {
             let row = createRow(list)
-            addClasses(row, 'text-uppercase')
+            addClasses(row, 'text-truncate text-uppercase')
             let td1 = insertCell(row, student.lrn.toString())
-            let td2 = insertCell(row, student.firstname)
+            let td2 = insertCell(row, formatName(student))
             let td3 = insertCell(row, student.gender)
             let td4 = insertCell(row, student.age.toString())
             let td5 = insertCell(row, student.birthdate)
             let td6 = insertCell(row, "")
-            let card = createElement('span')
-            card.title = 'School Card'
-            if (student.card) {
-                addClasses(card, 'badge me-1 bg-success')
-                card.innerHTML = '<i class="fa-solid fa-check"></i> Card'
-                card.addEventListener('click', (e) => clickCard(student, false))
-            } else {
-                addClasses(card, 'badge me-1 bg-secondary bg-opacity-25 text-dark')
-                card.innerHTML = '<i class="fa-solid fa-times"></i> Card'
-                card.addEventListener('click', (e) => clickCard(student, true))
+            addClasses(td6, 'text-end text-truncate')
+            if (menu.id == 'enrollment') {
+                //background
+                { (student.status == 'official') && addClasses(row, 'border-0 border-bottom border-1 border-success') }
+                { (student.status == 'temporary') && addClasses(row, 'border-0 border-bottom border-1 border-warning') }
+                { (student.status == 'backout') && addClasses(row, 'border-0 border-bottom border-1 border-danger') }
+                addClasses(td6, 'text-end text-truncate')
+                let edit = createButton(td6, '', '<i class="fa-solid fa-pen-to-square"></i><span class="ms-2 d-none d-md-inline">Edit</span>')
+                addClasses(edit, 'btn btn-sm btn-warning me-1')
+                edit.addEventListener('click', (e) => editStudent(student))
+                let del = createButton(td6, '', '<i class="fa-solid fa-trash"></i><span class="ms-2 d-none d-md-inline">Delete</span>')
+                addClasses(del, 'btn btn-sm btn-danger')
+                del.addEventListener('click', (e) => deleteStudent(student))
             }
-            let psa = createElement('span')
-            psa.title = 'PSA/Birth Certificate'
-            if (student.psa) {
-                addClasses(psa, 'badge me-1 bg-info')
-                psa.innerHTML = '<i class="fa-solid fa-check"></i> PSA'
-                psa.addEventListener('click', (e) => clickPSA(student, false))
-            } else {
-                addClasses(psa, 'badge me-1 bg-secondary bg-opacity-25 text-dark')
-                psa.innerHTML = '<i class="fa-solid fa-times"></i> PSA'
-                psa.addEventListener('click', (e) => clickPSA(student, true))
+            if (menu.id == 'attendance') {
+                let attendance = getAttendance(student)
+                let present = createElement('span')
+                let absent = createElement('span')
+                if (attendance != null) {
+                    if (attendance.status) {
+                        addClasses(present, 'badge p-2 btn-success me-1')
+                        addClasses(absent, 'badge p-2 bg-white text-dark border')
+                    } else {
+                        addClasses(present, 'badge p-2 bg-white text-dark border me-1')
+                        addClasses(absent, 'badge p-2 btn-danger')
+                    }
+                } else {
+                    addClasses(present, 'badge p-2 bg-white text-dark border me-1')
+                    addClasses(absent, 'badge p-2 bg-white text-dark border')
+                }
+                present.innerHTML = '<i class="fa-solid fa-user-check"></i><span class="ms-2 d-none d-md-inline">Present</span>'
+                present.addEventListener('click', (e) => { updateAttendance(student, true, menu) })
+                absent.innerHTML = '<i class="fa-solid fa-user-times"></i><span class="ms-2 d-none d-md-inline">Absent</span>'
+                absent.addEventListener('click', (e) => { updateAttendance(student, false, menu) })
+                td6.appendChild(present)
+                td6.appendChild(absent)
             }
-            let gm = createElement('span')
-            gm.title = 'Good Moral Character'
-            if (student.gm) {
-                addClasses(gm, 'badge me-1 bg-primary')
-                gm.innerHTML = '<i class="fa-solid fa-check"></i> GMC'
-                gm.addEventListener('click', (e) => clickGM(student, false))
-            } else {
-                addClasses(gm, 'badge me-1 bg-secondary bg-opacity-25 text-dark')
-                gm.innerHTML = '<i class="fa-solid fa-times"></i> GMC'
-                gm.addEventListener('click', (e) => clickGM(student, true))
+            if (menu.id == 'documents') {
+                let card = createElement('span')
+                card.title = 'School Card'
+                if (student.card) {
+                    addClasses(card, 'badge p-2 me-1 bg-success')
+                    card.innerHTML = '<i class="fa-solid fa-check"></i> Card'
+                    card.addEventListener('click', (e) => clickCard(student, false, menu))
+                } else {
+                    addClasses(card, 'badge p-2 me-1 bg-white border bg-opacity-25 text-dark')
+                    card.innerHTML = '<i class="fa-solid fa-times"></i> Card'
+                    card.addEventListener('click', (e) => clickCard(student, true, menu))
+                }
+                let psa = createElement('span')
+                psa.title = 'PSA/Birth Certificate'
+                if (student.psa) {
+                    addClasses(psa, 'badge p-2 me-1 bg-info')
+                    psa.innerHTML = '<i class="fa-solid fa-check"></i> PSA'
+                    psa.addEventListener('click', (e) => clickPSA(student, false, menu))
+                } else {
+                    addClasses(psa, 'badge p-2 me-1 bg-white border bg-opacity-25 text-dark')
+                    psa.innerHTML = '<i class="fa-solid fa-times"></i> PSA'
+                    psa.addEventListener('click', (e) => clickPSA(student, true, menu))
+                }
+                let gm = createElement('span')
+                gm.title = 'Good Moral Character'
+                if (student.gm) {
+                    addClasses(gm, 'badge p-2 me-1 bg-primary')
+                    gm.innerHTML = '<i class="fa-solid fa-check"></i> GMC'
+                    gm.addEventListener('click', (e) => clickGM(student, false, menu))
+                } else {
+                    addClasses(gm, 'badge p-2 me-1 bg-white border bg-opacity-25 text-dark')
+                    gm.innerHTML = '<i class="fa-solid fa-times"></i> GMC'
+                    gm.addEventListener('click', (e) => clickGM(student, true, menu))
+                }
+                td6.appendChild(card)
+                td6.appendChild(psa)
+                td6.appendChild(gm)
             }
-            td6.appendChild(card)
-            td6.appendChild(psa)
-            td6.appendChild(gm)
-            let td7 = insertCell(row, "")
-            addClasses(td7, 'text-end text-truncate')
-            let view = createButton(td7, '', '<i class="fa-solid fa-user"></i> ')
-            addClasses(view, 'btn btn-sm btn-success me-1')
-            view.addEventListener('click', (e) => {
-                Process()
-                localStorage.setItem('gz_current_student', student.id)
-                Redirect('db-student-view.html')
-            })
-            let edit = createButton(td7, '', '<i class="fa-solid fa-pen-to-square"></i> ')
-            addClasses(edit, 'btn btn-sm btn-warning me-1')
-            edit.addEventListener('click', (e) => {
-                let form = document.forms.namedItem('editStudent')
-                editStudent(form, student)
-            })
-            let del = createButton(td7, '', '<i class="fa-solid fa-trash"></i> ')
-            addClasses(del, 'btn btn-sm btn-danger me-1')
-            del.addEventListener('click', (e) => {
-                deleteStudent(student)
-            })
+            if (menu.id == 'status') {
+                //background
+                { (student.status == 'official') && addClasses(row, 'border-0 border-top border-bottom border-1 border-success bg-success bg-opacity-10') }
+                { (student.status == 'temporary') && addClasses(row, 'border-0 border-top border-bottom border-1 border-warning bg-warning bg-opacity-10') }
+                { (student.status == 'backout') && addClasses(row, 'border-0 border-top border-bottom border-1 border-danger bg-danger bg-opacity-10') }
+                let official = createElement('span')
+                official.innerHTML = '<i class="fa-solid fa-user-check"></i> Official'
+                official.addEventListener('click', (e) => updateStatus(student, 'official', menu))
+                let temporary = createElement('span')
+                temporary.innerHTML = '<i class="fa-solid fa-user-clock"></i> Temporary'
+                temporary.addEventListener('click', (e) => updateStatus(student, 'temporary', menu))
+                let backout = createElement('span')
+                backout.innerHTML = '<i class="fa-solid fa-user-times"></i> Backout'
+                backout.addEventListener('click', (e) => updateStatus(student, 'backout', menu))
+                { (student.status == 'official') ? addClasses(official, 'badge p-2 border-0 border-success me-1 bg-success') : addClasses(official, 'badge p-2 me-1 bg-white text-dark border-0') }
+                { (student.status == 'temporary') ? addClasses(temporary, 'badge p-2 border-0 border-warning me-1 bg-warning') : addClasses(temporary, 'badge p-2 me-1 bg-white text-dark border-0') }
+                { (student.status == 'backout') ? addClasses(backout, 'badge p-2 border-0 border-danger me-1 bg-danger') : addClasses(backout, 'badge p-2 me-1 bg-white text-dark border-0') }
+                td6.appendChild(official)
+                td6.appendChild(temporary)
+                td6.appendChild(backout)
+            }
+            if (menu.id == 'remarks') {
+                addClasses(td6, 'text-end text-truncate')
+                let view = createButton(td6, '', '<i class="fa-solid fa-star"></i> Remarks')
+                addClasses(view, 'btn btn-sm btn-success me-1')
+                view.addEventListener('click', (e) => viewStudent(student))
+            }
+        }
+
+        function clickCard(student, option, menu) {
+            student.card = option
+            Process('Updating please wait.', 1000)
+            updateStudent(student)
+            window.setTimeout((e) => displayStudents('', menu), 1000)
+        }
+
+        function clickPSA(student, option, menu) {
+            student.psa = option
+            Process('Updating please wait.', 1000)
+            updateStudent(student)
+            window.setTimeout((e) => displayStudents('', menu), 1000)
+        }
+
+        function clickGM(student, option, menu) {
+            student.gm = option
+            Process('Updating please wait.', 1000)
+            updateStudent(student)
+            window.setTimeout((e) => displayStudents('', menu), 1000)
+        }
+
+        function updateStatus(student, status, menu) {
+            student.status = status
+            Process('Updating please wait.', 1000)
+            updateStudent(student)
+            window.setTimeout((e) => displayStudents('', menu), 1000)
+        }
+
+        function updateAttendance(student, status, menu) {
+            let data = JSON.parse(localStorage.getItem('enrollify_attendance'))
+            let attendance = getAttendance(student)
+            let new_data = []
+            if (attendance != null) {
+                data.forEach((d) => {
+                    if (d.student_id == student.id) {
+                        d.status = status
+                    }
+                    new_data.push(d)
+                })
+            } else {
+                data.forEach((d) => {
+                    new_data.push(d)
+                })
+                let a = {
+                    "id": Date.now(),
+                    "student_id": student.id,
+                    "status": status
+                }
+                new_data.push(a)
+            }
+            Process('Recording please wait.', 1000)
+            localStorage.setItem('enrollify_attendance', JSON.stringify(new_data))
+            window.setTimeout((e) => displayStudents('', menu), 1000)
         }
 
         //add student
@@ -341,16 +495,37 @@
 
         //search student
         document.getElementById('search').addEventListener('input', (e) => {
-            displayStudents(e.target.value)
+            let list = document.getElementById('list')
+            list.innerHTML = ''
+            let row = createRow(list)
+            addClasses(row, 'align-middle')
+            let td1 = insertCell(row, '')
+            td1.innerHTML = '<div class="d-flex align-items-center"><span style="width: 20px; height: 20px" class="spinner-border text-dark me-2" role="status"></span > <span>Searching for <b class="fw-bolder">' + ((e.target.value != '') ? e.target.value : 'none') + '</b></span>.</div>'
+            addClasses(td1, 'd-table-cell p-3')
+            td1.colSpan = "100"
+            list.appendChild(row)
+            window.setTimeout(() => displayStudents(e.target.value, document.querySelectorAll('#menu .nav-link.active')[0]), 2000)
         })
+
+        function Loading(menu, duration) {
+            let list = document.getElementById('list')
+            list.innerHTML = ''
+            let row = createRow(list)
+            addClasses(row, 'align-middle')
+            let td1 = insertCell(row, '')
+            td1.innerHTML = '<div class="d-flex align-items-center"><span style="width: 20px; height: 20px" class="spinner-grow text-dark me-2" role="status"></span > <span>Loading please wait.</span></div>'
+            addClasses(td1, 'd-table-cell p-3')
+            td1.colSpan = "100"
+            list.appendChild(row)
+            window.setTimeout((e) => displayStudents('', menu), duration)
+        }
+
         //edit section
-        document.getElementById('edit').addEventListener('click', (e) => {
-            let form = document.forms.namedItem('editSection')
-            editsections(form, sections)
-        })
+        document.getElementById('edit').addEventListener('click', (e) => editSection(section))
+
         //delete sections
         document.getElementById('delete').addEventListener('click', (e) => {
-            deletesections(sections)
+            deleteSection(section)
         })
     </script>
     <style>

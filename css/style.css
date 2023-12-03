@@ -47,6 +47,10 @@ table tbody tr {
     cursor: pointer;
 }
 
+.table tbody tr:last-child td {
+    border: none;
+}
+
 /* modify */
 
 .btn:focus,
@@ -119,4 +123,8 @@ table tbody tr {
     height: 100vh;
     max-height: 100vh;
     overflow: scroll;
+}
+
+.main .card {
+    min-height: 400px;
 }
