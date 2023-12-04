@@ -19,6 +19,23 @@ body {
     animation-delay: 0s;
     animation-iteration-count: 1;
     overflow: scroll;
+    position: relative;
+}
+
+.noscript {
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #fafafa;
+    padding: 20px;
+    text-align: center;
 }
 
 html::-webkit-scrollbar,

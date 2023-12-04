@@ -44,6 +44,30 @@ function isSigned() {
     }
 }
 
+//check if current school is set
+function isSchoolSelected(){
+    let id = localStorage.getItem('current_school')
+    if (id == null || id == '' || id == undefined) {
+        Swal.fire({
+            icon: 'warning',
+            iconHtml: '<i class="fa-solid fa-triangle-exclamation"></i>',
+            html: 'Please select a school. Redirecting you to the dashboard.',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            width: 400,
+            padding: 20,
+            showClass: {
+                popup: 'swal2-show',
+                backdrop: 'swal2-backdrop-show bg-dark',
+                icon: 'swal2-icon-show'
+            }
+        })
+        window.setTimeout((e) => {
+            window.location.href = 'dashboard.html'
+        }, 2000)
+    }
+}
+
 function logout() {
     Swal.fire({
         icon: 'warning',
@@ -117,22 +141,150 @@ function Redirect(redirect) {
     }, 1000)
 }
 
+//function for schools
+
+function viewSchool(school){
+    Process()
+    localStorage.setItem('current_school', school.id)
+    Redirect('students.html')
+}
+
+function getSchool(id) {
+    let data = JSON.parse(localStorage.getItem('enrollify_schools'))
+    let a = {}
+    data.forEach((d) => {
+        if (d.id == id) {
+            a = d
+        }
+    })
+    return a
+}
+
+function getSchools() {
+    let user = parseInt(localStorage.getItem('current_user'))
+    let data = JSON.parse(localStorage.getItem('enrollify_schools'))
+    let a = []
+    data.forEach((d) => (d.user == user) && a.push(d))
+    return a
+}
+
+function addSchool(school) {
+    new bootstrap.Modal(document.querySelector("#addSchool")).show() //show form
+    let form = document.forms.namedItem('addSchool')
+    let isAdd = (school != undefined)?false:true
+    if (school != undefined) {
+        form.school_id.value = school.school_id
+        form.school_name.value = school.school_name
+        form.school_region.value = school.school_region
+        form.school_division.value = school.school_division
+        form.school_district.value = school.school_district
+        form.school_principal.value = school.school_principal
+        form.button.innerHTML = '<i class="fa-solid fa-check"></i> Save Changes'
+    } else {
+        form.button.innerHTML = '<i class="fa-solid fa-plus"></i> Add School'
+    }
+    form.addEventListener('submit', (e) => {
+        e.preventDefault()
+        if (!form.checkValidity()) {
+            e.stopPropagation()
+        } else {
+            let data = JSON.parse(localStorage.getItem('enrollify_schools'))
+            if (isAdd) {
+                let newSchool = {
+                    "id": Date.now(),
+                    "user": parseInt(localStorage.getItem('current_user')),
+                    "school_id": parseInt(form.school_id.value),
+                    "school_name": form.school_name.value,
+                    "school_region": form.school_region.value,
+                    "school_division": form.school_division.value,
+                    "school_district": form.school_district.value,
+                    "school_principal": form.school_principal.value
+                }
+                data.push(newSchool)
+                localStorage.setItem('enrollify_schools', JSON.stringify(data))
+                Process('Adding school please wait.')
+                Success('School was added successfully.')
+            } else {
+                data.forEach((d) => {
+                    if (d.id == school.id) {
+                        d.school_id = parseInt(form.school_id.value)
+                        d.school_name = form.school_name.value
+                        d.school_region = form.school_region.value
+                        d.school_division = form.school_division.value
+                        d.school_district = form.school_district.value
+                        d.school_principal = form.school_principal.value
+                    }
+                })
+                localStorage.setItem('enrollify_schools', JSON.stringify(data))
+                Process('Updating school please wait.')
+                Success('School was updated successfully.')
+            }
+        }
+        form.classList.add('was-validated')
+    }, false)
+}
+
+function deleteSchool(school) {
+    Swal.fire({
+        icon: 'warning',
+        iconColor: '#f3676e',
+        iconHtml: '<i class="fa-solid fa-question"></i>',
+        html: 'Are you sure you want to delete <b class="fw-bolder">'+school.school_name+'</b>?',
+        width: 350,
+        padding: 20,
+        showConfirmButton: true,
+        showCancelButton: true,
+        confirmButtonText: '<i class="fa-solid fa-check"></i> Yes',
+        cancelButtonText: '<i class="fa-solid fa-times"></i> No',
+        buttonsStyling: false,
+        customClass: {
+            confirmButton: 'btn px-4 btn-danger bg-gradient me-2',
+            cancelButton: 'btn px-4 btn-success bg-gradient',
+        },
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Process('Deleting please wait.')
+            let data = JSON.parse(localStorage.getItem('enrollify_schools'))
+            let new_data = []
+            data.forEach((d) => {
+                return (d.id!=school.id) && new_data.push(d)
+            })
+            localStorage.setItem('enrollify_schools', JSON.stringify(new_data))//update schools
+            localStorage.removeItem('current_school')
+            Success('School was deleted successfully.')
+        }
+    })
+}
+
 // function for users
 
 function getUser(email, password) {
     let data = JSON.parse(localStorage.getItem('enrollify_users'))
+    let a
     data.forEach((d) => {
         if (d.email == email && d.password == password) {
-            data = d
-        } else {
-            data = null
+            a = d
         }
     })
+    return a
+}
+
+function getUsers() {
+    let data = JSON.parse(localStorage.getItem('enrollify_users'))
     return data
 }
 
 function getUserInfo() {
     let id = localStorage.getItem('enrollify_current_user')
+    let data = JSON.parse(localStorage.getItem('enrollify_users'))
+    let a = {}
+    data.forEach((d) => {
+       (d.id == id) && (a = d)
+    })
+    return a
+}
+
+function getUserById(id) {
     let data = JSON.parse(localStorage.getItem('enrollify_users'))
     let a = {}
     data.forEach((d) => {
@@ -162,11 +314,12 @@ function getSection(id) {
 }
 
 function getSections() {
-    let id = parseInt(localStorage.getItem('current_user'))
+    let user = parseInt(localStorage.getItem('current_user'))
+    let school = parseInt(localStorage.getItem('current_school'))
     let data = JSON.parse(localStorage.getItem('enrollify_sections'))
     let a = []
     data.forEach((d) => {
-        if (d.owner == id) {
+        if (d.user == user || d.school == school) {
             d.male = countMale(d.id)
             d.female = countFemale(d.id)
             d.total = d.male + d.female
@@ -207,18 +360,29 @@ function countFemale(id) {
     return a.length
 }
 
-function addSection(form) {
-    let data = {}
-    //set data
-    data.owner = parseInt(localStorage.getItem('current_user'))
-    data.name = form.name.value
-    data.level = parseInt(form.level.value)
-    data.id = Date.now()
-    let section = JSON.parse(localStorage.getItem('enrollify_sections'))
-    section.push(data)
-    localStorage.setItem('enrollify_sections', JSON.stringify(section))
-    Process('Adding please wait.')
-    Success('Section was added successfully.')
+function addSection() {
+    new bootstrap.Modal(document.querySelector("#addSection")).show() //show form
+    let form = document.forms.namedItem('addSection')
+    form.addEventListener('submit', (e) => {
+        e.preventDefault()
+        if (!form.checkValidity()) {
+            e.stopPropagation()
+        } else {
+            let data = {
+                "id": Date.now(),
+                "school": parseInt(localStorage.getItem('current_school')),
+                "user": parseInt(localStorage.getItem('current_user')),
+                "name": form.name.value,
+                "level": parseInt(form.level.value)
+            }
+            let section = JSON.parse(localStorage.getItem('enrollify_sections'))
+            section.push(data)
+            localStorage.setItem('enrollify_sections', JSON.stringify(section))
+            Process('Adding please wait.')
+            Success('Section was added successfully.')
+        }
+        form.classList.add('was-validated')
+    }, false)
 }
 
 function editSection(section) {
@@ -293,6 +457,51 @@ function deleteSection(section) {
             Success('Section was deleted successfully.', 'sections.html')
         }
     })
+}
+
+function assignAdviser() {
+    new bootstrap.Modal(document.querySelector("#assignAdviser")).show() //show form
+    let form = document.forms.namedItem('assignAdviser')
+    form.addEventListener('submit', (e) => {
+        e.preventDefault()
+        if (!form.checkValidity()) {
+            e.stopPropagation()
+        } else {
+            let section = getSection(localStorage.getItem('current_section'))
+            let user = getUserById(parseInt(form.user.value))
+            Swal.fire({
+                icon: 'warning',
+                iconColor: '#f3676e',
+                iconHtml: '<i class="fa-solid fa-question"></i>',
+                html: 'Are you sure you want to assign <b class="fw-bolder">'+user.firstname+'</b> as the Adviser?',
+                width: 350,
+                padding: 20,
+                showConfirmButton: true,
+                showCancelButton: true,
+                confirmButtonText: '<i class="fa-solid fa-check"></i> Yes',
+                cancelButtonText: '<i class="fa-solid fa-times"></i> No',
+                buttonsStyling: false,
+                customClass: {
+                    confirmButton: 'btn px-4 btn-danger bg-gradient me-2',
+                    cancelButton: 'btn px-4 btn-success bg-gradient',
+                },
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Process('Assigning please wait.')
+                    let data = JSON.parse(localStorage.getItem('enrollify_sections'))//get sections
+                    data.forEach((d) => {
+                        if (d.id == section.id) {
+                            d.user = user.id
+                        }
+                    })
+                    console.log(user)
+                    // localStorage.setItem('enrollify_sections', JSON.stringify(data))//update sections
+                    // Success('Adviser was assiged successfully.')
+                }
+            })
+        }
+        form.classList.add('was-validated')
+    }, false)
 }
 
 

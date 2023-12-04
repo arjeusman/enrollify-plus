@@ -14,6 +14,12 @@
 </head>
 
 <body onload="checkAuth()">
+    <noscript>
+        <div class="noscript">
+            <h1 class="fs-1">JavaScript is required.</h1>
+            <p>In order to use this website, you need to enable JavaScript first.</p>
+        </div>
+    </noscript>
     <div class="wrapper"><!-- wrapper -->
         <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar">
             <div class="offcanvas-header bg-dark py-4 d-flex align-items-center justify-content-center">
@@ -39,7 +45,7 @@
             </div>
         </div>
         <div class="main"><!-- main -->
-            <nav class="navbar navbar-expand navbar-dark bg-dark py-2 sticky-top">
+            <nav class="navbar bg-dark navbar-expand navbar-theme py-2 sticky-top">
                 <a data-bs-toggle="offcanvas" data-bs-target="#sidebar" class="sidebar-toggle d-flex me-2">
                     <i class="hamburger align-self-center"></i>
                 </a>
@@ -60,17 +66,17 @@
                     </div><!-- header -->
                     <div class="card"><!-- card -->
                         <div class="container p-2 p-sm-3">
-                            <div class="row px-2">
-                                <div class="col-sm-12 col-md-4 col-lg-4 py-2">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-4 col-lg-4 py-1">
                                     <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-info bg-opacity-75 bg-gradient border-info" style="height: 100px;">
                                         <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 h-100 gap-1">
                                             <i class="fa-solid fa-screen-users" style="font-size: 35px; line-height: normal;"></i>
                                             <small style="font-size: 10px" class="text-uppercase">Sections</small>
                                         </div>
-                                        <h1 id="count_sections" style="font-size: 50px;" class="m-0 text-center flex-fill">0</h1>
+                                        <h1 id="count_schools" style="font-size: 50px;" class="m-0 text-center flex-fill">0</h1>
                                     </div>
                                 </div>
-                                <div class="col-sm-12 col-md-4 col-lg-4 py-2">
+                                <div class="col-sm-12 col-md-4 col-lg-4 py-1">
                                     <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-success bg-opacity-75 bg-gradient border-success" style="height: 100px;">
                                         <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 h-100 gap-1">
                                             <i class="fa-solid fa-users" style="font-size: 35px; line-height: normal;"></i>
@@ -80,19 +86,156 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="d-flex align-items-center justify-content-start gap-2 mb-2 py-2">
+                                <button id="add" class="btn btn-success"><i class="fas fa-plus"></i><span class="d-none d-md-inline ms-2">Add School</span></button>
+                                <input id="search" style="max-width: 425px;" type="search" class="form-control" placeholder="Search school">
+                            </div>
+                            <div class="table-responsive border m-0 mt-2">
+                                <table class="table table-borderless table-hover m-0" style="font-size: 13px;">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="100%">
+                                                <h1 class="fs-3 text-uppercase m-0">
+                                                    <i class="fa-solid fa-school me-2"></i>
+                                                    <span>My Schools</span>
+                                                </h1>
+                                            </th>
+                                        </tr>
+                                        <tr class="bg-secondary bg-opacity-10 text-uppercase text-truncate">
+                                            <th style="width: 100px;">School ID</th>
+                                            <th style="width: 80px;">School Name</th>
+                                            <th class="text-end"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="list"></tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div><!-- container -->
             </main><!-- content -->
         </div><!-- main -->
     </div><!-- wrapper -->
+    <!-- Add Modal -->
+    <div class="modal fade" id="addSchool" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered" style="max-width: 450px">
+            <form name="addSchool" method="post" class="modal-content needs-validation" novalidate>
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-school-flag"></i> School</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-4">
+                    <label class="form-label" for="school_id">ID</label>
+                    <input id="school_id" type="number" name="school_id" class="form-control mb-2" autocomplete="off" required>
+                    <label class="form-label" for="school_name">Name</label>
+                    <input id="school_name" type="text" name="school_name" class="form-control mb-2" autocomplete="off" required>
+                    <label class="form-label" for="school_region">Region</label>
+                    <input id="school_region" type="text" name="school_region" class="form-control mb-2" autocomplete="off" required>
+                    <label class="form-label" for="school_division">Division</label>
+                    <input id="school_division" type="text" name="school_division" class="form-control mb-2" autocomplete="off" required>
+                    <label class="form-label" for="school_district">District</label>
+                    <input id="school_district" type="text" name="school_district" class="form-control mb-2" autocomplete="off" required>
+                    <label class="form-label" for="school_principal">Principal</label>
+                    <input id="school_principal" type="text" name="school_principal" class="form-control mb-2" autocomplete="off" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" name="button" class="btn btn-success bg-gradient"><i class="fa-solid fa-plus"></i> Add School</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Add Modal -->
     <script type="text/javascript">
-        //get data
-        let sections = getSections(localStorage.getItem('current_user'))
-        let students = getStudents()
-        document.getElementById('count_sections').innerHTML = sections.length
-        document.getElementById('count_students').innerHTML = students.length
+
+        //the table body
+        let list = document.getElementById('list')
+
+        //display default
+        displaySchools('')
+
+        function displaySchools(filter) {
+            list.innerHTML = ''
+            let schools = getSchools()
+            let filteredschools = []
+            if (schools.length == 0 && filter == '') {
+                let row = createRow(list)
+                let td1 = insertCell(row, '')
+                td1.innerHTML = '<i class="fa-solid fa-folder me-2"></i> No records to show.'
+                addClasses(td1, 'd-table-cell p-3')
+                td1.colSpan = "100"
+            }
+            if (filter != '') {
+                schools.forEach((school) => {
+                    if (school.school_name.toLowerCase().includes(filter)) {
+                        filteredschools.push(school)
+                    }
+                })
+                if (filteredschools.length == 0) {
+                    let row = createRow(list)
+                    let td1 = insertCell(row, "")
+                    addClasses(td1, 'd-table-cell p-3')
+                    td1.innerHTML = '<i class="fa-solid fa-search me-2"></i> No search results found for <b class="fw-bolder">' + filter + '</b>.'
+                    td1.colSpan = "100"
+                }
+                filteredschools.forEach((school) => {
+                    createSchool(list, school)
+                })
+            } else {
+                schools.forEach((school) => {
+                    createSchool(list, school)
+                })
+            }
+        }
+
+        //create adisory
+        function createSchool(list, school) {
+            let row = createRow(list)
+            addClasses(row, 'text-uppercase text-truncate')
+            let a = insertCell(row, school.school_id)
+            let b = insertCell(row, school.school_name)
+            let manage = insertCell(row, "")
+            manage.classList.add('text-end')
+            let view = createButton(manage, '', '<i class="fa-solid fa-school-flag"></i> <span class="d-none d-sm-inline">View</span>')
+            addClasses(view, 'btn btn-success me-1')
+            b.addEventListener('click', (e) => {
+                Process()
+                localStorage.setItem('current_school', school.id)
+                Redirect('school-view.html')
+            })
+            view.addEventListener('click', (e) => viewSchool(school))
+            let edit = createButton(manage, '', '<i class="fa-solid fa-pen-to-square"></i> <span class="d-none d-sm-inline">Edit</span>')
+            addClasses(edit, 'btn btn-warning me-1')
+            edit.addEventListener('click', (e) => addSchool(school))
+            let del = createButton(manage, '', '<i class="fa-solid fa-trash"></i> <span class="d-none d-sm-inline">Delete</span>')
+            addClasses(del, 'btn btn-danger')
+            del.addEventListener('click', (e) => deleteSchool(school))
+        }
+
+        document.getElementById('add').addEventListener('click', () => addSchool())//add school
+        document.getElementById('search').addEventListener('input', (e) => {//search school
+            let list = document.getElementById('list')
+            list.innerHTML = ''
+            let row = createRow(list)
+            addClasses(row, 'align-middle')
+            let td1 = insertCell(row, '')
+            td1.innerHTML = '<div class="d-flex align-items-center"><span style="width: 20px; height: 20px" class="spinner-border text-dark me-2" role="status"></span > <span>Searching for <b class="fw-bolder">' + ((e.target.value != '') ? e.target.value : 'none') + '</b></span>.</div>'
+            addClasses(td1, 'd-table-cell p-3')
+            td1.colSpan = "100"
+            list.appendChild(row)
+            window.setTimeout(() => displaySchools(e.target.value), 1000)
+        })
     </script>
+    <style>
+        @media only screen and (max-width: 425px) {
+
+            .table tbody tr td:nth-child(1),
+            .table thead tr th:nth-child(1) {
+                display: none
+            }
+
+        }
+    </style>
+    <!-- javascript -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>

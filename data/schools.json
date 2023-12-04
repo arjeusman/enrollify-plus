@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1701689262360,
+        "user": 123456789,
+        "school_id": 456532,
+        "school_name": "Medina College Ipil, Inc.",
+        "school_region": "Region IX, Zamboanga Peninsula",
+        "school_division": "DIVISION OF ZAMBOANGA SIBUGAY",
+        "school_district": "Ipil",
+        "school_principal": "Arje Casipong Usman"
+    },
+    {
+        "id": 1701689262361,
+        "user": 123456789,
+        "school_id": 314324,
+        "school_name": "Kitabog National High School",
+        "school_region": "Region IX, Zamboanga Peninsula",
+        "school_division": "DIVISION OF ZAMBOANGA SIBUGAY",
+        "school_district": "Ipil",
+        "school_principal": "Arje Casipong Usman"
+    }
+]

@@ -1,30 +1,9 @@
 [
     {
-        "owner": 123456789,
-        "name": "Honesty",
-        "level": 7,
         "id": 1576996323451,
-        "school_id": 1234
-    },
-    {
-        "owner": 123456789,
-        "name": "Integrity",
-        "level": 7,
-        "id": 1576996323452,
-        "school_id": 1234
-    },
-    {
-        "owner": 123456789,
-        "name": "Love",
-        "level": 8,
-        "id": 1576996323453,
-        "school_id": 1234
-    },
-    {
-        "owner": 123456789,
-        "name": "Purity",
-        "level": 8,
-        "id": 1576996323454,
-        "school_id": 1234
+        "school": 1701696087019,
+        "user": 123456789,
+        "name": "Honesty",
+        "level": 7
     }
 ]

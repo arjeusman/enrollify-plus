@@ -13,7 +13,7 @@
     <script type="text/javascript" src="script/dashboard.js"></script>
 </head>
 
-<body onload="checkAuth()">
+<body onload="checkAuth();isSchoolSelected()">
     <div class="wrapper"><!-- wrapper -->
         <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar">
             <div class="offcanvas-header bg-dark py-4 d-flex align-items-center justify-content-center">
@@ -39,7 +39,7 @@
             </div>
         </div>
         <div class="main"><!-- main -->
-            <nav class="navbar navbar-expand navbar-theme py-2">
+            <nav class="navbar bg-dark navbar-expand navbar-theme py-2 sticky-top">
                 <a data-bs-toggle="offcanvas" data-bs-target="#sidebar" class="sidebar-toggle d-flex me-2">
                     <i class="hamburger align-self-center"></i>
                 </a>
@@ -60,12 +60,12 @@
                     </div><!-- header -->
                     <div class="card"><!-- card -->
                         <div class="container p-2 p-sm-3">
-                            <div class="d-flex align-items-center justify-content-center justify-content-sm-end gap-2 mb-2">
-                                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addSection"><i class="fas fa-plus"></i><span class="d-none d-md-inline ms-2">Add Section</span></button>
+                            <div class="d-flex align-items-center justify-content-start gap-2 mb-2">
+                                <button id="add" class="btn btn-success"><i class="fas fa-plus"></i><span class="d-none d-md-inline ms-2">Add Section</span></button>
                                 <input style="max-width: 425px;" id="search" type="search" class="form-control" placeholder="Search section">
                             </div>
                             <div class="table-responsive border">
-                                <table class="table table-hover m-0" style="font-size: 13px;">
+                                <table class="table table-hover m-0">
                                     <thead>
                                         <tr class="bg-secondary bg-opacity-10 text-uppercase text-truncate">
                                             <th style="width: 150px;">Section ID</th>
@@ -88,7 +88,7 @@
     </div><!-- wrapper -->
     <!-- Add Modal -->
     <div class="modal fade" id="addSection" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" style="width: 350px">
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 350px">
             <form name="addSection" method="post" class="modal-content needs-validation" novalidate>
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-screen-users"></i> Add Section</h1>
@@ -97,7 +97,7 @@
                 <div class="modal-body py-4">
                     <label class="form-label" for="name">Name</label>
                     <input id="name" type="text" name="name" class="form-control mb-2" autocomplete="off" required>
-                    <label class="form-label" for="level">Gender</label>
+                    <label class="form-label" for="level">Level</label>
                     <select name="level" id="level" class="form-control" required>
                         <option value="">Select</option>
                         <option value="7">Grade 7</option>
@@ -115,7 +115,7 @@
     <!-- Add Modal -->
     <!-- Edit Modal -->
     <div class="modal fade" id="editSection" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" style="width: 350px">
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 350px">
             <form name="editSection" method="post" class="modal-content needs-validation" novalidate>
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-pen-to-square"></i> Edit Section</h1>
@@ -125,7 +125,7 @@
                     <input type="hidden" name="section_id">
                     <label class="form-label" for="name">Name</label>
                     <input id="name" type="text" name="section_name" class="form-control mb-2" autocomplete="off" required>
-                    <label class="form-label" for="level">Gender</label>
+                    <label class="form-label" for="level">Level</label>
                     <select id="level" name="section_level" class="form-control" required>
                         <option value="">Select</option>
                         <option value="7">Grade 7</option>
@@ -141,22 +141,48 @@
         </div>
     </div>
     <!-- Edit Modal -->
+    <!-- Assign Modal -->
+    <div class="modal fade" id="assignAdviser" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 425px">
+            <form name="assignAdviser" method="post" class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-user"></i> Assign Adviser</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-4">
+                    <input id="search_user" type="text" class="form-control my-2" placeholder="Search here">
+                    <div class="table-responsive border">
+                        <table class="table table-hover m-0">
+                            <thead>
+                                <tr class="bg-secondary bg-opacity-10 text-uppercase text-truncate">
+                                    <th>Names</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="users"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Assign Modal -->
 
     <script type="text/javascript">
 
-        //the table body
-        let list = document.getElementById('list')
-
         //display default
         displaySections('')
+        displayUsers('')
 
         function displaySections(filter) {
+            let list = document.getElementById('list')
             list.innerHTML = ''
             let sections = getSections()
             let filteredsections = []
             if (sections.length == 0 && filter == '') {
                 let row = createRow(list)
-                let td1 = insertCell(row, "No records found.")
+                let td1 = insertCell(row, '')
+                td1.innerHTML = '<i class="fa-solid fa-folder me-2"></i> No records to show.'
                 addClasses(td1, 'd-table-cell p-3')
                 td1.colSpan = "100"
             }
@@ -169,22 +195,22 @@
                 if (filteredsections.length == 0) {
                     let row = createRow(list)
                     let td1 = insertCell(row, "")
-                    addClasses(td1, 'd-table-cell')
-                    td1.innerHTML = 'No search results found for <b class="fw-bolder">' + filter + '</b>.'
+                    addClasses(td1, 'd-table-cell p-3')
+                    td1.innerHTML = '<i class="fa-solid fa-search me-2"></i> No search results found for <b class="fw-bolder">' + filter + '</b>.'
                     td1.colSpan = "100"
                 }
                 filteredsections.forEach((section) => {
-                    createsection(list, section)
+                    createSection(list, section)
                 })
             } else {
                 sections.forEach((section) => {
-                    createsection(list, section)
+                    createSection(list, section)
                 })
             }
         }
 
         //create adisory
-        function createsection(list, section) {
+        function createSection(list, section) {
             let row = createRow(list)
             addClasses(row, 'text-uppercase text-truncate')
             let a = insertCell(row, section.id.toString())
@@ -209,34 +235,103 @@
                 localStorage.setItem('current_section', section.id)
                 Redirect('section-view.html')
             })
-            let edit = createButton(manage, '', '<i class="fa-solid fa-pen-to-square"></i> <span class="d-none d-sm-inline">Edit</span>')
-            addClasses(edit, 'btn btn-warning me-1')
-            edit.addEventListener('click', (e) => {
-                editSection(section)
-            })
-            let del = createButton(manage, '', '<i class="fa-solid fa-trash"></i> <span class="d-none d-sm-inline">Delete</span>')
-            addClasses(del, 'btn btn-danger')
-            del.addEventListener('click', (e) => {
-                deleteSection(section)
-            })
+            let school = getSchool(section.school)
+            if (school.user == section.user) {
+                let assign = createButton(manage, '', '<i class="fa-solid fa-user"></i> <span class="d-none d-sm-inline">Assign</span>')
+                addClasses(assign, 'btn btn-info me-1')
+                assign.addEventListener('click', (e) => assignAdviser(section))
+                let edit = createButton(manage, '', '<i class="fa-solid fa-pen-to-square"></i> <span class="d-none d-sm-inline">Edit</span>')
+                addClasses(edit, 'btn btn-warning me-1')
+                edit.addEventListener('click', (e) => {
+                    editSection(section)
+                })
+                let del = createButton(manage, '', '<i class="fa-solid fa-trash"></i> <span class="d-none d-sm-inline">Delete</span>')
+                addClasses(del, 'btn btn-danger')
+                del.addEventListener('click', (e) => {
+                    deleteSection(section)
+                })
+            }
         }
 
-        //add section
-        let form = document.forms.namedItem('addSection')
-        form.addEventListener('submit', (e) => {
-            e.preventDefault()
-            if (!form.checkValidity()) {
-                e.stopPropagation()
-            } else {
-                addSection(form)
-            }
-            form.classList.add('was-validated')
-        }, false)
-
-        //search section
-        document.getElementById('search').addEventListener('input', (e) => {
-            displaySections(e.target.value)
+        document.getElementById('add').addEventListener('click', () => addSection())//add section
+        document.getElementById('search').addEventListener('input', (e) => {//search sections
+            let list = document.getElementById('list')
+            list.innerHTML = ''
+            let row = createRow(list)
+            addClasses(row, 'align-middle')
+            let td1 = insertCell(row, '')
+            td1.innerHTML = '<div class="d-flex align-items-center"><span style="width: 20px; height: 20px" class="spinner-border text-dark me-2" role="status"></span > <span>Searching for <b class="fw-bolder">' + ((e.target.value != '') ? e.target.value : 'none') + '</b></span>.</div>'
+            addClasses(td1, 'd-table-cell p-3')
+            td1.colSpan = "100"
+            list.appendChild(row)
+            window.setTimeout(() => displaySections(e.target.value), 1000)
         })
+
+        function displayUsers(filter) {
+            let list = document.getElementById('users')
+            list.innerHTML = ''
+            let users = getUsers()
+            let filteredUsers = []
+            if (users.length == 0 && filter == '') {
+                let row = createRow(list)
+                let td1 = insertCell(row, '')
+                td1.innerHTML = '<i class="fa-solid fa-folder me-2"></i> No records to show.'
+                addClasses(td1, 'd-table-cell p-3')
+                td1.colSpan = "100"
+            }
+            if (filter != '') {
+                users.forEach((user) => {
+                    if (user.firstname.toLowerCase().includes(filter) || user.middlename.toLowerCase().includes(filter) || user.lastname.toLowerCase().includes(filter)) {
+                        filteredUsers.push(user)
+                    }
+                })
+                if (filteredUsers.length == 0) {
+                    let row = createRow(list)
+                    let td1 = insertCell(row, "")
+                    addClasses(td1, 'd-table-cell p-3')
+                    td1.innerHTML = '<i class="fa-solid fa-search me-2"></i> No search results found for <b class="fw-bolder">' + filter + '</b>.'
+                    td1.colSpan = "100"
+                }
+                filteredUsers.forEach((user) => {
+                    createUser(list, user)
+                })
+            } else {
+                users.forEach((user) => {
+                    createUser(list, user)
+                })
+            }
+        }
+
+        function createUser(list, user) {
+            let row = createRow(list)
+            addClasses(row, 'p-3 text-uppercase text-truncate')
+            let a = insertCell(row, formatName(user, 'normal'))
+            let manage = insertCell(row, "")
+            manage.classList.add('text-end')
+            let assign = createButton(manage, '', '<i class="fa-solid fa-user"></i> <span class="d-none d-sm-inline">Assign</span>')
+            assign.name = 'user'
+            assign.type = 'submit'
+            assign.value = user.id
+            addClasses(assign, 'btn btn-sm btn-success me-1')
+            let section = getSection(localStorage.getItem('current_section'))
+            if (section.adviser == user.id) {
+                console.log('Test')
+            }
+        }
+
+        document.getElementById('search_user').addEventListener('input', (e) => {//search users
+            let list = document.getElementById('users')
+            list.innerHTML = ''
+            let row = createRow(list)
+            addClasses(row, 'align-middle')
+            let td1 = insertCell(row, '')
+            td1.innerHTML = '<div class="d-flex align-items-center"><span style="width: 20px; height: 20px" class="spinner-border text-dark me-2" role="status"></span > <span>Searching for <b class="fw-bolder">' + ((e.target.value != '') ? e.target.value : 'none') + '</b></span>.</div>'
+            addClasses(td1, 'd-table-cell p-3')
+            td1.colSpan = "100"
+            list.appendChild(row)
+            window.setTimeout(() => displayUsers(e.target.value), 1000)
+        })
+
     </script>
     <style>
         @media only screen and (max-width: 425px) {

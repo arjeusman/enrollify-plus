@@ -12,61 +12,6 @@
 </head>
 
 <body>
-    <div class="container">
-        <div id="form" class="border border-dark p-0">
-            <div id="page1" style="z-index: 2;" class="page left bg-white">
-                <h1>Create Account</h1>
-            </div>
-            <div id="page3" style="z-index: 3;" class="page left bg-dark">
-                <img style="max-width: 200px;" src="assets/enrollify-white.png" alt="">
-                <h1 class="text-white">Hello!</h1>
-                <button onclick="toggleForm()">Signin</button>
-            </div>
-            <div id="page2" style="z-index: 1;" class="page right bg-white">
-                <h1>Sign In</h1>
-            </div>
-            <div id="page1" style="z-index: 3;" class="page left bg-dark">
-                <img style="max-width: 200px;" src="assets/enrollify-white.png" alt="">
-                <h1 class="text-white">Welcome back!</h1>
-                <button onclick="toggleForm()">Signup</button>
-            </div>
-        </div>
-    </div>
-    <style>
-        #form {
-            position: relative;
-            height: 700px;
-        }
-
-        .page {
-            width: 50%;
-            height: 700px;
-            position: absolute;
-            transition: order linear .5s;
-        }
-
-        .left {
-            top: 0px;
-            left: 0px;
-        }
-
-        .right {
-            top: 0px;
-            right: 0px;
-        }
-    </style>
-    <script>
-        let page4 = document.getElementById('page4')
-        let page3 = document.getElementById('page3')
-        let page2 = document.getElementById('page2')
-        let page1 = document.getElementById('page1')
-        function toggleForm() {
-            page1.classList.add('left')
-            page2.classList.add('order-last')
-            page3.classList.remove('order-last')
-            page4.classList.remove('order-last')
-        }
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
