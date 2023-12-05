@@ -229,7 +229,11 @@
             view.addEventListener('click', () => viewSection(section))
             let assign = createButton(manage, '', '<i class="fa-solid fa-user"></i> <span class="d-none d-sm-inline">Assign</span>')
             addClasses(assign, 'btn btn-info me-1')
-            assign.addEventListener('click', () => new bootstrap.Modal(document.querySelector("#assignAdviser")).show())
+            assign.addEventListener('click', () => {
+                localStorage.setItem('current_section', section.id)
+                new bootstrap.Modal(document.querySelector("#assignAdviser")).show()
+                displayUsers('')
+            })
             let edit = createButton(manage, '', '<i class="fa-solid fa-pen-to-square"></i> <span class="d-none d-sm-inline">Edit</span>')
             addClasses(edit, 'btn btn-warning me-1')
             edit.addEventListener('click', () => editSection(section))
@@ -293,8 +297,8 @@
             let a = insertCell(row, formatName(user, 'normal'))
             let manage = insertCell(row, "")
             manage.classList.add('text-end')
-            let section = getSectionInfo()
-            if (section.user == user.id) {
+            let section = getSection(localStorage.getItem('current_section'))
+            if (section.user != user.id) {
                 let assign = createButton(manage, '', '<i class="fa-solid fa-user"></i> <span class="d-none d-sm-inline">Assign</span>')
                 assign.name = 'user'
                 assign.type = 'submit'

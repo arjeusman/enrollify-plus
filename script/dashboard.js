@@ -331,7 +331,7 @@ function getSection(id) {
 }
 
 function getSectionInfo() {
-    let id = localStorage.getItem('current_section')
+    let id = parseInt(localStorage.getItem('current_section'))
     let data = JSON.parse(localStorage.getItem('enrollify_sections'))
     let a = {}
     data.forEach((d) => {
@@ -358,7 +358,6 @@ function getSections() {
 function getMySections() {
     let user = getUserInfo()
     let data = JSON.parse(localStorage.getItem('enrollify_sections'))
-    console.log(data, user)
     let a = []
     data.forEach((d) => {
         if (d.user == user.id) {
