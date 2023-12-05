@@ -26,10 +26,7 @@
                             <a class="nav-link" href="dashboard.html"><i class="fa-solid fa-dashboard me-2"></i><span>Dashboard</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="students.html"><i class="fa-solid fa-users me-2"></i><span>Enrollment</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="sections.html"><i class="fa-solid fa-screen-users me-2"></i><span>Sections</span></a>
+                            <a class="nav-link" href="advisory.html"><i class="fa-solid fa-screen-users me-2"></i><span>My Advisory</span></a>
                         </li>
                         <li class="nav-item">
                             <a onclick="logout()" class="nav-link rounded-0" href="#logout"><i class="fa-solid fa-right-from-bracket me-2"></i><span>Logout</span></a>
@@ -61,15 +58,16 @@
                     <div class="card"><!-- card -->
                         <div class="container p-2 p-sm-3">
                             <div class="d-flex align-items-center justify-content-start gap-2 mb-2">
+                                <button class="btn btn-secondary" onclick="history.back()"><i class="fas fa-arrow-left"></i><span class="d-none d-sm-inline">Back</span></button>
                                 <button id="add" class="btn btn-success"><i class="fas fa-plus"></i><span class="d-none d-md-inline ms-2">Add Section</span></button>
-                                <input style="max-width: 425px;" id="search" type="search" class="form-control" placeholder="Search section">
+                                <input style="max-width: 300px;" id="search" type="search" class="form-control" placeholder="Search section">
                             </div>
                             <div class="table-responsive border">
                                 <table class="table table-hover m-0">
                                     <thead>
                                         <tr class="bg-secondary bg-opacity-10 text-uppercase text-truncate">
-                                            <th style="width: 150px;">Section ID</th>
                                             <th>Section Name</th>
+                                            <th>Adviser</th>
                                             <th style="width: 50px;" class="text-center"><i class="fa-solid fa-mars"></i></th>
                                             <th style="width: 50px;" class="text-center"><i class="fa-solid fa-venus"></i></th>
                                             <th style="width: 50px;" class="text-center"><i class="fa-solid fa-screen-users"></i></th>
@@ -144,14 +142,14 @@
     <!-- Assign Modal -->
     <div class="modal fade" id="assignAdviser" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" style="max-width: 425px">
-            <form name="assignAdviser" method="post" class="modal-content">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-user"></i> Assign Adviser</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body py-4">
                     <input id="search_user" type="text" class="form-control my-2" placeholder="Search here">
-                    <div class="table-responsive border">
+                    <div class="table-responsive border border-success" style="height: 300px; max-height: 300px;">
                         <table class="table table-hover m-0">
                             <thead>
                                 <tr class="bg-secondary bg-opacity-10 text-uppercase text-truncate">
@@ -163,12 +161,16 @@
                         </table>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
     <!-- Assign Modal -->
 
     <script type="text/javascript">
+
+        if (localStorage.getItem('current_school') == null) {
+            document.getElementById('add').classList.add('d-none')
+        }
 
         //display default
         displaySections('')
@@ -176,6 +178,8 @@
 
         function displaySections(filter) {
             let list = document.getElementById('list')
+            let user = getUserInfo()
+
             list.innerHTML = ''
             let sections = getSections()
             let filteredsections = []
@@ -199,13 +203,9 @@
                     td1.innerHTML = '<i class="fa-solid fa-search me-2"></i> No search results found for <b class="fw-bolder">' + filter + '</b>.'
                     td1.colSpan = "100"
                 }
-                filteredsections.forEach((section) => {
-                    createSection(list, section)
-                })
+                filteredsections.forEach((section) => createSection(list, section))
             } else {
-                sections.forEach((section) => {
-                    createSection(list, section)
-                })
+                sections.forEach((section) => createSection(list, section))
             }
         }
 
@@ -213,8 +213,9 @@
         function createSection(list, section) {
             let row = createRow(list)
             addClasses(row, 'text-uppercase text-truncate')
-            let a = insertCell(row, section.id.toString())
-            let b = insertCell(row, 'Grade ' + section.level + ' ' + section.name)
+            let a = insertCell(row, 'Grade ' + section.level + ' ' + section.name)
+            let adviser = getUserById(section.user)
+            let b = insertCell(row, formatName(adviser, 'normal'))
             let c = insertCell(row, section.male)
             addClasses(c, 'text-center')
             let d = insertCell(row, section.female)
@@ -225,36 +226,20 @@
             manage.classList.add('text-end')
             let view = createButton(manage, '', '<i class="fa-solid fa-screen-users"></i> <span class="d-none d-sm-inline">View</span>')
             addClasses(view, 'btn btn-success me-1')
-            b.addEventListener('click', (e) => {
-                Process()
-                localStorage.setItem('current_section', section.id)
-                Redirect('section-view.html')
-            })
-            view.addEventListener('click', (e) => {
-                Process()
-                localStorage.setItem('current_section', section.id)
-                Redirect('section-view.html')
-            })
-            let school = getSchool(section.school)
-            if (school.user == section.user) {
-                let assign = createButton(manage, '', '<i class="fa-solid fa-user"></i> <span class="d-none d-sm-inline">Assign</span>')
-                addClasses(assign, 'btn btn-info me-1')
-                assign.addEventListener('click', (e) => assignAdviser(section))
-                let edit = createButton(manage, '', '<i class="fa-solid fa-pen-to-square"></i> <span class="d-none d-sm-inline">Edit</span>')
-                addClasses(edit, 'btn btn-warning me-1')
-                edit.addEventListener('click', (e) => {
-                    editSection(section)
-                })
-                let del = createButton(manage, '', '<i class="fa-solid fa-trash"></i> <span class="d-none d-sm-inline">Delete</span>')
-                addClasses(del, 'btn btn-danger')
-                del.addEventListener('click', (e) => {
-                    deleteSection(section)
-                })
-            }
+            view.addEventListener('click', () => viewSection(section))
+            let assign = createButton(manage, '', '<i class="fa-solid fa-user"></i> <span class="d-none d-sm-inline">Assign</span>')
+            addClasses(assign, 'btn btn-info me-1')
+            assign.addEventListener('click', () => new bootstrap.Modal(document.querySelector("#assignAdviser")).show())
+            let edit = createButton(manage, '', '<i class="fa-solid fa-pen-to-square"></i> <span class="d-none d-sm-inline">Edit</span>')
+            addClasses(edit, 'btn btn-warning me-1')
+            edit.addEventListener('click', () => editSection(section))
+            let del = createButton(manage, '', '<i class="fa-solid fa-trash"></i> <span class="d-none d-sm-inline">Delete</span>')
+            addClasses(del, 'btn btn-danger')
+            del.addEventListener('click', () => deleteSection(section))
         }
 
-        document.getElementById('add').addEventListener('click', () => addSection())//add section
-        document.getElementById('search').addEventListener('input', (e) => {//search sections
+        document.getElementById('add').addEventListener('click', () => addSection())
+        document.getElementById('search').addEventListener('input', (e) => {
             let list = document.getElementById('list')
             list.innerHTML = ''
             let row = createRow(list)
@@ -308,14 +293,18 @@
             let a = insertCell(row, formatName(user, 'normal'))
             let manage = insertCell(row, "")
             manage.classList.add('text-end')
-            let assign = createButton(manage, '', '<i class="fa-solid fa-user"></i> <span class="d-none d-sm-inline">Assign</span>')
-            assign.name = 'user'
-            assign.type = 'submit'
-            assign.value = user.id
-            addClasses(assign, 'btn btn-sm btn-success me-1')
-            let section = getSection(localStorage.getItem('current_section'))
-            if (section.adviser == user.id) {
-                console.log('Test')
+            let section = getSectionInfo()
+            if (section.user == user.id) {
+                let assign = createButton(manage, '', '<i class="fa-solid fa-user"></i> <span class="d-none d-sm-inline">Assign</span>')
+                assign.name = 'user'
+                assign.type = 'submit'
+                assign.value = user.id
+                addClasses(assign, 'btn btn-sm btn-success me-1')
+                assign.addEventListener('click', (e) => assignAdviser(user))
+            } else {
+                let active = createElement('span', '')
+                active.innerHTML = '<i class="fa-solid fa-check"></i> Active'
+                manage.appendChild(active)
             }
         }
 
@@ -336,17 +325,15 @@
     <style>
         @media only screen and (max-width: 425px) {
 
-            .table tbody tr td:nth-child(1),
+            .table tbody tr td:nth-child(2),
             .table tbody tr td:nth-child(3),
-            .table tbody tr td:nth-child(4),
-            .table tbody tr td:nth-child(5) {
+            .table tbody tr td:nth-child(4) {
                 display: none
             }
 
-            .table thead tr th:nth-child(1),
+            .table thead tr th:nth-child(2),
             .table thead tr th:nth-child(3),
-            .table thead tr th:nth-child(4),
-            .table thead tr th:nth-child(5) {
+            .table thead tr th:nth-child(4) {
                 display: none
             }
         }

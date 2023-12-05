@@ -26,10 +26,7 @@
                             <a class="nav-link" href="dashboard.html"><i class="fa-solid fa-dashboard me-2"></i><span>Dashboard</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="students.html"><i class="fa-solid fa-users me-2"></i><span>Enrollment</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="sections.html"><i class="fa-solid fa-screen-users me-2"></i><span>Sections</span></a>
+                            <a class="nav-link" href="advisory.html"><i class="fa-solid fa-screen-users me-2"></i><span>My Advisory</span></a>
                         </li>
                         <li class="nav-item">
                             <a onclick="logout()" class="nav-link rounded-0" href="#logout"><i class="fa-solid fa-right-from-bracket me-2"></i><span>Logout</span></a>
@@ -88,7 +85,7 @@
                                             <li class="nav-item">
                                                 <button onclick="toggleMenu(this)" id="remarks" class="nav-link p-0 p-sm-2"><i class="fa-solid fa-star"></i><span class="ms-2 d-md-none d-lg-inline">Remarks</span></button>
                                             </li>
-                                            <li class="nav-item dropdown">
+                                            <li id="manage" class="nav-item dropdown">
                                                 <a class="nav-link p-0 p-sm-2 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-gear"></i><span class="ms-2 d-md-none d-lg-inline">Manage</span></a>
                                                 <ul class="dropdown-menu">
                                                     <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addStudent"><i class="fas fa-user-plus"></i> Add Student</a></li>
@@ -257,11 +254,18 @@
         }
 
         //set labels
+        let user = getUserInfo()
         let section = getSection()
+        let school = getSchool(section.school)
+        console.log(user)
         if (section == null) Redirect('sections.html')
         document.getElementById('title').innerHTML = 'Grade ' + section.level + '  ' + section.name + ' - Enrollify+'
         document.getElementById('section_name').innerHTML = 'Grade ' + section.level + '  ' + section.name
         document.getElementById('section_name_sub').innerHTML = 'Grade ' + section.level + '  ' + section.name
+
+        if (school.user != user.id) {
+            document.getElementById('manage').remove()
+        }
 
         //display default
         displayStudents('', document.getElementById('enrollment'))

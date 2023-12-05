@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sections - Enrollify+</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
+    <link rel="icon" href="assets/enrollify.png">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.dark.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="script/dashboard.js"></script>
+</head>
+
+<body onload="checkAuth()">
+    <div class="wrapper"><!-- wrapper -->
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar">
+            <div class="offcanvas-header bg-dark py-4 d-flex align-items-center justify-content-center">
+                <img style="width: 60%;" src="assets/enrollify-white.png" />
+            </div>
+            <div class="offcanvas-body">
+                <div class="sidebar-content">
+                    <ul class="nav nav-pills d-flex flex-column gap-2 p-2">
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard.html"><i class="fa-solid fa-dashboard me-2"></i><span>Dashboard</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="advisory.html"><i class="fa-solid fa-screen-users me-2"></i><span>My Advisory</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a onclick="logout()" class="nav-link rounded-0" href="#logout"><i class="fa-solid fa-right-from-bracket me-2"></i><span>Logout</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="main"><!-- main -->
+            <nav class="navbar bg-dark navbar-expand navbar-theme py-2 sticky-top">
+                <a data-bs-toggle="offcanvas" data-bs-target="#sidebar" class="sidebar-toggle d-flex me-2">
+                    <i class="hamburger align-self-center"></i>
+                </a>
+                <a href="dashboard.html" class="navbar-brand">
+                    <img style="width: 100px;" src="assets/enrollify-white.png" alt="">
+                </a>
+            </nav>
+            <main class="content"><!-- content -->
+                <div class="container p-0"><!-- container -->
+                    <div class="header"><!-- header -->
+                        <h1 class="header-title">My Advisory</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb text-white">
+                                <li class="breadcrumb-item">Dashboard</li>
+                                <li class="breadcrumb-item">My Advisory</li>
+                            </ol>
+                        </nav>
+                    </div><!-- header -->
+                    <div class="card"><!-- card -->
+                        <div class="container p-2 p-sm-3">
+                            <div class="d-flex align-items-center justify-content-start gap-2 mb-2">
+                                <input style="max-width: 300px;" id="search" type="search" class="form-control" placeholder="Search section">
+                            </div>
+                            <div class="table-responsive border">
+                                <table class="table table-hover m-0">
+                                    <thead>
+                                        <tr class="bg-secondary bg-opacity-10 text-uppercase text-truncate">
+                                            <th style="width: 150px;">Section ID</th>
+                                            <th>Section Name</th>
+                                            <th style="width: 50px;" class="text-center"><i class="fa-solid fa-mars"></i></th>
+                                            <th style="width: 50px;" class="text-center"><i class="fa-solid fa-venus"></i></th>
+                                            <th style="width: 50px;" class="text-center"><i class="fa-solid fa-screen-users"></i></th>
+                                            <th style="width: 250px;" class="text-end"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="list">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div><!-- card -->
+                </div><!-- container -->
+            </main><!-- content -->
+        </div><!-- main -->
+    </div><!-- wrapper -->
+
+    <script type="text/javascript">
+
+        displaySections('')//display sections
+
+        function displaySections(filter) {
+            let list = document.getElementById('list')
+            let user = getUserInfo()
+
+            list.innerHTML = ''
+            let sections = getMySections()
+            console.log(sections)
+            let filteredsections = []
+            if (sections.length == 0 && filter == '') {
+                let row = createRow(list)
+                let td1 = insertCell(row, '')
+                td1.innerHTML = '<i class="fa-solid fa-folder me-2"></i> No records to show.'
+                addClasses(td1, 'd-table-cell p-3')
+                td1.colSpan = "100"
+            }
+            if (filter != '') {
+                sections.forEach((section) => {
+                    if (section.name.toLowerCase().includes(filter)) {
+                        filteredsections.push(section)
+                    }
+                })
+                if (filteredsections.length == 0) {
+                    let row = createRow(list)
+                    let td1 = insertCell(row, "")
+                    addClasses(td1, 'd-table-cell p-3')
+                    td1.innerHTML = '<i class="fa-solid fa-search me-2"></i> No search results found for <b class="fw-bolder">' + filter + '</b>.'
+                    td1.colSpan = "100"
+                }
+                filteredsections.forEach((section) => createSection(list, section))
+            } else {
+                sections.forEach((section) => createSection(list, section))
+            }
+        }
+
+        //create adisory
+        function createSection(list, section) {
+            let row = createRow(list)
+            addClasses(row, 'text-uppercase text-truncate')
+            let a = insertCell(row, section.id.toString())
+            let b = insertCell(row, 'Grade ' + section.level + ' ' + section.name)
+            let c = insertCell(row, section.male)
+            addClasses(c, 'text-center')
+            let d = insertCell(row, section.female)
+            addClasses(d, 'text-center')
+            let e = insertCell(row, section.total)
+            addClasses(e, 'text-center')
+            let manage = insertCell(row, "")
+            manage.classList.add('text-end')
+            let view = createButton(manage, '', '<i class="fa-solid fa-screen-users"></i> <span class="d-none d-sm-inline">View</span>')
+            addClasses(view, 'btn btn-success me-1')
+            view.addEventListener('click', (e) => viewSection(section))
+        }
+
+        document.getElementById('search').addEventListener('input', (e) => {//search sections
+            let list = document.getElementById('list')
+            list.innerHTML = ''
+            let row = createRow(list)
+            addClasses(row, 'align-middle')
+            let td1 = insertCell(row, '')
+            td1.innerHTML = '<div class="d-flex align-items-center"><span style="width: 20px; height: 20px" class="spinner-border text-dark me-2" role="status"></span > <span>Searching for <b class="fw-bolder">' + ((e.target.value != '') ? e.target.value : 'none') + '</b></span>.</div>'
+            addClasses(td1, 'd-table-cell p-3')
+            td1.colSpan = "100"
+            list.appendChild(row)
+            window.setTimeout(() => displaySections(e.target.value), 1000)
+        })
+
+    </script>
+    <style>
+        @media only screen and (max-width: 425px) {
+
+            .table tbody tr td:nth-child(1),
+            .table tbody tr td:nth-child(3),
+            .table tbody tr td:nth-child(4),
+            .table tbody tr td:nth-child(5) {
+                display: none
+            }
+
+            .table thead tr th:nth-child(1),
+            .table thead tr th:nth-child(3),
+            .table thead tr th:nth-child(4),
+            .table thead tr th:nth-child(5) {
+                display: none
+            }
+        }
+    </style>
+    <!-- javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+
+</html>
