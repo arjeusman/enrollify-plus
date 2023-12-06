@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>GradeZilla</title>
+    <title>Enrollify+</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <script type="text/javascript" src="script/dashboard.js"></script>
 </head>
@@ -108,32 +108,34 @@
                 <div class="text-center">
                     <span class="d-block fw-bolder">Republic of the Philippines</span>
                     <span class="d-block">Department of Education</span>
-                    <span class="d-block" id="school_region">Region IX, Zamboanga Peninsula</span>
-                    <span class="d-block text-uppercase text-decoration-underline" id="school_division">Division of Zamboanga Sibugay</span>
+                    <span id="school_region" class="d-block">Region IX, Zamboanga Peninsula</span>
+                    <span id="school_division" class="d-block text-uppercase text-decoration-underline">Division of Zamboanga Sibugay</span>
                 </div>
                 <img src="assets/deped-logo.png">
             </div>
             <div class="sub-header text-center mt-2">
-                <span class="text-uppercase border-bottom border-dark border-1 fw-bolder" style="line-height: .5;">IPIL</span>
+                <span id="school_district" class="text-uppercase border-bottom border-dark border-1 fw-bolder" style="line-height: .5;">IPIL</span>
                 <span class="d-block" style="font-weight: normal;">District</span>
-                <span class="border-bottom border-dark border-1 mt-2 text-uppercase fw-bolder" style="line-height: .5;">Medina College Ipil, Inc.</span>
+                <span id="school_name" class="border-bottom border-dark border-1 mt-2 text-uppercase fw-bolder" style="line-height: .5;">Medina College Ipil, Inc.</span>
                 <span class="d-block" style="font-weight: normal;">School</span>
                 <h1 class="fs-4 text-uppercase" style="font-family: 'Fredoka One';">Progress Report Card</h1>
             </div>
             <div style="position: relative;">
                 <div class="bglogo"></div><!-- start of bglogo -->
                 <div class="mt-1">
-                    <div class="d-flex fw-bolder">
-                        <div class="me-2">Name:</div>
-                        <div id="student_name" class="col flex-fill border-bottom border-1 border-dark fw-bolder px-2">Arje C. Usman</div>
-                    </div>
-                    <div class="row fw-bolder mt-2">
+                    <div class="row fw-bolder">
+                        <div class="col d-flex">
+                            <div class="me-2">Name:</div>
+                            <div id="student_name" class="col flex-fill border-bottom border-1 border-dark fw-bolder px-2">Arje C. Usman</div>
+                        </div>
                         <div class="col d-flex">
                             <div class="me-2">Age:</div>
                             <div id="student_age" class="flex-fill border-bottom border-1 border-dark fw-bolder px-2">AGE</div>
                         </div>
+                    </div>
+                    <div class="row fw-bolder mt-2">
                         <div class="col d-flex">
-                            <div class="me-2">Age:</div>
+                            <div class="me-2">Birthdate:</div>
                             <div id="student_birthdate" class="flex-fill border-bottom border-1 border-dark fw-bolder px-2">BIRTHDATE</div>
                         </div>
                         <div class="col d-flex">
@@ -148,10 +150,10 @@
                         </div>
                         <div class="col d-flex">
                             <div class="me-2">Section:</div>
-                            <div id="student_advisory" class="flex-fill border-bottom border-1 border-dark fw-bolder px-2">ADVISORY</div>
+                            <div id="student_section" class="flex-fill border-bottom border-1 border-dark fw-bolder px-2">section</div>
                         </div>
                     </div>
-                    <div class="d-flex fw-bolder mt-2">
+                    <div class="row fw-bolder mt-2">
                         <div class="col d-flex">
                             <div class="me-2">School Year:</div>
                             <div class="col flex-fill border-bottom border-1 border-dark fw-bolder px-2">2023 - 2024</div>
@@ -163,13 +165,13 @@
                     </div>
                 </div>
                 <div class="mt-2 fw-bold">
-                    <p class="mb-2">Dear Parent:</p>
+                    <p class="mb-2"><i>Dear Parent:</i></p>
                     <p style="font-size: 14px; text-align: justify; text-indent: 50px; margin: 5px 0;">This report card shows the ability and progress your child has made in the different learning areas as well as his/her core values.</p>
                     <p style="font-size: 14px; text-align: justify; text-indent: 50px; margin: 5px 0;">The school welcomes you should you desire to know more about your child's progress.</p>
                 </div>
                 <div class="d-flex justify-content-between">
-                    <div class="text-center w-25 mt-2">
-                        <span class="d-block border-bottom border-dark border-1 fw-bolder">PRINCIPAL NAME</span>
+                    <div class="text-center mt-2">
+                        <span id="school_principal" class="d-block border-bottom border-dark border-1 fw-bolder">PRINCIPAL NAME</span>
                         <span>Principal</span>
                     </div>
                     <div class="text-center mt-2">
@@ -393,11 +395,12 @@
     </div>
     <script type="module">
 
-        let grades = getGrades(localStorage.getItem('gz_current_student'))
-        let student = getStudent(localStorage.getItem('gz_current_student'))
-        let advisory = getAdvisory(student.advisory)
-        let adviser = getUserInfo()
+        let grades = getGrades(localStorage.getItem('current_student'))
+        let student = getStudent(localStorage.getItem('current_student'))
+        let section = getSection(student.section)
+
         let test = 0
+
         //sort asc
         grades.sort((a, b) => parseInt(a.quarter) - parseInt(b.quarter));
 
@@ -405,15 +408,21 @@
         function nth(n) { return ["st", "nd", "rd"][((n + 90) % 100 - 10) % 10 - 1] || "th" }
 
         //set card details
+        document.getElementById('school_region').innerHTML = section.school.school_region
+        document.getElementById('school_division').innerHTML = section.school.school_division
+        document.getElementById('school_district').innerHTML = section.school.school_district
+        document.getElementById('school_name').innerHTML = section.school.school_name
+        document.getElementById('school_principal').innerHTML = section.school.school_principal
+
         document.getElementById('student_lrn').innerHTML = student.lrn
         document.getElementById('student_name').innerHTML = formatName(student)
         document.getElementById('student_age').innerHTML = student.age
         let date = new Date(student.birthdate)
         document.getElementById('student_birthdate').innerHTML = date.toLocaleString('default', { month: 'long' }) + ' ' + date.getDate() + ', ' + date.getYear()
         document.getElementById('student_gender').innerHTML = student.gender
-        document.getElementById('student_level').innerHTML = 'Grade ' + advisory.level
-        document.getElementById('student_advisory').innerHTML = advisory.name
-        document.getElementById('adviser_name').innerHTML = formatName(adviser)
+        document.getElementById('student_level').innerHTML = 'Grade ' + section.level
+        document.getElementById('student_section').innerHTML = section.name
+        document.getElementById('adviser_name').innerHTML = formatName(section.adviser)
 
 
         let general = {

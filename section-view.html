@@ -14,6 +14,13 @@
 </head>
 
 <body onload="checkAuth()">
+    <noscript>
+        <div class="noscript">
+            <img style="width: 200px;" src="assets/enrollify-dark.png" class="mb-2" />
+            <h1 class="fs-1">JavaScript is required.</h1>
+            <p>In order to use this website, you need to enable JavaScript first.</p>
+        </div>
+    </noscript>
     <div class="wrapper"><!-- wrapper -->
         <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar">
             <div class="offcanvas-header bg-dark py-4 d-flex align-items-center justify-content-center">
@@ -60,7 +67,63 @@
                         <div class="container p-2 p-sm-3">
                             <div class="d-flex flex-row flex-nowrap gap-2 px-0 py-2">
                                 <button class="btn btn-secondary" onclick="history.back()"><i class="fas fa-arrow-left"></i><span class="d-none d-sm-inline">Back</span></button>
-                                <input style="max-width: 425px;" id="search" type="search" class="form-control" placeholder="Search student">
+                                <input style="max-width: 300px;" id="search" type="search" class="form-control" placeholder="Search student">
+                            </div>
+                            <div class="row px-2 py-2">
+                                <div class="col-6 col-md-2 p-1 py-1">
+                                    <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-primary bg-opacity-75 bg-gradient border-primary">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 py-2 h-100 gap-1">
+                                            <i class="fa-solid fa-mars" style="font-size: 20px; line-height: normal;"></i>
+                                            <small style="font-size: 10px" class="text-uppercase d-none d-md-inline">Male</small>
+                                        </div>
+                                        <h1 id="male" style="font-size: 30px;" class="m-0 text-center flex-fill">0</h1>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-2 p-1 py-1">
+                                    <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-info bg-opacity-75 bg-gradient border-info">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 py-2 h-100 gap-1">
+                                            <i class="fa-solid fa-venus" style="font-size: 20px; line-height: normal;"></i>
+                                            <small style="font-size: 10px" class="text-uppercase d-none d-md-inline">Female</small>
+                                        </div>
+                                        <h1 id="female" style="font-size: 30px;" class="m-0 text-center flex-fill">0</h1>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-2 p-1 py-1">
+                                    <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-success bg-opacity-75 bg-gradient border-success">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 py-2 h-100 gap-1">
+                                            <i class="fa-solid fa-user-check" style="font-size: 20px; line-height: normal;"></i>
+                                            <small style="font-size: 10px" class="text-uppercase d-none d-md-inline">Official</small>
+                                        </div>
+                                        <h1 id="official" style="font-size: 30px;" class="m-0 text-center flex-fill">0</h1>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-2 p-1 py-1">
+                                    <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-warning bg-opacity-75 bg-gradient border-warning">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 py-2 h-100 gap-1">
+                                            <i class="fa-solid fa-user-clock" style="font-size: 20px; line-height: normal;"></i>
+                                            <small style="font-size: 10px" class="text-uppercase d-none d-md-inline">Temporary</small>
+                                        </div>
+                                        <h1 id="temporary" style="font-size: 30px;" class="m-0 text-center flex-fill">0</h1>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-2 p-1 py-1">
+                                    <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-danger bg-opacity-75 bg-gradient border-danger">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 py-2 h-100 gap-1">
+                                            <i class="fa-solid fa-user-times" style="font-size: 20px; line-height: normal;"></i>
+                                            <small style="font-size: 10px" class="text-uppercase d-none d-md-inline">Backout</small>
+                                        </div>
+                                        <h1 id="backout" style="font-size: 30px;" class="m-0 text-center flex-fill">0</h1>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-2 p-1 py-1">
+                                    <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-dark bg-opacity-75 bg-gradient border-dark">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 py-2 h-100 gap-1">
+                                            <i class="fa-solid fa-screen-users" style="font-size: 20px; line-height: normal;"></i>
+                                            <small style="font-size: 10px" class="text-uppercase d-none d-md-inline">Total</small>
+                                        </div>
+                                        <h1 id="total" style="font-size: 30px;" class="m-0 text-center flex-fill">0</h1>
+                                    </div>
+                                </div>
                             </div>
                             <nav class="navbar navbar-dark bg-dark bg-gradient navbar-expand-md bg-body-tertiary p-0 py-2 py-sm-0 rounded-2">
                                 <div class="container-fluid p-0 px-sm-2">
@@ -157,7 +220,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success bg-gradient"><i class="fa-solid fa-user-plus"></i> Add Student</button>
+                    <button type="submit" class="btn btn-success bg-gradient"><i class="fa-solid fa-user-plus"></i> Add</button>
                 </div>
             </form>
         </div>
@@ -201,7 +264,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success bg-gradient px-3"><i class="fa-solid fa-save"></i> Save</button>
+                    <button type="submit" class="btn btn-success bg-gradient px-3"><i class="fa-solid fa-check"></i> Save</button>
                 </div>
             </form>
         </div>
@@ -229,7 +292,7 @@
                     </select>
                 </div>
                 <div class="modal-footer justify-content-end">
-                    <button type="submit" class="btn btn-success bg-gradient"><i class="fa-solid fa-check"></i> Save Changes</button>
+                    <button type="submit" class="btn btn-success bg-gradient"><i class="fa-solid fa-check"></i> Save</button>
                 </div>
             </form>
         </div>
@@ -256,15 +319,23 @@
         //set labels
         let user = getUserInfo()
         let section = getSection()
-        let school = getSchool(section.school)
-        console.log(user)
+
         if (section == null) Redirect('sections.html')
+
         document.getElementById('title').innerHTML = 'Grade ' + section.level + '  ' + section.name + ' - Enrollify+'
         document.getElementById('section_name').innerHTML = 'Grade ' + section.level + '  ' + section.name
         document.getElementById('section_name_sub').innerHTML = 'Grade ' + section.level + '  ' + section.name
 
-        if (school.user != user.id) {
+        if (section.school.user != user.id) {
             document.getElementById('manage').remove()
+        } else {
+            //edit section
+            document.getElementById('edit').addEventListener('click', (e) => editSection(section))
+
+            //delete sections
+            document.getElementById('delete').addEventListener('click', (e) => {
+                deleteSection(section)
+            })
         }
 
         //display default
@@ -274,6 +345,7 @@
             //the table body
             let list = document.getElementById('list')
             list.innerHTML = ''
+            let section = getSection()
             let students = getStudentsInSection(section)
             let filteredStudents = []
             if (students.length == 0 && filter == '') {
@@ -308,6 +380,14 @@
                     createStudent(list, student, menu, filter)
                 })
             }
+
+            //set lables
+            document.getElementById('male').innerHTML = section.male
+            document.getElementById('female').innerHTML = section.female
+            document.getElementById('official').innerHTML = section.official
+            document.getElementById('temporary').innerHTML = section.temporary
+            document.getElementById('backout').innerHTML = section.backout
+            document.getElementById('total').innerHTML = section.total
         }
 
         //create student
@@ -361,7 +441,7 @@
                 let card = createElement('span')
                 card.title = 'School Card'
                 if (student.card) {
-                    addClasses(card, 'badge p-2 me-1 bg-success')
+                    addClasses(card, 'badge p-2 me-1 bg-success border border-success')
                     card.innerHTML = '<i class="fa-solid fa-check"></i> Card'
                     card.addEventListener('click', (e) => clickCard(student, false, menu, filter))
                 } else {
@@ -372,7 +452,7 @@
                 let psa = createElement('span')
                 psa.title = 'PSA/Birth Certificate'
                 if (student.psa) {
-                    addClasses(psa, 'badge p-2 me-1 bg-info')
+                    addClasses(psa, 'badge p-2 me-1 bg-info border border-info')
                     psa.innerHTML = '<i class="fa-solid fa-check"></i> PSA'
                     psa.addEventListener('click', (e) => clickPSA(student, false, menu, filter))
                 } else {
@@ -383,7 +463,7 @@
                 let gm = createElement('span')
                 gm.title = 'Good Moral Character'
                 if (student.gm) {
-                    addClasses(gm, 'badge p-2 me-1 bg-primary')
+                    addClasses(gm, 'badge p-2 me-1 bg-primary border border-primary')
                     gm.innerHTML = '<i class="fa-solid fa-check"></i> GMC'
                     gm.addEventListener('click', (e) => clickGM(student, false, menu, filter))
                 } else {
@@ -517,14 +597,6 @@
             list.appendChild(row)
             window.setTimeout((e) => displayStudents('', menu), duration)
         }
-
-        //edit section
-        document.getElementById('edit').addEventListener('click', (e) => editSection(section))
-
-        //delete sections
-        document.getElementById('delete').addEventListener('click', (e) => {
-            deleteSection(section)
-        })
     </script>
     <style>
         @media only screen and (max-width: 425px) {

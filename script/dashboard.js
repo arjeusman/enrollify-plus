@@ -325,6 +325,14 @@ function getSection(id) {
     data.forEach((d) => {
         if (d.id == id) {
             a = d
+            a.male = countMale(d.id)
+            a.female = countFemale(d.id)
+            a.official = countOfficial(d.id)
+            a.temporary = countTemporary(d.id)
+            a.backout = countBackout(d.id)
+            a.school = getSchool(d.school)
+            a.adviser = getUserById(d.user)
+            a.total = d.male + d.female
         }
     })
     return a
@@ -344,12 +352,31 @@ function getSections() {
     let school = getSchoolInfo()
     let data = JSON.parse(localStorage.getItem('enrollify_sections'))
     let a = []
+    let counts = {
+        "male": 0,
+        "female": 0,
+        "official": 0,
+        "temporary": 0,
+        "backout": 0,
+        "total": 0
+    }
+    a.push(counts)
     data.forEach((d) => {
         if (d.school == school.id) {
             d.male = countMale(d.id)
             d.female = countFemale(d.id)
+            d.official = countOfficial(d.id)
+            d.temporary = countTemporary(d.id)
+            d.backout = countBackout(d.id)
             d.total = d.male + d.female
+            d.adviser = getUserById(d.user)
             a.push(d)
+            counts.male += d.male
+            counts.female += d.female
+            counts.official += d.official
+            counts.temporary += d.temporary
+            counts.backout += d.backout
+            counts.total += d.total
         }
     })
     return a
@@ -363,7 +390,11 @@ function getMySections() {
         if (d.user == user.id) {
             d.male = countMale(d.id)
             d.female = countFemale(d.id)
+            d.official = countOfficial(d.id)
+            d.temporary = countTemporary(d.id)
+            d.backout = countBackout(d.id)
             d.total = d.male + d.female
+            d.school = getSchool(d.school)
             a.push(d)
         }
     })
@@ -384,6 +415,39 @@ function countMale(id) {
     let a = []
     data.forEach((d) => {
         if (d.section == id && d.gender == 'male') {
+            a.push(d)
+        }
+    })
+    return a.length
+}
+
+function countOfficial(id) {
+    let data = JSON.parse(localStorage.getItem('enrollify_students'))
+    let a = []
+    data.forEach((d) => {
+        if (d.section == id && d.status == 'official') {
+            a.push(d)
+        }
+    })
+    return a.length
+}
+
+function countTemporary(id) {
+    let data = JSON.parse(localStorage.getItem('enrollify_students'))
+    let a = []
+    data.forEach((d) => {
+        if (d.section == id && d.status == 'temporary') {
+            a.push(d)
+        }
+    })
+    return a.length
+}
+
+function countBackout(id) {
+    let data = JSON.parse(localStorage.getItem('enrollify_students'))
+    let a = []
+    data.forEach((d) => {
+        if (d.section == id && d.status == 'backout') {
             a.push(d)
         }
     })

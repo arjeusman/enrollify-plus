@@ -14,6 +14,13 @@
 </head>
 
 <body onload="checkAuth();isSchoolSelected()">
+    <noscript>
+        <div class="noscript">
+            <img style="width: 200px;" src="assets/enrollify-dark.png" class="mb-2" />
+            <h1 class="fs-1">JavaScript is required.</h1>
+            <p>In order to use this website, you need to enable JavaScript first.</p>
+        </div>
+    </noscript>
     <div class="wrapper"><!-- wrapper -->
         <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar">
             <div class="offcanvas-header bg-dark py-4 d-flex align-items-center justify-content-center">
@@ -62,14 +69,73 @@
                                 <button id="add" class="btn btn-success"><i class="fas fa-plus"></i><span class="d-none d-md-inline ms-2">Add Section</span></button>
                                 <input style="max-width: 300px;" id="search" type="search" class="form-control" placeholder="Search section">
                             </div>
+                            <div class="row px-2 py-2">
+                                <div class="col-6 col-md-2 p-1 py-1">
+                                    <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-primary bg-opacity-75 bg-gradient border-primary">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 py-2 h-100 gap-1">
+                                            <i class="fa-solid fa-mars" style="font-size: 20px; line-height: normal;"></i>
+                                            <small style="font-size: 10px" class="text-uppercase d-none d-md-inline">Male</small>
+                                        </div>
+                                        <h1 id="male" style="font-size: 30px;" class="m-0 text-center flex-fill">0</h1>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-2 p-1 py-1">
+                                    <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-info bg-opacity-75 bg-gradient border-info">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 py-2 h-100 gap-1">
+                                            <i class="fa-solid fa-venus" style="font-size: 20px; line-height: normal;"></i>
+                                            <small style="font-size: 10px" class="text-uppercase d-none d-md-inline">Female</small>
+                                        </div>
+                                        <h1 id="female" style="font-size: 30px;" class="m-0 text-center flex-fill">0</h1>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-2 p-1 py-1">
+                                    <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-success bg-opacity-75 bg-gradient border-success">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 py-2 h-100 gap-1">
+                                            <i class="fa-solid fa-user-check" style="font-size: 20px; line-height: normal;"></i>
+                                            <small style="font-size: 10px" class="text-uppercase d-none d-md-inline">Official</small>
+                                        </div>
+                                        <h1 id="official" style="font-size: 30px;" class="m-0 text-center flex-fill">0</h1>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-2 p-1 py-1">
+                                    <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-warning bg-opacity-75 bg-gradient border-warning">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 py-2 h-100 gap-1">
+                                            <i class="fa-solid fa-user-clock" style="font-size: 20px; line-height: normal;"></i>
+                                            <small style="font-size: 10px" class="text-uppercase d-none d-md-inline">Temporary</small>
+                                        </div>
+                                        <h1 id="temporary" style="font-size: 30px;" class="m-0 text-center flex-fill">0</h1>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-2 p-1 py-1">
+                                    <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-danger bg-opacity-75 bg-gradient border-danger">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 py-2 h-100 gap-1">
+                                            <i class="fa-solid fa-user-times" style="font-size: 20px; line-height: normal;"></i>
+                                            <small style="font-size: 10px" class="text-uppercase d-none d-md-inline">Backout</small>
+                                        </div>
+                                        <h1 id="backout" style="font-size: 30px;" class="m-0 text-center flex-fill">0</h1>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-2 p-1 py-1">
+                                    <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-dark bg-opacity-75 bg-gradient border-dark">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 py-2 h-100 gap-1">
+                                            <i class="fa-solid fa-screen-users" style="font-size: 20px; line-height: normal;"></i>
+                                            <small style="font-size: 10px" class="text-uppercase d-none d-md-inline">Total</small>
+                                        </div>
+                                        <h1 id="total" style="font-size: 30px;" class="m-0 text-center flex-fill">0</h1>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="table-responsive border">
-                                <table class="table table-hover m-0">
+                                <table class="table custom table-hover m-0">
                                     <thead>
                                         <tr class="bg-secondary bg-opacity-10 text-uppercase text-truncate">
-                                            <th>Section Name</th>
-                                            <th>Adviser</th>
+                                            <th style="width: 150px;">Section Name</th>
+                                            <th style="width: 150px;">Adviser</th>
                                             <th style="width: 50px;" class="text-center"><i class="fa-solid fa-mars"></i></th>
                                             <th style="width: 50px;" class="text-center"><i class="fa-solid fa-venus"></i></th>
+                                            <th style="width: 50px;" class="text-center"><i class="fa-solid fa-user-check"></i></th>
+                                            <th style="width: 50px;" class="text-center"><i class="fa-solid fa-user-clock"></i></th>
+                                            <th style="width: 50px;" class="text-center"><i class="fa-solid fa-user-times"></i></th>
                                             <th style="width: 50px;" class="text-center"><i class="fa-solid fa-screen-users"></i></th>
                                             <th style="width: 250px;" class="text-end"></th>
                                         </tr>
@@ -182,6 +248,18 @@
 
             list.innerHTML = ''
             let sections = getSections()
+            let counts = sections[0]
+            sections.shift()
+            console.log(counts)
+
+            //set lables
+            document.getElementById('male').innerHTML = counts.male
+            document.getElementById('female').innerHTML = counts.female
+            document.getElementById('official').innerHTML = counts.official
+            document.getElementById('temporary').innerHTML = counts.temporary
+            document.getElementById('backout').innerHTML = counts.backout
+            document.getElementById('total').innerHTML = counts.total
+
             let filteredsections = []
             if (sections.length == 0 && filter == '') {
                 let row = createRow(list)
@@ -220,8 +298,14 @@
             addClasses(c, 'text-center')
             let d = insertCell(row, section.female)
             addClasses(d, 'text-center')
-            let e = insertCell(row, section.total)
+            let e = insertCell(row, section.official)
             addClasses(e, 'text-center')
+            let f = insertCell(row, section.temporary)
+            addClasses(f, 'text-center')
+            let g = insertCell(row, section.backout)
+            addClasses(g, 'text-center')
+            let h = insertCell(row, section.total)
+            addClasses(h, 'text-center')
             let manage = insertCell(row, "")
             manage.classList.add('text-end')
             let view = createButton(manage, '', '<i class="fa-solid fa-screen-users"></i> <span class="d-none d-sm-inline">View</span>')
@@ -232,7 +316,7 @@
             assign.addEventListener('click', () => {
                 localStorage.setItem('current_section', section.id)
                 new bootstrap.Modal(document.querySelector("#assignAdviser")).show()
-                displayUsers('')
+                Loading(1000)
             })
             let edit = createButton(manage, '', '<i class="fa-solid fa-pen-to-square"></i> <span class="d-none d-sm-inline">Edit</span>')
             addClasses(edit, 'btn btn-warning me-1')
@@ -299,7 +383,7 @@
             manage.classList.add('text-end')
             let section = getSection(localStorage.getItem('current_section'))
             if (section.user != user.id) {
-                let assign = createButton(manage, '', '<i class="fa-solid fa-user"></i> <span class="d-none d-sm-inline">Assign</span>')
+                let assign = createButton(manage, '', '<i class="fa-solid fa-user"></i> Assign')
                 assign.name = 'user'
                 assign.type = 'submit'
                 assign.value = user.id
@@ -325,19 +409,34 @@
             window.setTimeout(() => displayUsers(e.target.value), 1000)
         })
 
+        function Loading(duration) {
+            let list = document.getElementById('users')
+            list.innerHTML = ''
+            let row = createRow(list)
+            addClasses(row, 'align-middle')
+            let td1 = insertCell(row, '')
+            td1.innerHTML = '<div class="d-flex align-items-center"><span style="width: 20px; height: 20px" class="spinner-grow text-dark me-2" role="status"></span > <span>Loading please wait a second.</span></div>'
+            addClasses(td1, 'd-table-cell p-3')
+            td1.colSpan = "100"
+            list.appendChild(row)
+            window.setTimeout((e) => displayUsers(''), duration)
+        }
+
     </script>
     <style>
         @media only screen and (max-width: 425px) {
 
-            .table tbody tr td:nth-child(2),
-            .table tbody tr td:nth-child(3),
-            .table tbody tr td:nth-child(4) {
+            .table.custom tbody tr td:nth-child(2),
+            .table.custom tbody tr td:nth-child(3),
+            .table.custom tbody tr td:nth-child(4),
+            .table.custom tbody tr td:nth-child(5) {
                 display: none
             }
 
-            .table thead tr th:nth-child(2),
-            .table thead tr th:nth-child(3),
-            .table thead tr th:nth-child(4) {
+            .table.custom thead tr th:nth-child(2),
+            .table.custom thead tr th:nth-child(3),
+            .table.custom thead tr th:nth-child(4),
+            .table.custom thead tr th:nth-child(5) {
                 display: none
             }
         }
