@@ -90,6 +90,7 @@ function logout() {
             localStorage.removeItem('current_section')
             localStorage.removeItem('current_student')
             localStorage.removeItem('current_user')
+            localStorage.removeItem('current_date')
             Redirect('signin.html')
         }
     })
