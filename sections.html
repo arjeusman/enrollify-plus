@@ -72,7 +72,7 @@
                             <div class="row px-2 py-2">
                                 <div class="col-6 col-md-2 p-1 py-1">
                                     <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-primary bg-opacity-75 bg-gradient border-primary">
-                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 py-2 h-100 gap-1">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 py-3 h-100 gap-1">
                                             <i class="fa-solid fa-mars" style="font-size: 20px; line-height: normal;"></i>
                                             <small style="font-size: 10px" class="text-uppercase d-none d-md-inline">Male</small>
                                         </div>
@@ -81,7 +81,7 @@
                                 </div>
                                 <div class="col-6 col-md-2 p-1 py-1">
                                     <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-info bg-opacity-75 bg-gradient border-info">
-                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 py-2 h-100 gap-1">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 py-3 h-100 gap-1">
                                             <i class="fa-solid fa-venus" style="font-size: 20px; line-height: normal;"></i>
                                             <small style="font-size: 10px" class="text-uppercase d-none d-md-inline">Female</small>
                                         </div>
@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="col-6 col-md-2 p-1 py-1">
                                     <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-success bg-opacity-75 bg-gradient border-success">
-                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 py-2 h-100 gap-1">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 py-3 h-100 gap-1">
                                             <i class="fa-solid fa-user-check" style="font-size: 20px; line-height: normal;"></i>
                                             <small style="font-size: 10px" class="text-uppercase d-none d-md-inline">Official</small>
                                         </div>
@@ -99,7 +99,7 @@
                                 </div>
                                 <div class="col-6 col-md-2 p-1 py-1">
                                     <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-warning bg-opacity-75 bg-gradient border-warning">
-                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 py-2 h-100 gap-1">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 py-3 h-100 gap-1">
                                             <i class="fa-solid fa-user-clock" style="font-size: 20px; line-height: normal;"></i>
                                             <small style="font-size: 10px" class="text-uppercase d-none d-md-inline">Temporary</small>
                                         </div>
@@ -108,7 +108,7 @@
                                 </div>
                                 <div class="col-6 col-md-2 p-1 py-1">
                                     <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-danger bg-opacity-75 bg-gradient border-danger">
-                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 py-2 h-100 gap-1">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 py-3 h-100 gap-1">
                                             <i class="fa-solid fa-user-times" style="font-size: 20px; line-height: normal;"></i>
                                             <small style="font-size: 10px" class="text-uppercase d-none d-md-inline">Backout</small>
                                         </div>
@@ -117,7 +117,7 @@
                                 </div>
                                 <div class="col-6 col-md-2 p-1 py-1">
                                     <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-dark bg-opacity-75 bg-gradient border-dark">
-                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 py-2 h-100 gap-1">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 py-3 h-100 gap-1">
                                             <i class="fa-solid fa-screen-users" style="font-size: 20px; line-height: normal;"></i>
                                             <small style="font-size: 10px" class="text-uppercase d-none d-md-inline">Total</small>
                                         </div>
@@ -250,7 +250,6 @@
             let sections = getSections()
             let counts = sections[0]
             sections.shift()
-            console.log(counts)
 
             //set lables
             document.getElementById('male').innerHTML = counts.male
@@ -429,14 +428,20 @@
             .table.custom tbody tr td:nth-child(2),
             .table.custom tbody tr td:nth-child(3),
             .table.custom tbody tr td:nth-child(4),
-            .table.custom tbody tr td:nth-child(5) {
+            .table.custom tbody tr td:nth-child(5),
+            .table.custom tbody tr td:nth-child(6),
+            .table.custom tbody tr td:nth-child(7),
+            .table.custom tbody tr td:nth-child(8) {
                 display: none
             }
 
             .table.custom thead tr th:nth-child(2),
             .table.custom thead tr th:nth-child(3),
             .table.custom thead tr th:nth-child(4),
-            .table.custom thead tr th:nth-child(5) {
+            .table.custom thead tr th:nth-child(5),
+            .table.custom thead tr th:nth-child(6),
+            .table.custom thead tr th:nth-child(7),
+            .table.custom thead tr th:nth-child(8) {
                 display: none
             }
         }

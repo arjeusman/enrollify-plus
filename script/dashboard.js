@@ -746,9 +746,10 @@ function deleteStudent(data) {
 
 function getAttendance(student){
     let data = JSON.parse(localStorage.getItem('enrollify_attendance'))
+    let date = localStorage.getItem('current_date')
     let a = null
     data.forEach((d) => {
-        if(d.student_id == student.id){ a = d }
+        if(d.student_id == student.id && d.date == date){ a = d }
     })
     return (a)
 }

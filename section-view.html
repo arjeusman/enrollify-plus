@@ -65,14 +65,15 @@
                     </div><!-- header -->
                     <div class="card"><!-- card -->
                         <div class="container p-2 p-sm-3">
-                            <div class="d-flex flex-row flex-nowrap gap-2 px-0 py-2">
+                            <div class="d-flex align-items-center flex-row flex-nowrap gap-2 px-0 py-2">
                                 <button class="btn btn-secondary" onclick="history.back()"><i class="fas fa-arrow-left"></i><span class="d-none d-sm-inline">Back</span></button>
-                                <input style="max-width: 300px;" id="search" type="search" class="form-control" placeholder="Search student">
+                                <input style="max-width: 300px;" id="search" type="search" class="form-control" placeholder="Search student" />
+                                <input style="max-width: 150px;" id="date" type="date" class="form-control" value="" />
                             </div>
                             <div class="row px-2 py-2">
                                 <div class="col-6 col-md-2 p-1 py-1">
                                     <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-primary bg-opacity-75 bg-gradient border-primary">
-                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 py-2 h-100 gap-1">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 py-3 h-100 gap-1">
                                             <i class="fa-solid fa-mars" style="font-size: 20px; line-height: normal;"></i>
                                             <small style="font-size: 10px" class="text-uppercase d-none d-md-inline">Male</small>
                                         </div>
@@ -81,7 +82,7 @@
                                 </div>
                                 <div class="col-6 col-md-2 p-1 py-1">
                                     <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-info bg-opacity-75 bg-gradient border-info">
-                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 py-2 h-100 gap-1">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 py-3 h-100 gap-1">
                                             <i class="fa-solid fa-venus" style="font-size: 20px; line-height: normal;"></i>
                                             <small style="font-size: 10px" class="text-uppercase d-none d-md-inline">Female</small>
                                         </div>
@@ -90,7 +91,7 @@
                                 </div>
                                 <div class="col-6 col-md-2 p-1 py-1">
                                     <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-success bg-opacity-75 bg-gradient border-success">
-                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 py-2 h-100 gap-1">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 py-3 h-100 gap-1">
                                             <i class="fa-solid fa-user-check" style="font-size: 20px; line-height: normal;"></i>
                                             <small style="font-size: 10px" class="text-uppercase d-none d-md-inline">Official</small>
                                         </div>
@@ -99,7 +100,7 @@
                                 </div>
                                 <div class="col-6 col-md-2 p-1 py-1">
                                     <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-warning bg-opacity-75 bg-gradient border-warning">
-                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 py-2 h-100 gap-1">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 py-3 h-100 gap-1">
                                             <i class="fa-solid fa-user-clock" style="font-size: 20px; line-height: normal;"></i>
                                             <small style="font-size: 10px" class="text-uppercase d-none d-md-inline">Temporary</small>
                                         </div>
@@ -108,7 +109,7 @@
                                 </div>
                                 <div class="col-6 col-md-2 p-1 py-1">
                                     <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-danger bg-opacity-75 bg-gradient border-danger">
-                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 py-2 h-100 gap-1">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 py-3 h-100 gap-1">
                                             <i class="fa-solid fa-user-times" style="font-size: 20px; line-height: normal;"></i>
                                             <small style="font-size: 10px" class="text-uppercase d-none d-md-inline">Backout</small>
                                         </div>
@@ -117,7 +118,7 @@
                                 </div>
                                 <div class="col-6 col-md-2 p-1 py-1">
                                     <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-dark bg-opacity-75 bg-gradient border-dark">
-                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 px-3 py-2 h-100 gap-1">
+                                        <div class="col-5 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-10 py-3 h-100 gap-1">
                                             <i class="fa-solid fa-screen-users" style="font-size: 20px; line-height: normal;"></i>
                                             <small style="font-size: 10px" class="text-uppercase d-none d-md-inline">Total</small>
                                         </div>
@@ -169,7 +170,7 @@
                                             <th style="width: 80px;">Gender</th>
                                             <th style="width: 50px;">Age</th>
                                             <th>Birth Date</th>
-                                            <th class="text-end"></th>
+                                            <th id="manage_label" class="text-end"></th>
                                         </tr>
                                     </thead>
                                     <tbody id="list">
@@ -301,9 +302,22 @@
 
     <script type="text/javascript">
 
+        let datePicker = document.getElementById('date')
+        datePicker.valueAsDate = new Date();
+        datePicker.addEventListener('change', (e) => {
+            localStorage.setItem('current_date', e.target.value)
+            Loading({ 'id': 'attendance' }, 1000)
+        })
+
+        if (localStorage.getItem('current_date') == null) {
+            let date = new Date()
+            function format(x) { return (x < 10) ? '0' + x : x }
+            let today = date.getFullYear() + '-' + format(date.getMonth() + 1) + '-' + format(date.getDate())
+            localStorage.setItem('current_date', today)
+        }
+
         function toggleMenu(menu) {
             let menus = document.querySelectorAll('#menu .nav-link')
-            // console.log(menu.id)
             menus.forEach((m) => {
                 m.classList.remove('active')
                 if (m.id == menu.id) {
@@ -535,10 +549,11 @@
         function updateAttendance(student, status, menu, filter) {
             let data = JSON.parse(localStorage.getItem('enrollify_attendance'))
             let attendance = getAttendance(student)
+            let date = localStorage.getItem('current_date')
             let new_data = []
             if (attendance != null) {
                 data.forEach((d) => {
-                    if (d.student_id == student.id) {
+                    if (d.student_id == student.id && d.date == date) {
                         d.status = status
                     }
                     new_data.push(d)
@@ -550,7 +565,8 @@
                 let a = {
                     "id": Date.now(),
                     "student_id": student.id,
-                    "status": status
+                    "status": status,
+                    "date": date
                 }
                 new_data.push(a)
             }
@@ -586,6 +602,12 @@
         })
 
         function Loading(menu, duration) {
+            let manage_label = document.getElementById('manage_label')
+            if (menu.id == 'attendance') {
+                manage_label.innerHTML = localStorage.getItem('current_date')
+            } else {
+                manage_label.innerHTML = ''
+            }
             let list = document.getElementById('list')
             list.innerHTML = ''
             let row = createRow(list)
