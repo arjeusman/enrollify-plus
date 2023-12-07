@@ -70,6 +70,41 @@
                                 <input style="max-width: 200px;" id="search" type="search" class="form-control" placeholder="Search" />
                                 <input style="max-width: 150px;" id="date" type="date" class="form-control" value="" />
                             </div>
+                            <nav class="navbar navbar-dark bg-dark bg-gradient navbar-expand-md bg-body-tertiary p-0 py-2 py-sm-0 rounded-2">
+                                <div class="container-fluid p-0 px-sm-2">
+                                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                        <span class="navbar-toggler-icon"></span>
+                                    </button>
+                                    <span class="navbar-text h5 m-0 mx-2 text-uppercase">Menu</span>
+                                    <div class="navbar-collapse collapse" id="menu">
+                                        <ul class="navbar-nav">
+                                            <li class="nav-item">
+                                                <button onclick="toggleMenu(this)" id="enrollment" class="nav-link p-0 p-sm-2 active"><i class="fa-solid fa-screen-users"></i><span class="ms-2 d-md-none d-lg-inline">Enrollment</span></button>
+                                            </li>
+                                            <li class="nav-item">
+                                                <button onclick="toggleMenu(this)" id="attendance" class="nav-link p-0 p-sm-2"><i class="fa-solid fa-calendar-days"></i><span class="ms-2 d-md-none d-lg-inline">Attendance</span></button>
+                                            </li>
+                                            <li class="nav-item">
+                                                <button onclick="toggleMenu(this)" id="documents" class="nav-link p-0 p-sm-2"><i class="fa-solid fa-files"></i><span class="ms-2 d-md-none d-lg-inline">Documents</span></button>
+                                            </li>
+                                            <li class="nav-item">
+                                                <button onclick="toggleMenu(this)" id="status" class="nav-link p-0 p-sm-2"><i class="fa-solid fa-info-circle"></i><span class="ms-2 d-md-none d-lg-inline">Student's Status</span></button>
+                                            </li>
+                                            <li class="nav-item">
+                                                <button onclick="toggleMenu(this)" id="remarks" class="nav-link p-0 p-sm-2"><i class="fa-solid fa-star"></i><span class="ms-2 d-md-none d-lg-inline">Remarks</span></button>
+                                            </li>
+                                            <li id="manage" class="nav-item dropdown">
+                                                <a class="nav-link p-0 p-sm-2 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-gear"></i><span class="ms-2 d-md-none d-lg-inline">Manage</span></a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addStudent"><i class="fas fa-user-plus"></i> Add Student</a></li>
+                                                    <li><a class="dropdown-item" href="#" id="edit"><i class="fas fa-pen-to-square"></i> Edit Section</a></li>
+                                                    <li><a class="dropdown-item" href="#" id="delete"><i class="fas fa-trash"></i> Delete Section</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav>
                             <div class="row px-2 py-2">
                                 <div class="col-6 col-md-2 p-1 py-1">
                                     <div class="d-flex flex-row text-dark text-decoration-none overflow-hidden border-bottom border-5 flex-fill d-flex gap-2 align-items-center shadow rounded-2 bg-primary bg-opacity-75 bg-gradient border-primary">
@@ -126,41 +161,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <nav class="navbar navbar-dark bg-dark bg-gradient navbar-expand-md bg-body-tertiary p-0 py-2 py-sm-0 rounded-2">
-                                <div class="container-fluid p-0 px-sm-2">
-                                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                        <span class="navbar-toggler-icon"></span>
-                                    </button>
-                                    <span class="navbar-text h5 m-0 mx-2 text-uppercase">Menu</span>
-                                    <div class="navbar-collapse collapse" id="menu">
-                                        <ul class="navbar-nav">
-                                            <li class="nav-item">
-                                                <button onclick="toggleMenu(this)" id="enrollment" class="nav-link p-0 p-sm-2 active"><i class="fa-solid fa-screen-users"></i><span class="ms-2 d-md-none d-lg-inline">Enrollment</span></button>
-                                            </li>
-                                            <li class="nav-item">
-                                                <button onclick="toggleMenu(this)" id="attendance" class="nav-link p-0 p-sm-2"><i class="fa-solid fa-calendar-days"></i><span class="ms-2 d-md-none d-lg-inline">Attendance</span></button>
-                                            </li>
-                                            <li class="nav-item">
-                                                <button onclick="toggleMenu(this)" id="documents" class="nav-link p-0 p-sm-2"><i class="fa-solid fa-files"></i><span class="ms-2 d-md-none d-lg-inline">Documents</span></button>
-                                            </li>
-                                            <li class="nav-item">
-                                                <button onclick="toggleMenu(this)" id="status" class="nav-link p-0 p-sm-2"><i class="fa-solid fa-info-circle"></i><span class="ms-2 d-md-none d-lg-inline">Student's Status</span></button>
-                                            </li>
-                                            <li class="nav-item">
-                                                <button onclick="toggleMenu(this)" id="remarks" class="nav-link p-0 p-sm-2"><i class="fa-solid fa-star"></i><span class="ms-2 d-md-none d-lg-inline">Remarks</span></button>
-                                            </li>
-                                            <li id="manage" class="nav-item dropdown">
-                                                <a class="nav-link p-0 p-sm-2 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-gear"></i><span class="ms-2 d-md-none d-lg-inline">Manage</span></a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addStudent"><i class="fas fa-user-plus"></i> Add Student</a></li>
-                                                    <li><a class="dropdown-item" href="#" id="edit"><i class="fas fa-pen-to-square"></i> Edit Section</a></li>
-                                                    <li><a class="dropdown-item" href="#" id="delete"><i class="fas fa-trash"></i> Delete Section</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </nav>
                             <div class="table-responsive border m-0 mt-2">
                                 <table class="table table-borderless table-hover m-0" style="font-size: 13px;">
                                     <thead>
@@ -356,6 +356,11 @@
         displayStudents('', document.getElementById('enrollment'))
 
         function displayStudents(filter, menu) {
+            if (menu.id == 'attendance') {
+                manage_label.innerHTML = localStorage.getItem('current_date')
+            } else {
+                manage_label.innerHTML = ''
+            }
             //the table body
             let list = document.getElementById('list')
             list.innerHTML = ''
@@ -603,11 +608,6 @@
 
         function Loading(menu, duration) {
             let manage_label = document.getElementById('manage_label')
-            if (menu.id == 'attendance') {
-                manage_label.innerHTML = localStorage.getItem('current_date')
-            } else {
-                manage_label.innerHTML = ''
-            }
             let list = document.getElementById('list')
             list.innerHTML = ''
             let row = createRow(list)
