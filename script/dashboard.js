@@ -149,7 +149,7 @@ function Redirect(redirect) {
 function viewSchool(school){
     Process()
     localStorage.setItem('current_school', school.id)
-    Redirect('sections.html')
+    Redirect('school-view.html')
 }
 
 function getSchool(id) {
@@ -194,9 +194,15 @@ function addSchool(school) {
         form.school_division.value = school.school_division
         form.school_district.value = school.school_district
         form.school_principal.value = school.school_principal
-        form.button.innerHTML = '<i class="fa-solid fa-check"></i> Save Changes'
+        form.button.innerHTML = '<i class="fa-solid fa-check"></i> Save'
     } else {
-        form.button.innerHTML = '<i class="fa-solid fa-plus"></i> Add School'
+        form.school_id.value = ''
+        form.school_name.value = ''
+        form.school_region.value = ''
+        form.school_division.value = ''
+        form.school_district.value = ''
+        form.school_principal.value = ''
+        form.button.innerHTML = '<i class="fa-solid fa-plus"></i> Add'
     }
     form.addEventListener('submit', (e) => {
         e.preventDefault()
@@ -559,7 +565,7 @@ function deleteSection(section) {
             })
             localStorage.setItem('enrollify_students', JSON.stringify(new_data))//update students
             localStorage.removeItem('current_section')
-            Success('Section was deleted successfully.', 'sections.html')
+            Success('Section was deleted successfully.', 'school-view.html')
         }
     })
 }

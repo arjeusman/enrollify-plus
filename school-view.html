@@ -54,11 +54,11 @@
             <main class="content"><!-- content -->
                 <div class="container p-0"><!-- container -->
                     <div class="header"><!-- header -->
-                        <h1 class="header-title">Sections</h1>
+                        <h1 id="school_name" class="header-title">School Name</h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb text-white">
-                                <li class="breadcrumb-item">Dashboard</li>
-                                <li class="breadcrumb-item">Sections</li>
+                                <li class="breadcrumb-item">Schools</li>
+                                <li id="school_id" class="breadcrumb-item">School Name Sub</li>
                             </ol>
                         </nav>
                     </div><!-- header -->
@@ -67,7 +67,7 @@
                             <div class="d-flex align-items-center justify-content-start gap-2 mb-2">
                                 <button class="btn btn-secondary" onclick="history.back()"><i class="fas fa-arrow-left"></i><span class="d-none d-sm-inline">Back</span></button>
                                 <button id="add" class="btn btn-success"><i class="fas fa-plus"></i><span class="d-none d-md-inline ms-2">Add Section</span></button>
-                                <input style="max-width: 300px;" id="search" type="search" class="form-control" placeholder="Search section">
+                                <input style="max-width: 200px;" id="search" type="search" class="form-control" placeholder="Search">
                             </div>
                             <div class="row px-2 py-2">
                                 <div class="col-6 col-md-2 p-1 py-1">
@@ -233,6 +233,10 @@
     <!-- Assign Modal -->
 
     <script type="text/javascript">
+
+        let school = getSchoolInfo()
+        document.getElementById('school_name').innerHTML = school.school_name
+        document.getElementById('school_id').innerHTML = school.school_id
 
         if (localStorage.getItem('current_school') == null) {
             document.getElementById('add').classList.add('d-none')
