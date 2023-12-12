@@ -1,3 +1,11 @@
+//dashboard
+let the_user = getUserInfo()
+document.getElementById('the_firstname').innerHTML = the_user.firstname
+document.getElementById(('the_edit')).addEventListener('click', (e) => {
+    Process('Loading please wait.')
+    Redirect('profile.html')
+})
+
 //check if user is signed in
 function checkAuth(){
     let id = localStorage.getItem('current_user')
@@ -284,7 +292,16 @@ function getUser(email, password) {
     let data = JSON.parse(localStorage.getItem('enrollify_users'))
     let a
     data.forEach((d) => {
-        if (d.email == email && d.password == password) {
+        if (d.email == email && d.password == password) a = d
+    })
+    return a
+}
+
+function getUserEmail(email) {
+    let data = JSON.parse(localStorage.getItem('enrollify_users'))
+    let a
+    data.forEach((d) => {
+        if (d.email == email) {
             a = d
         }
     })

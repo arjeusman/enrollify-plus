@@ -10,7 +10,6 @@
     <link rel="icon" href="assets/enrollify.png">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.dark.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <script type="text/javascript" src="script/dashboard.js"></script>
 </head>
 
 <body onload="checkAuth();isSchoolSelected()">
@@ -25,6 +24,12 @@
         <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar">
             <div class="offcanvas-header bg-dark py-4 d-flex align-items-center justify-content-center">
                 <img style="width: 60%;" src="assets/enrollify-white.png" />
+            </div>
+            <div class="offcanvas-header bg-white py-4 g-0 d-flex flex-column align-items-center justify-content-center">
+                <img class="mb-3" style="width: 80px;" src="assets/user.png" />
+                <div class="fs-5">
+                    Hello, <span id="the_firstname"></span><button id="the_edit" class="btn btn-sm btn-white ms-2 m-0"><i class="fa-solid fa-edit"></i></button>
+                </div>
             </div>
             <div class="offcanvas-body">
                 <div class="sidebar-content">
@@ -231,7 +236,7 @@
         </div>
     </div>
     <!-- Assign Modal -->
-
+    <script type="text/javascript" src="script/dashboard.js"></script>
     <script type="text/javascript">
 
         let school = getSchoolInfo()

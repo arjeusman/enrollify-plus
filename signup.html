@@ -10,7 +10,6 @@
     <link rel="icon" href="assets/enrollify.png">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.dark.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <script type="text/javascript" src="script/dashboard.js"></script>
     <script type="module" src="script/database.js"></script>
 </head>
 
@@ -21,38 +20,76 @@
                 <img style="width: 150px;" src="assets/enrollify-white.png">
             </div>
             <div class="card-body">
-                <label for="email" class="form-label"><i class="fa-solid fa-user"></i> Email Address</label>
+                <label for="firstname" class="form-label"><i class="fa-solid fa-info-circle"></i> First Name</label>
+                <input type="text" id="firstname" name="firstname" class="form-control form-control-lg mb-2" autocomplete="off" required>
+                <label for="middlename" class="form-label"><i class="fa-solid fa-info-circle"></i> Middle Name</label>
+                <input type="text" id="middlename" name="middlename" class="form-control form-control-lg mb-2" autocomplete="off" required>
+                <label for="lastname" class="form-label"><i class="fa-solid fa-info-circle"></i> Last Name</label>
+                <input type="text" id="lastname" name="lastname" class="form-control form-control-lg mb-2" autocomplete="off" required>
+                <label for="email" class="form-label"><i class="fa-solid fa-envelope"></i> Email Address</label>
                 <input type="email" id="email" name="email" class="form-control form-control-lg mb-2" autocomplete="off" required>
-                <label for="password" class="form-label"><i class="fa-solid fa-lock"></i> Password</label>
-                <input type="password" id="password" name="password" class="form-control form-control-lg" autocomplete="off" required>
+                <label for="password" class="form-label"><i class="fa-solid fa-unlock"></i> Password</label>
+                <input type="password" id="password" name="password" class="form-control form-control-lg mb-2" autocomplete="off" required>
+                <label for="confirm_password" class="form-label"><i class="fa-solid fa-lock"></i> Confirm Password</label>
+                <input oninput="checkPassword(password, confirm_password)" type="password" id="confirm_password" name="confirm_password" class="form-control form-control-lg" autocomplete="off" required>
             </div>
             <div class="card-footer bg-light bg-opacity-25 text-center">
                 <div class="d-flex flex-row align-items-center justify-content-between">
                     <a style="font-size: 12px;" class="text-muted" href="signin.html">Have account?</a>
-                    <button type="submit" name="signin" class="btn btn-lg btn-info bg-gradient">Sign up <i class="fa-solid fa-arrow-right"></i></button>
+                    <button type="submit" name="signup" class="btn btn-lg btn-info bg-gradient">Sign up <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
         </form>
     </div>
+    <script type="text/javascript" src="script/dashboard.js"></script>
     <script type="text/javascript">
+        function checkPassword(p1, p2) {
+            if (p1.value == p2.value) {
+                p2.classList.add('is-valid')
+                p2.classList.remove('is-invalid')
+            } else {
+                p2.classList.add('is-invalid')
+                p2.classList.remove('is-valid')
+            }
+        }
         let form = document.forms.namedItem('signin')
         form.addEventListener('submit', (e) => {
             e.preventDefault()
+            let user = {}
+            user.id = Date.now()
+            user.firstname = form.firstname.value
+            user.middlename = form.middlename.value
+            user.lastname = form.lastname.value
+            user.email = form.email.value
+            user.password = form.password.value
+            let check = getUserEmail(user.email)
             if (!form.checkValidity()) {
                 e.stopPropagation()
             } else {
-                Process('Signing up please wait.')
-                let users = JSON.parse(localStorage.getItem('enrollify_users'))
-                window.setTimeout((e) => {
-                    let user = {}
-                    user.id = Date.now()
-                    user.email = form.email.value
-                    user.password = form.password.value
-                    users.push(user)
-                    localStorage.setItem('enrollify_current_user', user.id)
-                    localStorage.setItem('enrollify_users', JSON.stringify(users))
-                    Redirect('dashboard.html')
-                }, 2000)
+                if (check == undefined) {
+                    if (form.password.value == form.confirm_password.value) {
+                        Process('Signing up please wait.')
+                        let users = JSON.parse(localStorage.getItem('enrollify_users'))
+                        window.setTimeout((e) => {
+                            users.push(user)
+                            localStorage.setItem('current_user', user.id)
+                            localStorage.setItem('enrollify_users', JSON.stringify(users))
+                            Redirect('dashboard.html')
+                        }, 2000)
+                    }
+                } else {
+                    Swal.fire({
+                        icon: 'warning',
+                        iconColor: '#f3676e',
+                        iconHtml: '<i class="fa-solid fa-bomb"></i>',
+                        html: 'Something went wrong!',
+                        width: 350,
+                        padding: 20,
+                        timer: 2000,
+                        showConfirmButton: false,
+                        showCancelButton: false
+                    })
+                }
             }
             form.classList.add('was-validated')
         }, false)
