@@ -307,6 +307,14 @@
     <script type="text/javascript" src="script/dashboard.js"></script>
     <script type="text/javascript">
 
+        //dashboard
+        let the_user = getUserInfo()
+        document.getElementById('the_firstname').innerHTML = the_user.firstname
+        document.getElementById(('the_edit')).addEventListener('click', (e) => {
+            Process('Loading please wait.')
+            Redirect('profile.html')
+        })
+
         let datePicker = document.getElementById('date')
         datePicker.valueAsDate = new Date();
         datePicker.addEventListener('change', (e) => {

@@ -1,11 +1,3 @@
-//dashboard
-let the_user = getUserInfo()
-document.getElementById('the_firstname').innerHTML = the_user.firstname
-document.getElementById(('the_edit')).addEventListener('click', (e) => {
-    Process('Loading please wait.')
-    Redirect('profile.html')
-})
-
 //check if user is signed in
 function checkAuth(){
     let id = localStorage.getItem('current_user')
@@ -25,7 +17,7 @@ function checkAuth(){
             }
         })
         window.setTimeout((e) => {
-            window.location.href = 'signin.html'
+            window.location.href = 'index.html'
         }, 2000)
     }
 }
@@ -81,7 +73,7 @@ function logout() {
         icon: 'warning',
         iconHtml: '<i class="fa-solid fa-question"></i>',
         html: 'Are you sure you want to logout?',
-        width: 350,
+        width: 320,
         showConfirmButton: true,
         showCancelButton: true,
         confirmButtonText: '<i class="fa-solid fa-check"></i> Yes',
@@ -99,14 +91,14 @@ function logout() {
             localStorage.removeItem('current_student')
             localStorage.removeItem('current_user')
             localStorage.removeItem('current_date')
-            Redirect('signin.html')
+            Redirect('index.html')
         }
     })
 }
 
 function Process(message = 'Processing please wait.', duration=3000) {
     let html;
-    html = '<div class="d-flex align-items-center justify-content-center p-4">'
+    html = '<div class="d-flex align-items-center justify-content-center p-4 overflow-hidden">'
     html = html.concat('<div class="gauge">')
     html = html.concat('<div class="spinner spinner-border text-warning opacity-25"></div>')
     html = html.concat('<div class="spinner spinner-grow text-warning opacity-25"></div>')

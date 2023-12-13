@@ -239,6 +239,14 @@
     <script type="text/javascript" src="script/dashboard.js"></script>
     <script type="text/javascript">
 
+        //dashboard
+        let the_user = getUserInfo()
+        document.getElementById('the_firstname').innerHTML = the_user.firstname
+        document.getElementById(('the_edit')).addEventListener('click', (e) => {
+            Process('Loading please wait.')
+            Redirect('profile.html')
+        })
+
         let school = getSchoolInfo()
         document.getElementById('school_name').innerHTML = school.school_name
         document.getElementById('school_id').innerHTML = school.school_id

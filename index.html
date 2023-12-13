@@ -8,11 +8,267 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.dark.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/hero.css" />
 </head>
 
 <body>
+    <main class="d-flex align-items-center justify-content-center">
+        <section class="book">
+            <input type="checkbox" id="c1">
+            <input type="checkbox" id="c2">
+            <input type="checkbox" id="c3">
+            <input type="checkbox" id="c4">
+            <div id="cover" class="d-flex flex-column align-items-center justify-content-center">
+                <div class="w-75">
+                    <h2>Welcome to</h2>
+                    <img class="w-75" src="assets/enrollify-dark.png" alt="">
+                    <p class="text-dark fs-6">Your All-in-One Solution<br />for Streamlined Education Management!</p>
+                </div>
+            </div>
+            <div class="flip-book">
+                <div class="flip" id="p1">
+                    <div class="back cover1">
+                        <div class="text">
+                            <i class="fa-solid fa-feather icon"></i>
+                            <h1>Features</h1>
+                        </div>
+                        <label class="back-button" for="c1">Home</label>
+                    </div>
+                    <div class="front front-animate1 d-flex flex-column align-items-start justify-content-start">
+                        <h1 class="fs-4 mb-3">What is Enrollify+</h1>
+                        <p>Enrollify+ is a comprehensive and intuitive platform designed to revolutionize the way educational institutions manage their administrative tasks.</p>
+                        <p>With a focus on enrollment, sectioning, attendance checking, document monitoring, and remarks.</p>
+                        <p>Enrollify+ empowers educators and administrators to navigate the complexities of education management seamlessly.</p>
+                        <p>Enrollify+ is more than just a management tool<br />– it's a catalyst for educational excellence.</p>
+                        <p class="my-2"><a href="#" onclick="flip('c1', 200);flip('c2', 400);flip('c3', 600)" class="link link-success">Sign in</a> or <a href="#" onclick="flip('c1', 200);flip('c2', 400);flip('c3', 600);flip('c4', 800)" class="link link-info">Signup.</a></p>
+                        <label class="next-button" for="c1">Features</label>
+                    </div>
+                </div>
+                <div class="flip" id="p2">
+                    <div class="back cover2">
+                        <div class="text">
+                            <i class="fa-solid fa-stars icon"></i>
+                            <h1>Reviews</h1>
+                        </div>
+                        <label class="back-button" for="c2">Features</label>
+                    </div>
+                    <div class="front front-animate2">
+                        <h6>1. Effortless Enrollment</h6>
+                        <p>It has a user-friendly interface that makes it easy for admin to add student and update personal information.</p>
+                        <h6>2. Sectioning</h6>
+                        <p>Enrollify+ provides a sectioning system that optimizes class placement. This ensures a balanced and efficient distribution of students across classes.</p>
+                        <h6>3. Attendance Checking</h6>
+                        <p>Enrollify+ lets you take the attendance of your students everyday or you can choose a date, with a friendly user-interface.</p>
+                        <h6>4. Document Monitoring</h6>
+                        <p>Enrollify+ provides a platform that let you take note about the submitted documents of every students.</p>
+                        <h6>5. Students Remarks</h6>
+                        <p>Enrollify+ provides a platform that compiles the remark of your students and generate a ready-to-print document.</p>
+                        <label class="next-button" for="c2">Reviews</label>
+                    </div>
+                </div>
+                <div class="flip" id="p3">
+                    <div class="back cover3">
+                        <div class="text">
+                            <i class="fa-solid fa-user icon"></i>
+                            <h1>Sign in</h1>
+                        </div>
+                        <label class="back-button" for="c3">Reviews</label>
+                    </div>
+                    <div class="front front-animate3" style="padding: 50px 20px;">
+                        <figure>
+                            <blockquote class="blockquote">
+                                <div class="mt-2 text-warning" style="font-size: 10px;">
+                                    <span class="fas fa-star active-star"></span>
+                                    <span class="fas fa-star active-star"></span>
+                                    <span class="fas fa-star active-star"></span>
+                                    <span class="fas fa-star active-star"></span>
+                                    <span class="fas fa-star-half-alt active-star"></span>
+                                </div>
+                                <div class="text-muted fs-6">Great platform</div>
+                                <p style="font-size: 12px;">Enrollify+ has simplified our administrative tasks, from effortless enrollment to real-time attendance tracking.</p>
+                            </blockquote>
+                            <figcaption class="blockquote-footer">Arje Usman</figcaption>
+                        </figure>
+                        <figure>
+                            <blockquote class="blockquote">
+                                <div class="mt-2 text-warning" style="font-size: 10px;">
+                                    <span class="fas fa-star active-star"></span>
+                                    <span class="fas fa-star active-star"></span>
+                                    <span class="fas fa-star active-star"></span>
+                                    <span class="fas fa-star active-star"></span>
+                                    <span class="fas fa-star-half-alt active-star"></span>
+                                </div>
+                                <div class="text-muted fs-6">Great platform</div>
+                                <p style="font-size: 12px;">The document monitoring feature keeps our records organized, while customizable remarks enhance communication.</p>
+                            </blockquote>
+                            <figcaption class="blockquote-footer">Arje Usman</figcaption>
+                        </figure>
+                        <figure>
+                            <blockquote class="blockquote">
+                                <div class="mt-2 text-warning" style="font-size: 10px;">
+                                    <span class="fas fa-star active-star"></span>
+                                    <span class="fas fa-star active-star"></span>
+                                    <span class="fas fa-star active-star"></span>
+                                    <span class="fas fa-star active-star"></span>
+                                    <span class="fas fa-star-half-alt active-star"></span>
+                                </div>
+                                <div class="text-muted fs-6">Great platform</div>
+                                <p style="font-size: 12px;">Enrollify+ has simplified our administrative tasks, from effortless enrollment to real-time attendance tracking. The document monitoring feature keeps our records organized, while customizable remarks enhance communication. A must-have for streamlined education management!</p>
+                            </blockquote>
+                            <figcaption class="blockquote-footer">Arje Usman</figcaption>
+                        </figure>
+                        <figure>
+                            <blockquote class="blockquote">
+                                <div class="mt-2 text-warning" style="font-size: 10px;">
+                                    <span class="fas fa-star active-star"></span>
+                                    <span class="fas fa-star active-star"></span>
+                                    <span class="fas fa-star active-star"></span>
+                                    <span class="fas fa-star active-star"></span>
+                                    <span class="fas fa-star-half-alt active-star"></span>
+                                </div>
+                                <div class="text-muted fs-6">Great platform</div>
+                                <p style="font-size: 12px;">Enrollify+ has simplified our administrative tasks, from effortless enrollment to real-time attendance tracking. The document monitoring feature keeps our records organized, while customizable remarks enhance communication.</p>
+                            </blockquote>
+                            <figcaption class="blockquote-footer">Arje Usman</figcaption>
+                        </figure>
+                        <label class="next-button" for="c3">Sign in</label>
+                    </div>
+                </div>
+                <div class="flip" id="p4">
+                    <div class="back cover4">
+                        <div class="text">
+                            <i class="fa-solid fa-user-plus icon"></i>
+                            <h1>Sign up</h1>
+                        </div>
+                        <label class="back-button" for="c4">Sign in</label>
+                    </div>
+                    <div class="front front-animate4 d-flex h-100 align-items-center justify-content-center">
+                        <form name="signin" method="post" action="" class="needs-validation w-100" novalidate>
+                            <h1>Welcome back!</h1>
+                            <p>Please enter you email address and password.</p>
+                            <label for="_email" class="form-label"><i class="fa-solid fa-envelope"></i> Email Address</label>
+                            <input id="_email" type="email" name="email" class="form-control form-control-lg mt-2 mb-2" autocomplete="off" required>
+                            <label for="_password" class="form-label"><i class="fa-solid fa-lock"></i> Password</label>
+                            <input id="_password" type="password" name="password" class="form-control form-control-lg mt-2 mb-2" autocomplete="off" required>
+                            <button type="submit" name="signin" class="btn btn-info text-white bg-gradient rounded-2 px-3 py-2 border-0">Sign in <i class="fa-solid fa-arrow-right"></i></button>
+                        </form>
+                        <label class="next-button" for="c4">Sign up</label>
+                    </div>
+                </div>
+                <div class="flip" id="p5">
+                    <div class="front d-flex align-items-center justify-content-center">
+                        <form name="signup" action="" class="needs-validation w-100" novalidate>
+                            <h1>Create account.</h1>
+                            <p class="text-muted">*All fields are required.</p>
+                            <label for="firstname" class="form-label"><i class="fa-solid fa-info-circle"></i> First Name</label>
+                            <input type="text" id="firstname" name="firstname" class="form-control form-control-lg mb-2" autocomplete="off" required>
+                            <label for="email" class="form-label"><i class="fa-solid fa-envelope"></i> Email Address</label>
+                            <input type="email" id="email" name="email" class="form-control form-control-lg mb-2" autocomplete="off" required>
+                            <label for="password" class="form-label"><i class="fa-solid fa-unlock"></i> Password</label>
+                            <input type="password" id="password" name="password" class="form-control form-control-lg mb-2" autocomplete="off" required>
+                            <label for="confirm_password" class="form-label"><i class="fa-solid fa-lock"></i> Confirm Password</label>
+                            <input oninput="checkPassword(password, confirm_password)" type="password" id="confirm_password" name="confirm_password" class="form-control form-control-lg mb-2" autocomplete="off" required>
+                            <button type="submit" name="signup" class="btn btn-info text-white bg-gradient rounded-2 px-3 py-2 border-0">Sign up <i class="fa-solid fa-arrow-right"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script type="text/javascript" src="script/dashboard.js"></script>
+    <script>
+        function flip(id, timeout) {
+            window.setTimeout(() => {
+                document.getElementById(id).checked = true
+            }, timeout)
+        }
+        //sign in
+        let signin = document.forms.namedItem('signin')
+        signin.addEventListener('submit', (e) => {
+            e.preventDefault()
+            if (!signin.checkValidity()) {
+                e.stopPropagation()
+            } else {
+                let email = signin.email.value;
+                let password = signin.password.value;
+                let user = getUser(email, password)
+                Process('Signing in please wait.')
+                window.setTimeout((e) => {
+                    if (user != null) {
+                        localStorage.setItem('current_user', user.id)
+                        window.location.href = 'dashboard.html'
+                    } else {
+                        Swal.fire({
+                            icon: 'warning',
+                            iconHtml: '<i class="fa-solid fa-shield-exclamation"></i>',
+                            html: 'Incorrect email address or password.',
+                            allowOutsideClick: false,
+                            showConfirmButton: false,
+                            width: 350,
+                            padding: 20,
+                            timer: 2000
+                        })
+                        signin.email.value = ''
+                        signin.password.value = ''
+                        signin.classList.remove('was-validated')
+                    }
+                }, 2000)
+            }
+            signin.classList.add('was-validated')
+        }, false)
+
+        //sign up
+        function checkPassword(p1, p2) {
+            if (p1.value == p2.value) {
+                p2.classList.add('is-valid')
+                p2.classList.remove('is-invalid')
+            } else {
+                p2.classList.add('is-invalid')
+                p2.classList.remove('is-valid')
+            }
+        }
+        let signup = document.forms.namedItem('signup')
+        signup.addEventListener('submit', (e) => {
+            e.preventDefault()
+            let user = {}
+            user.id = Date.now()
+            user.firstname = signup.firstname.value
+            user.email = signup.email.value
+            user.password = signup.password.value
+            let check = getUserEmail(user.email)
+            if (!signup.checkValidity()) {
+                e.stopPropagation()
+            } else {
+                if (check == undefined) {
+                    if (signup.password.value == signup.confirm_password.value) {
+                        Process('Signing up please wait.')
+                        let users = JSON.parse(localStorage.getItem('enrollify_users'))
+                        window.setTimeout((e) => {
+                            users.push(user)
+                            localStorage.setItem('current_user', user.id)
+                            localStorage.setItem('enrollify_users', JSON.stringify(users))
+                            Redirect('dashboard.html')
+                        }, 2000)
+                    }
+                } else {
+                    Swal.fire({
+                        icon: 'warning',
+                        iconColor: '#f3676e',
+                        iconHtml: '<i class="fa-solid fa-bomb"></i>',
+                        html: 'Something went wrong!',
+                        width: 350,
+                        padding: 20,
+                        timer: 2000,
+                        showConfirmButton: false,
+                        showCancelButton: false
+                    })
+                }
+            }
+            signup.classList.add('was-validated')
+        }, false)
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
 </html>

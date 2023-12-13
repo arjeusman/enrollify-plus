@@ -148,6 +148,14 @@
     <!-- Edit Student Modal -->
     <script type="text/javascript" src="script/dashboard.js"></script>
     <script>
+        //dashboard
+        let the_user = getUserInfo()
+        document.getElementById('the_firstname').innerHTML = the_user.firstname
+        document.getElementById(('the_edit')).addEventListener('click', (e) => {
+            Process('Loading please wait.')
+            Redirect('profile.html')
+        })
+
         let user = getUserInfo()
         document.getElementById('name').innerHTML = formatName(user, '')
         document.getElementById('email').innerHTML = user.email
