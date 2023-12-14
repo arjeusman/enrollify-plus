@@ -19,7 +19,7 @@
             <input type="checkbox" id="c3">
             <input type="checkbox" id="c4">
             <div id="cover" class="d-flex flex-column align-items-center justify-content-center">
-                <div class="w-75">
+                <div class="w-75 text-center">
                     <h2>Welcome to</h2>
                     <img class="w-75" src="assets/enrollify-dark.png" alt="">
                     <p class="text-dark fs-6">Your All-in-One Solution<br />for Streamlined Education Management!</p>
@@ -42,6 +42,7 @@
                         <p>Enrollify+ is more than just a management tool<br />– it's a catalyst for educational excellence.</p>
                         <p class="my-2"><a href="#" onclick="flip('c1', 200);flip('c2', 400);flip('c3', 600)" class="link link-success">Sign in</a> or <a href="#" onclick="flip('c1', 200);flip('c2', 400);flip('c3', 600);flip('c4', 800)" class="link link-info">Signup.</a></p>
                         <label class="next-button" for="c1">Features</label>
+                        <button class="bookmark" onclick="viewHome()">Home</button>
                     </div>
                 </div>
                 <div class="flip" id="p2">
@@ -64,13 +65,14 @@
                         <h6>5. Students Remarks</h6>
                         <p>Enrollify+ provides a platform that compiles the remark of your students and generate a ready-to-print document.</p>
                         <label class="next-button" for="c2">Reviews</label>
+                        <button class="bookmark p2" onclick="viewHome();flip('c1', 200)">Features</button>
                     </div>
                 </div>
                 <div class="flip" id="p3">
                     <div class="back cover3">
                         <div class="text">
                             <i class="fa-solid fa-user icon"></i>
-                            <h1>Sign in</h1>
+                            <h1 class="text-center">Sign in</h1>
                         </div>
                         <label class="back-button" for="c3">Reviews</label>
                     </div>
@@ -120,11 +122,11 @@
                         <figure>
                             <blockquote class="blockquote">
                                 <div class="mt-2 text-warning" style="font-size: 10px;">
-                                    <span class="fas fa-star active-star"></span>
-                                    <span class="fas fa-star active-star"></span>
-                                    <span class="fas fa-star active-star"></span>
-                                    <span class="fas fa-star active-star"></span>
-                                    <span class="fas fa-star-half-alt active-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star-half-alt"></span>
                                 </div>
                                 <div class="text-muted fs-6">Great platform</div>
                                 <p style="font-size: 12px;">Enrollify+ has simplified our administrative tasks, from effortless enrollment to real-time attendance tracking. The document monitoring feature keeps our records organized, while customizable remarks enhance communication.</p>
@@ -132,6 +134,7 @@
                             <figcaption class="blockquote-footer">Arje Usman</figcaption>
                         </figure>
                         <label class="next-button" for="c3">Sign in</label>
+                        <button class="bookmark p3" onclick="viewHome();flip('c1', 200);flip('c2', 400)">Reviews</button>
                     </div>
                 </div>
                 <div class="flip" id="p4">
@@ -153,10 +156,11 @@
                             <button type="submit" name="signin" class="btn btn-info text-white bg-gradient rounded-2 px-3 py-2 border-0">Sign in <i class="fa-solid fa-arrow-right"></i></button>
                         </form>
                         <label class="next-button" for="c4">Sign up</label>
+                        <button class="bookmark p4" onclick="viewHome();flip('c1', 200);flip('c2', 400);flip('c3', 600)">Sign in</button>
                     </div>
                 </div>
                 <div class="flip" id="p5">
-                    <div class="front d-flex align-items-center justify-content-center">
+                    <div class="front front-animate5 d-flex align-items-center justify-content-center">
                         <form name="signup" action="" class="needs-validation w-100" novalidate>
                             <h1>Create account.</h1>
                             <p class="text-muted">*All fields are required.</p>
@@ -170,6 +174,7 @@
                             <input oninput="checkPassword(password, confirm_password)" type="password" id="confirm_password" name="confirm_password" class="form-control form-control-lg mb-2" autocomplete="off" required>
                             <button type="submit" name="signup" class="btn btn-info text-white bg-gradient rounded-2 px-3 py-2 border-0">Sign up <i class="fa-solid fa-arrow-right"></i></button>
                         </form>
+                        <button class="bookmark p5" onclick="viewHome();flip('c1', 200);flip('c2', 400);flip('c3', 600);flip('c4', 800)">Sign up</button>
                     </div>
                 </div>
             </div>
@@ -181,6 +186,12 @@
             window.setTimeout(() => {
                 document.getElementById(id).checked = true
             }, timeout)
+        }
+        function viewHome() {
+            document.getElementById('c1').checked = false
+            document.getElementById('c2').checked = false
+            document.getElementById('c3').checked = false
+            document.getElementById('c4').checked = false
         }
         //sign in
         let signin = document.forms.namedItem('signin')
