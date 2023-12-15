@@ -319,7 +319,7 @@
         datePicker.valueAsDate = new Date();
         datePicker.addEventListener('change', (e) => {
             localStorage.setItem('current_date', e.target.value)
-            Loading({ 'id': 'attendance' }, 1000)
+            toggleMenu({ id: 'attendance' })
         })
 
         if (localStorage.getItem('current_date') == null) {
