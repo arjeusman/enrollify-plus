@@ -13,7 +13,7 @@
 </head>
 
 <body>
-	<main class="d-flex align-items-center justify-content-center">
+	<main class="d-none d-md-flex align-items-center justify-content-center">
 		<section class="book">
 			<input type="checkbox" id="c1" />
 			<input type="checkbox" id="c2" />
@@ -186,6 +186,171 @@
 			</div>
 		</section>
 	</main>
+	<main class="d-block d-md-none">
+		<nav class="navbar bg-dark navbar-expand navbar-theme py-2 sticky-top">
+			<a data-bs-toggle="offcanvas" data-bs-target="#sidebar" class="sidebar-toggle d-flex me-2">
+				<i class="hamburger align-self-center"></i>
+			</a>
+			<a href="dashboard.html" class="navbar-brand">
+				<img style="width: 100px;" src="assets/enrollify-white.png" alt="">
+			</a>
+		</nav>
+		<div class="offcanvas offcanvas-start w-75" tabindex="-1" id="sidebar">
+			<div class="offcanvas-header bg-dark py-4 d-flex align-items-center justify-content-center">
+				<img style="width: 60%;" src="assets/enrollify-white.png" />
+			</div>
+			<div class="offcanvas-body">
+				<div class="sidebar-content">
+					<ul class="nav nav-pills d-flex flex-column gap-2 p-0">
+						<li data-bs-dismiss="offcanvas" class="nav-item">
+							<a data-bs-target="#sidebar" class="nav-link" href="#home"><i class="fa-solid fa-house me-2"></i><span>Home</span></a>
+						</li>
+						<li data-bs-dismiss="offcanvas" class="nav-item">
+							<a class="nav-link" href="#features"><i class="fa-solid fa-rocket me-2"></i><span>Features</span></a>
+						</li>
+						<li data-bs-dismiss="offcanvas" class="nav-item">
+							<a class="nav-link rounded-0" href="#reviews"><i class="fa-solid fa-stars me-2"></i><span>Reviews</span></a>
+						</li>
+						<li data-bs-dismiss="offcanvas" class="nav-item">
+							<a class="nav-link rounded-0" href="#signin"><i class="fa-solid fa-right-from-bracket me-2"></i><span>Sign in</span></a>
+						</li>
+						<li data-bs-dismiss="offcanvas" class="nav-item">
+							<a class="nav-link rounded-0" href="#signup"><i class="fa-solid fa-user-plus me-2"></i><span>Sign up</span></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<section id="home">
+			<div class="py-5">
+				<img class="w-75" src="assets/enrollify-dark.png" alt="" />
+				<p class="text-dark fs-6">Your All-in-One Solution<br />for Streamlined Education Management!</p>
+			</div>
+			<div class="d-flex flex-column align-items-start justify-content-center">
+				<h1 class="fs-2 mb-3">What is Enrollify?</h1>
+				<p>Enrollify+ is a comprehensive and intuitive platform designed to revolutionize the way educational institutions manage their administrative tasks.</p>
+				<p>With a focus on enrollment, sectioning, attendance checking, document monitoring, and remarks. Enrollify+ empowers educators and administrators to navigate the complexities of education management seamlessly.</p>
+				<h2 class="fs-4 text-muted">Explore Enrollify+</h2>
+				<p>Enrollify+ is more than just a management tool - it's a catalyst for educational excellence.</p>
+				<div class="d-flex gap-2 align-items-center">
+					<a href="#signin" class="btn btn-sm btn-success p-1 px-3"><i class="fa-solid fa-right-from-bracket"></i> Sign in</a>
+					<span class="fs-5">or</span>
+					<a href="#signup" class="btn btn-sm btn-info p-1 px-3"><i class="fa-solid fa-user-plus"></i> Sign up</a>
+				</div>
+			</div>
+		</section>
+		<section id="features">
+			<div class="w-100">
+				<h1 class="fs-2 mb-3">Features</h1>
+				<h6>1. Effortless Enrollment</h6>
+				<p>It has a user-friendly interface that makes it easy for admin to add student and update personal information.</p>
+				<h6>2. Sectioning</h6>
+				<p>Enrollify+ provides a sectioning system that optimizes class placement. This ensures a balanced and efficient distribution of students across classes.</p>
+				<h6>3. Attendance Checking</h6>
+				<p>Enrollify+ lets you take the attendance of your students everyday or you can choose a date, with a friendly user-interface.</p>
+				<h6>4. Document Monitoring</h6>
+				<p>Enrollify+ provides a platform that let you take note about the submitted documents of every students.</p>
+				<h6>5. Students Remarks</h6>
+				<p>Enrollify+ provides a platform that compiles the remark of your students and generate a ready-to-print document.</p>
+			</div>
+		</section>
+		<section id="reviews">
+			<div class="w-100">
+				<h1 class="fs-2 mb-3">Reviews</h1>
+				<figure>
+					<blockquote class="blockquote">
+						<div class="mt-2 text-warning" style="font-size: 10px">
+							<span class="fas fa-star"></span>
+							<span class="fas fa-star"></span>
+							<span class="fas fa-star"></span>
+							<span class="fas fa-star"></span>
+							<span class="fas fa-star-half-alt"></span>
+						</div>
+						<div class="text-muted fs-6">Fast and Simple</div>
+						<p style="font-size: 12px">Enrollify+ has simplified our administrative tasks, from effortless enrollment to real-time attendance tracking.</p>
+					</blockquote>
+					<figcaption class="blockquote-footer">Juan Dela Cruz</figcaption>
+				</figure>
+				<figure>
+					<blockquote class="blockquote">
+						<div class="mt-2 text-warning" style="font-size: 10px">
+							<span class="fas fa-star"></span>
+							<span class="fas fa-star"></span>
+							<span class="fas fa-star"></span>
+							<span class="fas fa-star"></span>
+							<span class="fas fa-star-half-alt"></span>
+						</div>
+						<div class="text-muted fs-6">Well-organized</div>
+						<p style="font-size: 12px">The document monitoring feature keeps our records organized, while customizable remarks enhance communication.</p>
+					</blockquote>
+					<figcaption class="blockquote-footer">Arje Usman</figcaption>
+				</figure>
+				<figure>
+					<blockquote class="blockquote">
+						<div class="mt-2 text-warning" style="font-size: 10px">
+							<span class="fas fa-star"></span>
+							<span class="fas fa-star"></span>
+							<span class="fas fa-star"></span>
+							<span class="fas fa-star"></span>
+							<span class="fas fa-star"></span>
+						</div>
+						<div class="text-muted fs-6">Great platform</div>
+						<p style="font-size: 12px">
+							Enrollify+ has simplified our administrative tasks, from effortless enrollment to real-time attendance tracking. The document monitoring feature keeps our records organized, while
+							customizable remarks enhance communication. A must-have for streamlined education management!
+						</p>
+					</blockquote>
+					<figcaption class="blockquote-footer">Arje Usman</figcaption>
+				</figure>
+				<figure>
+					<blockquote class="blockquote">
+						<div class="mt-2 text-warning" style="font-size: 10px">
+							<span class="fas fa-star"></span>
+							<span class="fas fa-star"></span>
+							<span class="fas fa-star"></span>
+							<span class="fas fa-star"></span>
+							<span class="fas fa-star-half-alt"></span>
+						</div>
+						<div class="text-muted fs-6">Effortless</div>
+						<p style="font-size: 12px">
+							Enrollify+ has simplified our administrative tasks, from effortless enrollment to real-time attendance tracking. The document monitoring feature keeps our records organized, while
+							customizable remarks enhance communication.
+						</p>
+					</blockquote>
+					<figcaption class="blockquote-footer">Arje Usman</figcaption>
+				</figure>
+			</div>
+		</section>
+		<section id="signin">
+			<form name="signin_mobile" method="post" action="" class="needs-validation" novalidate>
+				<h1>Sign in</h1>
+				<p>Please enter you email address and password.</p>
+				<label for="_email_mobile" class="form-label"><i class="fa-solid fa-envelope"></i> Email Address</label>
+				<input id="_email_mobile" type="email" name="email" class="form-control form-control-lg mt-2 mb-2" autocomplete="off" required />
+				<label for="_password_mobile" class="form-label"><i class="fa-solid fa-lock"></i> Password</label>
+				<input id="_password_mobile" type="password" name="password" class="form-control form-control-lg mt-2 mb-2" autocomplete="off" required />
+				<button type="submit" name="signin" class="btn btn-info text-white bg-gradient rounded-2 px-3 py-2 border-0">Sign in <i class="fa-solid fa-arrow-right"></i></button>
+			</form>
+		</section>
+		<section id="signup">
+			<form name="signup_mobile" action="" class="needs-validation" novalidate>
+				<h1>Sign up</h1>
+				<p class="text-danger">*All fields are required.</p>
+				<label for="firstname_mobile" class="form-label"><i class="fa-solid fa-info-circle"></i> First Name</label>
+				<input type="text" id="firstname_mobile" name="firstname" class="form-control form-control-lg mb-2" autocomplete="off" required />
+				<label for="email_mobile" class="form-label"><i class="fa-solid fa-envelope"></i> Email Address</label>
+				<input type="email" id="email_mobile" name="email" class="form-control form-control-lg mb-2" autocomplete="off" required />
+				<label for="password_mobile" class="form-label"><i class="fa-solid fa-unlock"></i> Password</label>
+				<input type="password" id="password_mobile" name="password" class="form-control form-control-lg mb-2" autocomplete="off" required />
+				<label for="confirm_password_mobile" class="form-label"><i class="fa-solid fa-lock"></i> Confirm Password</label>
+				<input oninput="checkPassword(password, confirm_password)" type="password" id="confirm_password_mobile" name="confirm_password" class="form-control form-control-lg mb-2" autocomplete="off" required />
+				<button type="submit" name="signup" class="btn btn-info text-white bg-gradient rounded-2 px-3 py-2 border-0">Sign up <i class="fa-solid fa-arrow-right"></i></button>
+			</form>
+		</section>
+		<footer class="py-3">
+			<p class="text-center text-muted m-0">Copyright &copy; 2023 - <a href="https://facebook.com/arjeusman">Luffytaro.</a></p>
+		</footer>
+	</main>
 	<script type="text/javascript" src="script/dashboard.js"></script>
 	<script>
 		function flip(id) {
@@ -250,6 +415,45 @@
 			false
 		);
 
+		//sign in mobile
+		let signin_mobile = document.forms.namedItem('signin_mobile');
+		signin_mobile.addEventListener(
+			'submit',
+			e => {
+				e.preventDefault();
+				if (!signin_mobile.checkValidity()) {
+					e.stopPropagation();
+				} else {
+					let email = signin_mobile.email.value;
+					let password = signin_mobile.password.value;
+					let user = getUser(email, password);
+					Process('Signing in please wait.');
+					window.setTimeout(e => {
+						if (user != null) {
+							localStorage.setItem('current_user', user.id);
+							window.location.href = 'dashboard.html';
+						} else {
+							Swal.fire({
+								icon: 'warning',
+								iconHtml: '<i class="fa-solid fa-shield-exclamation"></i>',
+								html: 'Incorrect email address or password.',
+								allowOutsideClick: false,
+								showConfirmButton: false,
+								width: 350,
+								padding: 20,
+								timer: 2000,
+							});
+							signin_mobile.email.value = '';
+							signin_mobile.password.value = '';
+							signin_mobile.classList.remove('was-validated');
+						}
+					}, 2000);
+				}
+				signin_mobile.classList.add('was-validated');
+			},
+			false
+		);
+
 		//sign up
 		function checkPassword(p1, p2) {
 			if (p1.value == p2.value) {
@@ -300,6 +504,51 @@
 					}
 				}
 				signup.classList.add('was-validated');
+			},
+			false
+		);
+
+		//sign up mobile
+		let signup_mobile = document.forms.namedItem('signup_mobile');
+		signup_mobile.addEventListener(
+			'submit',
+			e => {
+				e.preventDefault();
+				let user = {};
+				user.id = Date.now();
+				user.firstname = signup_mobile.firstname.value;
+				user.email = signup_mobile.email.value;
+				user.password = signup_mobile.password.value;
+				let check = getUserEmail(user.email);
+				if (!signup_mobile.checkValidity()) {
+					e.stopPropagation();
+				} else {
+					if (check == undefined) {
+						if (signup_mobile.password.value == signup_mobile.confirm_password.value) {
+							Process('Signing up please wait.');
+							let users = JSON.parse(localStorage.getItem('enrollify_users'));
+							window.setTimeout(e => {
+								users.push(user);
+								localStorage.setItem('current_user', user.id);
+								localStorage.setItem('enrollify_users', JSON.stringify(users));
+								Redirect('dashboard.html');
+							}, 2000);
+						}
+					} else {
+						Swal.fire({
+							icon: 'warning',
+							iconColor: '#f3676e',
+							iconHtml: '<i class="fa-solid fa-bomb"></i>',
+							html: 'Something went wrong!',
+							width: 350,
+							padding: 20,
+							timer: 2000,
+							showConfirmButton: false,
+							showCancelButton: false,
+						});
+					}
+				}
+				signup_mobile.classList.add('was-validated');
 			},
 			false
 		);
