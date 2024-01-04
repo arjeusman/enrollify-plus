@@ -106,6 +106,7 @@ main {
 		height: unset;
 		width: unset;
 		overflow: scroll;
+		font-size: 16px;
 	}
 	main {
 		position: static;
@@ -115,10 +116,9 @@ main {
 		background-color: #fff;
 	}
 	main section {
-		padding: 10px;
-		padding-top: 75px;
-		min-height: 100vh;
-		border-bottom: 2px solid #999;
+		padding: 75px 20px;
+		/* min-height: 100vh; */
+		border-bottom: 5px solid #dedede;
 	}
 }
 
