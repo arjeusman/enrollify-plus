@@ -12,7 +12,7 @@ let tempStudents = localStorage.getItem('enrollify_students')
 let tempGrades = localStorage.getItem('enrollify_grades')
 let tempAttendnace = localStorage.getItem('enrollify_attendance')
 
-{ (tempUsers == null) && localStorage.setItem('enrollify_users', JSON.stringify(Users)) }
+{(tempUsers == null) && localStorage.setItem('enrollify_users', JSON.stringify(Users)) }
 {(tempSchools == null) && localStorage.setItem('enrollify_schools', JSON.stringify(Schools))}
 {(tempSections == null) && localStorage.setItem('enrollify_sections', JSON.stringify(Sections))}
 {(tempStudents == null) && localStorage.setItem('enrollify_students', JSON.stringify(Students))}
