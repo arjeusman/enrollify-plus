@@ -4,6 +4,9 @@
 
 <a href="https://arjeusman.github.io/enrollify-plus">Visit Enrollify+</a>
 
+<p>Username: <b>dev@enrollify.com</b></p>
+<p>Password: <b>1234</b></p>
+
 <h1>What is Enrollify?</h1>
 
 <p>Enrollify+ is a comprehensive and intuitive platform designed to revolutionize the way educational institutions manage their administrative tasks. With a focus on enrollment, sectioning, attendance checking, document monitoring, and remarks. Enrollify+ empowers educators and administrators to navigate the complexities of education management seamlessly. Enrollify+ is more than just a management tool – it's a catalyst for educational excellence.</p>
