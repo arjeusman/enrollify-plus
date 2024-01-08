@@ -418,7 +418,7 @@
         document.getElementById('student_name').innerHTML = formatName(student)
         document.getElementById('student_age').innerHTML = student.age
         let date = new Date(student.birthdate)
-        document.getElementById('student_birthdate').innerHTML = date.toLocaleString('default', { month: 'long' }) + ' ' + date.getDate() + ', ' + date.getYear()
+        document.getElementById('student_birthdate').innerHTML = date.toLocaleString('default', { month: 'long' }) + ' ' + date.getDate() + ', ' + date.getFullYear()
         document.getElementById('student_gender').innerHTML = student.gender
         document.getElementById('student_level').innerHTML = 'Grade ' + section.level
         document.getElementById('student_section').innerHTML = section.name
