@@ -2,7 +2,7 @@
 
 <p>My KodeGo mini project.</p>
 
-<a href="https://arjeusman.github.io/enrollify-plus">Visit Enrollify+</a>
+<a href="https://arjeusman.github.io/enrollify-plus">Try Enrollify+</a>
 
 <p>
   Username: <b>dev@enrollify.com</b>
