@@ -100,7 +100,7 @@ main {
 	}
 }
 
-@media only screen and (max-width: 425px){
+@media screen and (max-width: 768px){
 	body {
 		position: static;
 		height: unset;

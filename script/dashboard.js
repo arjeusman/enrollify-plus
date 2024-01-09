@@ -187,7 +187,7 @@ function getSchools() {
 function addSchool(school) {
     new bootstrap.Modal(document.querySelector("#addSchool")).show() //show form
     let form = document.forms.namedItem('addSchool')
-    let isAdd = (school != undefined)?false:true
+    let isAdd = (school != undefined) ? false : true
     if (school != undefined) {
         form.school_id.value = school.school_id
         form.school_name.value = school.school_name
